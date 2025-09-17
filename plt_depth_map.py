@@ -6,7 +6,7 @@ import cv2
 import chardet
 import re
 
-with open("./data","rb") as f:
+with open("./plt/feats","rb") as f:
     data = pickle.load(f)
 
 # for psv in range(7):
@@ -56,18 +56,35 @@ with open("./data","rb") as f:
 # print(a = b)
 
 # 看输入图
+# def to_png(img):
+#     img = (img*0.229+0.485)*255
+#     img = np.clip(img,0,255).astype(int)
+#     img = np.transpose(img, (1, 2, 0)) 
+#     return img
+
+# left = data[0].cpu().detach().numpy()
+# right = data[1].cpu().detach().numpy()
+# disp_l = data[2].cpu().detach().numpy()
+
+
+# B = 0
+# cv2.imwrite("./plt/left_{}.png".format(B),to_png(left))
+# cv2.imwrite("./plt/right_{}.png".format(B),to_png(right))
+# cv2.imwrite("./plt/disp_l_{}.png".format(B),disp_l)
+
+# 看注意力指导图
+
 def to_png(img):
-    img = (img*0.229+0.485)*255
+    img = img*25500
     img = np.clip(img,0,255).astype(int)
-    img = np.transpose(img, (1, 2, 0)) 
     return img
 
-left = data[0].cpu().detach().numpy()
-right = data[1].cpu().detach().numpy()
-disp_l = data[2].cpu().detach().numpy()
+data = data.mean(dim=1).cpu().numpy()
+data = data[0]
 
-
-B = 0
-cv2.imwrite("./plt/left_{}.png".format(B),to_png(left))
-cv2.imwrite("./plt/right_{}.png".format(B),to_png(right))
-cv2.imwrite("./plt/disp_l_{}.png".format(B),disp_l)
+for d in range(data.shape[0]):
+    # cv2.imwrite("./plt/attention_{}.png".format(d),to_png(data[d]))
+    fig = plt.figure(figsize=(24, 6))
+    plt.hist(data[d].flatten(), bins=50)
+    plt.savefig('./plt/hist1_{}.png'.format(d))
+    plt.close()

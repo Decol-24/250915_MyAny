@@ -4,7 +4,6 @@ from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 import torch
-import torch.nn as nn
 import argparse
 import DCA_utils.creat_loader as DATA
 import pickle

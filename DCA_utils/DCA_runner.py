@@ -40,16 +40,15 @@ class my_runner(object):
 
             self.train_one_epoch(ep,train_loader,optimizer,self.setting.device)
 
-            val_loss,val_epe = self.val_onece(val_loader,self.setting.device)
+            val_epe = self.val_onece(val_loader,self.setting.device)
 
-            self.logger.info('val_loss: {:.3f} | val_epe: {:.3f}'.format(val_loss,val_epe))
+            self.logger.info('val_epe: {:.3f}'.format(val_epe))
 
-            if val_loss >= best_loss:
-                best_loss = val_loss
+            if val_epe >= best_epe:
                 best_epe = val_epe
-                self.save("{}_{:.2f}".format(ep,val_loss))
+                self.save("{}_{:.2f}".format(ep,val_epe))
 
-        self.logger.info('Final loss is {:.3f} | Final acc is {:.3f} |'.format(best_loss,best_epe))
+        self.logger.info('Final epe is {:.3f} '.format(best_epe))
         self.logger.info('Train end.')
         return best_loss, best_epe
 
@@ -97,7 +96,7 @@ class my_runner(object):
         # val_loss /= val_idx
         val_epe /= val_idx
 
-        return val_loss,val_epe
+        return val_epe
 
     @torch.no_grad()
     def test(self,test_loader):

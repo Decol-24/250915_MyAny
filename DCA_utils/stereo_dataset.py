@@ -249,7 +249,7 @@ class myImageFloder_SceneFlow(data.Dataset):
         self.disp_L = left_disparity
         self.training = training
         if self.training:
-            self.transforms = base_norm()
+            self.transforms = inception_color_preproccess()
         else:
             self.transforms = base_norm()
 
