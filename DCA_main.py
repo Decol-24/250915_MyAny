@@ -1,12 +1,12 @@
-from BI3D_utils.BI3D_runner import my_runner
-from BI3D_utils.my_BI3D import Bi3DNetBinaryDepth
+from DCA_utils.DCA_runner import my_runner
+from DCA_utils.my_DCA import GwcNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 import torch
 import torch.nn as nn
 import argparse
-import BI3D_utils.creat_loader as DATA
+import DCA_utils.creat_loader as DATA
 import pickle
 
 def train(args,Net,train_loader,val_loader,**kwargs):
@@ -33,15 +33,6 @@ def train(args,Net,train_loader,val_loader,**kwargs):
 
     runner.train(train_loader, val_loader, scheduler_cos, optimizer) 
 
-def test(args,test_loader,**kwargs):
-
-    runner = vit_runner()
-    net = args.model_fun(args.num_classes, forward_mode=0)
-    runner.initialize_runner(args, net)
-    runner.load_vit(args.pth_load)
-    test_acc = runner.test(test_loader)
-    runner.logger.info("val_acc: {}".format(test_acc))
-
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -55,7 +46,11 @@ if __name__ == '__main__':
     parser.add_argument('-seed', default=7777, type=int)
     parser.add_argument('-train_EPOCHS', default=500, type=int)
     parser.add_argument('-train_warm_up', default=30, type=int)
-    parser.add_argument('-train_lr', default=1e-3, type=float)
+    parser.add_argument('-train_lr', default=1e-2, type=float)
+    parser.add_argument('-start_disp', default=0, type=int)
+    parser.add_argument('-end_disp', default=192, type=int)
+    parser.add_argument('-focal_coefficient', default=5.0, type=float)
+    parser.add_argument('-sparse', default=False, type=bool)
 
     parser.add_argument('-batch_size', default=16, type=int)
 
@@ -67,7 +62,7 @@ if __name__ == '__main__':
     train_loader, test_loader = DATA.creat_toy_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
-    Net = Bi3DNetBinaryDepth()
+    Net = GwcNet(args.start_disp, args.end_disp)
     if "cuda:" in args.device:
         torch.cuda.manual_seed(args.seed)
 

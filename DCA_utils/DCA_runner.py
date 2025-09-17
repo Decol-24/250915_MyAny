@@ -3,7 +3,7 @@ import torch
 from pytorch_utils.mixup import mixup_data,mixup_criterion
 from pytorch_utils.grad_scale import dispatch_clip_grad
 import torch.nn as nn
-import BI3D_utils.loss as loss
+from DCA_utils.loss import model_loss,focal_loss
 
 class my_runner(object):
     def __init__(self) -> None:
@@ -13,6 +13,7 @@ class my_runner(object):
         from pytorch_utils.common import get_logger
 
         self.setting = setting
+        torch.backends.cudnn.benchmark = True
         self.logger = get_logger(os.path.join(self.setting.save_path,'log.log'))
 
         parser_attrs = vars(self.setting)
@@ -26,7 +27,6 @@ class my_runner(object):
     def train(self, train_loader, val_loader, scheduler, optimizer):
 
         best_loss = best_epe = 9999
-        criterion = loss.Disp_binary()
         optimizer.zero_grad()
         optimizer.step()
         psv_disps = [10., 20., 30., 40., 50.]
@@ -37,18 +37,11 @@ class my_runner(object):
 
             self.logger.info("Epoches: [{}/{}] ============================".format(ep, self.setting.train_EPOCHS))
             scheduler.step(ep)
-            for psv_disp in psv_disps:
 
-                self.train_one_epoch(ep,train_loader,criterion,optimizer,self.setting.device,psv_disp)
+            self.train_one_epoch(ep,train_loader,optimizer,self.setting.device)
 
-            for psv_disp in psv_disps:
-                val_loss = val_epe = 0
-                val_loss,val_epe = self.val_onece(val_loader,self.setting.device,criterion,psv_disp)
-                val_loss += val_loss
-                val_epe += val_epe
+            val_loss,val_epe = self.val_onece(val_loader,self.setting.device)
 
-            val_loss = val_loss / len(psv_disps)
-            val_epe = val_epe / len(psv_disps)
             self.logger.info('val_loss: {:.3f} | val_epe: {:.3f}'.format(val_loss,val_epe))
 
             if val_loss >= best_loss:
@@ -60,7 +53,7 @@ class my_runner(object):
         self.logger.info('Train end.')
         return best_loss, best_epe
 
-    def train_one_epoch(self,ep,train_loader,criterion,optimizer,device,psv_disp):
+    def train_one_epoch(self,ep,train_loader,optimizer,device):
         train_loss = 0
         train_epe = 0
         self.model.train()
@@ -68,9 +61,14 @@ class my_runner(object):
         for batch_idx, (imgL, imgR, disp_true) in enumerate(train_loader):
 
             imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
+            mask = ((disp_true < 192) & (disp_true > 0)).byte().bool() # 得到一个布尔张量，标记出 0 < disp_true < 192 的像素
+            mask.detach_()
             optimizer.zero_grad()
-            disp_output, disp_output_refine = self.model(imgL, imgR, psv_disp)
-            loss,epe = criterion(disp_output,disp_output_refine,disp_true,psv_disp)
+            cls_outputs, disp_outputs = self.model(imgL, imgR)
+            # cls_outputs是 [pred0, pred_dca1, pred_dca2, pred1, pred2]
+            # disp_outputs是 [pred_dca3, pred4]
+            loss = focal_loss(cls_outputs, disp_true, self.setting.start_disp, self.setting.end_disp, self.setting.focal_coefficient, self.setting.sparse) + model_loss(disp_outputs, disp_true, mask)
+            epe = torch.mean(torch.abs(disp_outputs[-1][:,mask] - disp_true[mask]))
             train_loss += loss.item()
             train_epe += epe.item()
             loss.backward()
@@ -82,19 +80,21 @@ class my_runner(object):
                                  .format(batch_idx+1,len(train_loader), train_loss / (batch_idx + 1), train_epe / (batch_idx + 1)))
 
     @torch.no_grad()
-    def val_onece(self,val_loader,device,criterion,psv_disp):
+    def val_onece(self,val_loader,device):
         val_loss = val_epe = 0
         self.model.eval()
 
         for idx, (imgL, imgR, disp_true) in enumerate(val_loader):
             imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
-            disp_output, disp_output_refine = self.model(imgL, imgR, psv_disp)
-            loss,epe = criterion(disp_output,disp_output_refine,disp_true,psv_disp)
-            val_loss += loss.item()
+            mask = ((disp_true < 192) & (disp_true > 0)).byte().bool() # 得到一个布尔张量，标记出 0 < disp_true < 192 的像素
+            mask.detach_()
+            disp_outputs = self.model(imgL, imgR)
+            epe = torch.mean(torch.abs(disp_outputs[:,mask] - disp_true[mask]))
+            # val_loss += loss.item()
             val_epe += epe.item()
             val_idx = (idx + 1)
 
-        val_loss /= val_idx
+        # val_loss /= val_idx
         val_epe /= val_idx
 
         return val_loss,val_epe

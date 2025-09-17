@@ -205,43 +205,9 @@ def readPFM(file):
     return data, scale
 
 
+__imagenet_stats = {'mean': [0.485, 0.456, 0.406],
+                   'std': [0.229, 0.224, 0.225]}
 
-
-__imagenet_stats = {'mean': [0.5, 0.5, 0.5],
-                   'std': [0.225, 0.225, 0.225]}
-
-# __imagenet_stats = {'mean': [0.485, 0.456, 0.406],
-#                    'std': [0.229, 0.224, 0.225]}
-
-__imagenet_pca = {
-    'eigval': torch.Tensor([0.2175, 0.0188, 0.0045]),
-    'eigvec': torch.Tensor([
-        [-0.5675,  0.7192,  0.4009],
-        [-0.5808, -0.0045, -0.8140],
-        [-0.5836, -0.6948,  0.4203],
-    ])
-}
-
-#在 RGB 图像的基础上，添加一个小的光照扰动，这个扰动方向基于图像的颜色分布主轴（PCA），可以提升模型对颜色/光照变化的鲁棒性。
-class Lighting(object):
-    """Lighting noise(AlexNet - style PCA - based noise)"""
-
-    def __init__(self, alphastd, eigval, eigvec):
-        self.alphastd = alphastd
-        self.eigval = eigval
-        self.eigvec = eigvec
-
-    def __call__(self, img):
-        if self.alphastd == 0:
-            return img
-
-        alpha = img.new().resize_(3).normal_(0, self.alphastd)
-        rgb = self.eigvec.type_as(img).clone()\
-            .mul(alpha.view(1, 3).expand(3, 3))\
-            .mul(self.eigval.view(1, 3).expand(3, 3))\
-            .sum(1).squeeze()
-
-        return img.add(rgb.view(3, 1, 1).expand_as(img))
 
 def base_norm(normalize=__imagenet_stats):
     t_list = [
@@ -259,9 +225,21 @@ def inception_color_preproccess(normalize=__imagenet_stats):
             contrast=0.4,
             saturation=0.4,
         ),
-        Lighting(0.1, __imagenet_pca['eigval'], __imagenet_pca['eigvec']),
         transforms.Normalize(**normalize)
     ])
+
+def pad_img(left_img,right_img,disp_L,th=576,tw=960):
+
+    h = left_img.shape[1]
+    w = left_img.shape[2]
+    pad_w = tw - w if tw - w > 0 else 0
+    pad_h = th - h if th - h > 0 else 0
+    pad_opr = torch.nn.ZeroPad2d((pad_w, 0, pad_h, 0))
+    img_left_pad = pad_opr(left_img)
+    img_right_pad = pad_opr(right_img)
+    disp_L_pad = pad_opr(disp_L)
+
+    return img_left_pad, img_right_pad, disp_L_pad
 
 class myImageFloder_SceneFlow(data.Dataset):
     def __init__(self, left, right, left_disparity, training):
@@ -293,14 +271,14 @@ class myImageFloder_SceneFlow(data.Dataset):
             left_img = self.transforms(left_img)
             right_img = self.transforms(right_img)
 
-            left_img,right_img,disp_L = self.pad_img(left_img,right_img,disp_L) 
+            left_img,right_img,disp_L = pad_img(left_img,right_img,disp_L) 
 
             return left_img, right_img, disp_L
 
         else:
             left_img = self.transforms(left_img)
             right_img = self.transforms(right_img)
-            left_img,right_img,disp_L = self.pad_img(left_img,right_img,disp_L)
+            left_img,right_img,disp_L = pad_img(left_img,right_img,disp_L)
 
             return left_img, right_img, disp_L
 
@@ -313,15 +291,3 @@ class myImageFloder_SceneFlow(data.Dataset):
         else:
             return readPFM(path)
     
-    def pad_img(self,left_img,right_img,disp_L,th=576,tw=960):
-
-        h = left_img.shape[1]
-        w = left_img.shape[2]
-        pad_w = tw - w if tw - w > 0 else 0
-        pad_h = th - h if th - h > 0 else 0
-        pad_opr = torch.nn.ZeroPad2d((pad_w, 0, pad_h, 0))
-        img_left_pad = pad_opr(left_img)
-        img_right_pad = pad_opr(right_img)
-        disp_L_pad = pad_opr(disp_L)
-
-        return img_left_pad, img_right_pad, disp_L_pad
