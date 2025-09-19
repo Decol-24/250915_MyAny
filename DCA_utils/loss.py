@@ -21,7 +21,8 @@ def focal_loss(disp_ests, disp_gt, start_disp, end_disp, focal_coefficient, spar
     weights = [0.5, 0.7, 1.0, 1.2, 1.5]
     all_losses = []
     for disp_est, weight in zip(disp_ests, weights):
-        all_losses.append(weight * focal_loss_evaluator(disp_est, disp_gt, variance=1))
+        loss = weight * focal_loss_evaluator(disp_est, disp_gt, variance=1)
+        all_losses.append(loss)
     return sum(all_losses)
 
 class Disp2Prob(object):
@@ -72,8 +73,7 @@ class Disp2Prob(object):
         # in case probability is NaN
         if isNaN(probability.min()) or isNaN(probability.max()):
             print('Probability ==> min: {}, max: {}'.format(probability.min(), probability.max()))
-            print('Disparity Ground Truth after mask out ==> min: {}, max: {}'.format(self.gtDisp.min(),
-                                                                                      self.gtDisp.max()))
+            print('Disparity Ground Truth after mask out ')
             raise ValueError(" \'probability contains NaN!")
 
         return probability
@@ -198,9 +198,7 @@ class StereoFocalLoss(object):
         mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
 
         if mask.sum() < 1.0:
-            print('Stereo focal loss: there is no point\'s '
-                  'disparity is in [{},{})!'.format(lower_bound, upper_bound))
-            scaled_gtProb = torch.zeros_like(estCost)  # let this sample have loss with 0
+            return estCost.sum() * 0.0  # let this sample have loss with 0
         else:
             # transfer disparity map to probability map
             mask_scaled_gtDisp = scaled_gtDisp * mask

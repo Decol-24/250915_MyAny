@@ -37,6 +37,7 @@ def dataloader_SceneFlow(filepath):
     image = [img for img in classes if img.find('frames_finalpass') > -1] #找到所有包含原始图片的文件夹
     disp = [dsp for dsp in classes if dsp.find('disparity') > -1]  #找到所有包含视差文件的文件夹
 
+    # monkaa_part
     # monkaa_path = filepath + [x for x in image if 'monkaa' in x][0] #找到monkaa原始图片的文件夹
     # monkaa_disp = filepath + [x for x in disp if 'monkaa' in x][0] #找到monkaa视差文件的文件夹
     # monkaa_path = monkaa_path + '/frames_finalpass/'
@@ -53,6 +54,7 @@ def dataloader_SceneFlow(filepath):
     #         if is_image_file(monkaa_path + '/' + dd + '/right/' + im):
     #             all_right_img.append(monkaa_path + '/' + dd + '/right/' + im) #对右侧图像做同处理。右侧图片不含视差文件
 
+    # flying_part
     flying_path = filepath + [x for x in image if x == 'frames_finalpass'][0] #找到包含飞行图像的文件夹，这个文件夹名字就是frames_finalpass
     flying_disp = filepath + [x for x in disp if x == 'disparity'][0] #找到包含飞行图像的视差文件的文件夹
     flying_dir = flying_path + '/TRAIN/' #飞行图像的训练集目录
@@ -90,6 +92,7 @@ def dataloader_SceneFlow(filepath):
                 if is_image_file(flying_dir + ss + '/' + ff + '/right/' + im):
                     test_right_img.append(flying_dir + ss + '/' + ff + '/right/' + im)
 
+    # driving_part
     # driving_dir = filepath + [x for x in image if 'driving' in x][0]
     # driving_disp = filepath + [x for x in disp if 'driving' in x][0]
 

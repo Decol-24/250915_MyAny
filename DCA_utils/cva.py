@@ -155,38 +155,39 @@ class SemanticLevelContext(nn.Module):
         inputs = x
         preds = F.softmax(preds, dim=1) #正则化
         batch_size, num_channels, disparity_planes, h, w = x.size()
-        feats_sl = torch.zeros(batch_size, h*w, disparity_planes, num_channels).type_as(x) # (1,2048,24,32)
+        # feats_sl = torch.zeros(batch_size, h*w, disparity_planes, num_channels).type_as(x) # (1,2048,24,32)
 
-        # 对应论文中的同质区域表示生成
-        for batch_idx in range(batch_size):
+        # # 对应论文中的同质区域表示生成
+        # for batch_idx in range(batch_size):
 
-            feats_iter, preds_iter = x[batch_idx], preds[batch_idx]
-            feats_iter, preds_iter = feats_iter.reshape(num_channels, disparity_planes, -1), preds_iter.reshape(disparity_planes, -1)
-            feats_iter, preds_iter = feats_iter.permute(2, 1, 0).contiguous(), preds_iter.permute(1, 0).contiguous()
-            #   feats_iter: (num_channels, D, H, W)  --> (H*W, D, num_channels)
-            #   preds_iter: (D, H, W) --> (H*W, D)
-            argmax = preds_iter.argmax(1)
-            # argmax[2024] 取到preds中每个像素的视差分类的最大值的下标作为此像素的视差
-            # 在每个视差内进行聚合处理
-            for disp_id in range(disparity_planes):
-                mask = (argmax == disp_id)
-                # 只在preds中视差值等于当前disp_id的像素点之间进行操作。mask记录对应的像素的下标
-                if mask.sum() == 0: continue #此视差级内无结果，跳过
-                feats_iter_cls = feats_iter[mask, disp_id]  # [mask, num_channels] 取出mask对应像素点，并用对应channel向量当特征向量
-                preds_iter_cls = preds_iter[:, disp_id][mask]  # 等效于preds_iter[mask, disp_id]，shape为[mask]，取出mask对应像素点
-                weight = F.softmax(preds_iter_cls, dim=0)
-                feats_iter_cls = feats_iter_cls * weight.unsqueeze(-1) # preds_iter_cls作为权重乘到feats_iter_cls的对应特征向量上
-                feats_sl[batch_idx][mask, disp_id] = feats_iter_cls # 处理结果存储到feats_sl
+        #     feats_iter, preds_iter = x[batch_idx], preds[batch_idx]
+        #     feats_iter, preds_iter = feats_iter.reshape(num_channels, disparity_planes, -1), preds_iter.reshape(disparity_planes, -1)
+        #     feats_iter, preds_iter = feats_iter.permute(2, 1, 0).contiguous(), preds_iter.permute(1, 0).contiguous()
+        #     #   feats_iter: (num_channels, D, H, W)  --> (H*W, D, num_channels)
+        #     #   preds_iter: (D, H, W) --> (H*W, D)
+        #     argmax = preds_iter.argmax(1)
+        #     # argmax[2024] 取到preds中每个像素的视差分类的最大值的下标作为此像素的视差
+        #     # 在每个视差内进行聚合处理
+        #     for disp_id in range(disparity_planes):
+        #         mask = (argmax == disp_id)
+        #         # 只在preds中视差值等于当前disp_id的像素点之间进行操作。mask记录对应的像素的下标
+        #         if mask.sum() == 0: continue #此视差级内无结果，跳过
+        #         feats_iter_cls = feats_iter[mask, disp_id]  # [mask, num_channels] 取出mask对应像素点，并用对应channel向量当特征向量
+        #         preds_iter_cls = preds_iter[:, disp_id][mask]  # 等效于preds_iter[mask, disp_id]，shape为[mask]，取出mask对应像素点
+        #         weight = F.softmax(preds_iter_cls, dim=0)
+        #         feats_iter_cls = feats_iter_cls * weight.unsqueeze(-1) # preds_iter_cls作为权重乘到feats_iter_cls的对应特征向量上
+        #         feats_sl[batch_idx][mask, disp_id] = feats_iter_cls # 处理结果存储到feats_sl
         
-        feats_sl = feats_sl.reshape(batch_size, h, w, disparity_planes, num_channels)
-        feats_sl = feats_sl.permute(0, 4, 3, 1, 2).contiguous()
+        # feats_sl = feats_sl.reshape(batch_size, h, w, disparity_planes, num_channels)
+        # feats_sl = feats_sl.permute(0, 4, 3, 1, 2).contiguous()
         # feats_sl: [batch, num_channels, d, h, w]
         # 这个矩阵相当稀疏啊，每个d维度下仅存分类结果=d的h*w位置的特征信息，所以所有d维度下的所有h*w信息合起来才相当于原来一张图。(b != 0).sum()==2048
 
         # x做query，(加权处理后的x + x)做key和value得到对(加权处理后的x + x)的自注意力结果
         # 也就是根据当前x来选择哪些带分类结果的特征是重要的
         # 对应论文中的同质区域引导聚合
-        feats_sl = self.cross_attention(inputs, feats_sl+inputs)
+        # feats_sl = self.cross_attention(inputs, feats_sl+inputs)
+        feats_sl = self.cross_attention(inputs, inputs)
         #怀疑这个的作用，画图分析
 
         return feats_sl
