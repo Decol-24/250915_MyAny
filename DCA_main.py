@@ -1,5 +1,5 @@
 from DCA_utils.DCA_runner import my_runner
-from DCA_utils.my_DCA import GwcNet
+from DCA_utils.my_anynet import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
@@ -12,7 +12,7 @@ def train(args,Net,train_loader,val_loader,**kwargs):
 
     runner = my_runner(args)
     runner.set_model(Net)
-    runner.load_pth(args.pth_load)
+    # runner.load_pth(args.pth_load)
     
     # val_acc = runner.test(val_loader)
     # runner.logger.info("val_acc: {}".format(val_acc))
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     train_loader, test_loader = DATA.creat_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
-    Net = GwcNet(args.start_disp, args.end_disp)
+    Net = AnyNet()
     if "cuda:" in args.device:
         torch.cuda.manual_seed(args.seed)
 

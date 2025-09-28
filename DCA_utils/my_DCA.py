@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import math
 import matplotlib.pyplot as plt
 from DCA_utils.cva import cva
-from DCA_utils.submodule import convbn,BasicBlock,convbn_3d,Guidance,build_gwc_volume,build_concat_volume,disparity_regression
+from DCA_utils.DCA_submodule import convbn,BasicBlock,convbn_3d,Guidance,build_gwc_volume,build_concat_volume,disparity_regression
 
 
 class feature_extraction(nn.Module):
@@ -68,6 +68,7 @@ class feature_extraction(nn.Module):
             concat_feature = self.lastconv(gwc_feature)
             return {"gwc_feature": gwc_feature, "concat_feature": concat_feature}
         #两个值都返回gwc_feature为320，concat_feature为12
+
 
 #来自论文RAFT[41]的凸上采样模块
 class PropgationNet_4x(nn.Module):

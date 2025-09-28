@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from DCA_utils.submodule import convbn,BasicBlock,convbn_3d
+from DCA_utils.DCA_submodule import convbn,BasicBlock,convbn_3d
 
 '''self attention block'''
 class SelfAttentionBlock(nn.Module):

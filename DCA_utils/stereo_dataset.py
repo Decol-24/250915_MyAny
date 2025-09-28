@@ -245,6 +245,20 @@ def pad_img(left_img,right_img,disp_L,th=576,tw=960):
 
     return img_left_pad, img_right_pad, disp_L_pad
 
+def crop_img(left_img,right_img,disp_L,th=256,tw=512):
+
+    h, w = left_img.shape[-2], left_img.shape[-1]
+
+    x1 = random.randint(0, w - tw)
+    y1 = random.randint(0, h - th)
+
+    left_img_crop = left_img[:,y1:(y1+th), x1:(x1+tw)]
+    right_img_crop = right_img[:,y1:(y1+th), x1:(x1+tw)]
+
+    dataL_crop = disp_L[y1:y1 + th, x1:x1 + tw]
+
+    return left_img_crop, right_img_crop, dataL_crop
+
 class myImageFloder_SceneFlow(data.Dataset):
     def __init__(self, left, right, left_disparity, training):
 
@@ -275,14 +289,14 @@ class myImageFloder_SceneFlow(data.Dataset):
             left_img = self.transforms(left_img)
             right_img = self.transforms(right_img)
 
-            left_img,right_img,disp_L = pad_img(left_img,right_img,disp_L) 
+            left_img,right_img,disp_L = crop_img(left_img,right_img,disp_L,th=256,tw=512)
 
             return left_img, right_img, disp_L
 
         else:
             left_img = self.transforms(left_img)
             right_img = self.transforms(right_img)
-            left_img,right_img,disp_L = pad_img(left_img,right_img,disp_L)
+            left_img,right_img,disp_L = crop_img(left_img,right_img,disp_L,th=256,tw=512)
 
             return left_img, right_img, disp_L
 
