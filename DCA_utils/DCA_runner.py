@@ -61,12 +61,10 @@ class my_runner(object):
             mask.detach_()
             if mask.sum() >= 1.0:
                 optimizer.zero_grad()
-                cls_outputs, disp_outputs = self.model(imgL, imgR)
-                # cls_outputs是 [pred0, pred_dca1, pred_dca2, pred1, pred2]
-                # disp_outputs是 [pred_dca3, pred4]
-                loss = focal_loss(cls_outputs, disp_true, self.setting.start_disp, self.setting.end_disp, self.setting.focal_coefficient, self.setting.sparse) \
-                    + model_loss(disp_outputs, disp_true, mask)
-                epe = torch.mean(torch.abs(disp_outputs[-1][:,mask] - disp_true[mask]))
+                preds = self.model(imgL, imgR)
+                loss = focal_loss(preds[:-1], disp_true, self.setting.start_disp, self.setting.end_disp, self.setting.focal_coefficient, self.setting.sparse) \
+                    + model_loss(preds[-1], disp_true, mask)
+                epe = torch.mean(torch.abs(preds[-1][:,mask] - disp_true[mask]))
                 train_loss += loss.item()
                 train_epe += epe.item()
                 loss.backward()

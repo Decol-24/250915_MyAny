@@ -1,31 +1,12 @@
-from __future__ import print_function
 import torch
 import torch.nn as nn
 import torch.utils.data
 import torch.nn.functional as F
 
-def preconv2d(in_planes, out_planes, kernel_size, stride, pad, dilation=1, bn=True):
-    if bn:
-        return nn.Sequential(
-            nn.BatchNorm2d(in_planes),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(in_planes, out_planes, kernel_size=kernel_size, stride=stride, padding=dilation if dilation > 1 else pad, dilation=dilation, bias=False))
-    else:
-        return nn.Sequential(
-            nn.ReLU(inplace=True),
-            nn.Conv2d(in_planes, out_planes, kernel_size=kernel_size, stride=stride, padding=dilation if dilation > 1 else pad, dilation=dilation, bias=False))
-
-
 def convbn(in_channels, out_channels, kernel_size, stride, pad, dilation):
     return nn.Sequential(nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride,
                                    padding=dilation if dilation > 1 else pad, dilation=dilation, bias=False),
                                     nn.BatchNorm2d(out_channels),)
-
-
-def convbn_3d(in_channels, out_channels, kernel_size, stride, pad):
-    return nn.Sequential(nn.Conv3d(in_channels, out_channels, kernel_size=kernel_size, stride=stride,
-                                   padding=pad, bias=False),
-                          nn.BatchNorm3d(out_channels))
 
 class BasicBlock(nn.Module):
     expansion = 1
@@ -50,6 +31,7 @@ class BasicBlock(nn.Module):
 
         out += x
         return out
+
 
 class feature_extraction(nn.Module):
     def __init__(self):
@@ -101,161 +83,159 @@ class feature_extraction(nn.Module):
         l4 = self.layer4(l3)
 
         gwc_feature = torch.cat((l2, l3, l4), dim=1)
-        #返回值是由后三个块的输出拼接构成，channel为320
 
         out_feature = self.lastconv(gwc_feature)
         return out_feature
-        #两个值都返回gwc_feature为320，concat_feature为12
 
-
-
-def batch_relu_conv3d(in_planes, out_planes, kernel_size=3, stride=1, pad=1, bn3d=True):
-    if bn3d:
-        return nn.Sequential(
-            nn.BatchNorm3d(in_planes),
-            nn.ReLU(),
-            nn.Conv3d(in_planes, out_planes, kernel_size=kernel_size, padding=pad, stride=stride, bias=False))
-    else:
-        return nn.Sequential(
-            nn.ReLU(),
-            nn.Conv3d(in_planes, out_planes, kernel_size=kernel_size, padding=pad, stride=stride, bias=False))
-
-def post_3dconvs(layers, channels):
-    net  = [batch_relu_conv3d(1, channels)]
-    net += [batch_relu_conv3d(channels, channels) for _ in range(layers)]
-    net += [batch_relu_conv3d(channels, 1)]
-    return nn.Sequential(*net)
-
-#构成conv-bn-relu结构，根据参数有很多变种
-class BasicConv(nn.Module):
-    def __init__(self, in_channels, out_channels, deconv=False, is_3d=False, bn=True, relu=True, **kwargs):
-        super(BasicConv, self).__init__()
-        #        print(in_channels, out_channels, deconv, is_3d, bn, relu, kwargs)
-        self.relu = relu
-        self.use_bn = bn
-        if is_3d:
-            if deconv:
-                self.conv = nn.ConvTranspose3d(in_channels, out_channels, bias=False, **kwargs)
-            else:
-                self.conv = nn.Conv3d(in_channels, out_channels, bias=False, **kwargs)
-            self.bn = nn.BatchNorm3d(out_channels)
-        else:
-            if deconv:
-                self.conv = nn.ConvTranspose2d(in_channels, out_channels, bias=False, **kwargs)
-            else:
-                self.conv = nn.Conv2d(in_channels, out_channels, bias=False, **kwargs)
-            self.bn = nn.BatchNorm2d(out_channels)
-
-    def forward(self, x):
-        x = self.conv(x)
-        if self.use_bn:
-            x = self.bn(x)
-        if self.relu:
-            x = F.relu(x, inplace=True)
-
-        return x
     
-# 一般的Resnet-cifar，但用的是GN层
-class ResidualBlock(nn.Module):
-    def __init__(self, in_planes, planes, norm_fn='group', stride=1):
-        super(ResidualBlock, self).__init__()
-
-        self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, padding=1, stride=stride)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, padding=1)
-        self.relu = nn.ReLU(inplace=True)
-
-        num_groups = planes // 8
-
-        if norm_fn == 'group':
-            self.norm1 = nn.GroupNorm(num_groups=num_groups, num_channels=planes)
-            self.norm2 = nn.GroupNorm(num_groups=num_groups, num_channels=planes)
-            if not stride == 1:
-                self.norm3 = nn.GroupNorm(num_groups=num_groups, num_channels=planes)
-
-        elif norm_fn == 'batch':
-            self.norm1 = nn.BatchNorm2d(planes)
-            self.norm2 = nn.BatchNorm2d(planes)
-            if not stride == 1:
-                self.norm3 = nn.BatchNorm2d(planes)
-
-        elif norm_fn == 'instance':
-            self.norm1 = nn.InstanceNorm2d(planes)
-            self.norm2 = nn.InstanceNorm2d(planes)
-            if not stride == 1:
-                self.norm3 = nn.InstanceNorm2d(planes)
-
-        elif norm_fn == 'none':
-            self.norm1 = nn.Sequential()
-            self.norm2 = nn.Sequential()
-            if not stride == 1:
-                self.norm3 = nn.Sequential()
-
-        if stride == 1:
-            self.downsample = None
-
+'''self attention block'''
+class SelfAttentionBlock(nn.Module):
+    def __init__(self, key_in_channels, query_in_channels, transform_channels, out_channels, share_key_query,
+                 query_downsample, key_downsample, key_query_num_convs, value_out_num_convs, key_query_norm,
+                 value_out_norm, matmul_norm, with_out_project, **kwargs):
+        super(SelfAttentionBlock, self).__init__()
+        # norm_cfg, act_cfg = kwargs['norm_cfg'], kwargs['act_cfg']
+        # key project
+        self.key_project = self.buildproject(
+            in_channels=key_in_channels,
+            out_channels=transform_channels,
+            num_convs=key_query_num_convs,
+            use_norm=key_query_norm,
+        )
+        # query project
+        if share_key_query:
+            assert key_in_channels == query_in_channels
+            self.query_project = self.key_project
         else:
-            self.downsample = nn.Sequential(
-                nn.Conv2d(in_planes, planes, kernel_size=1, stride=stride), self.norm3)
+            self.query_project = self.buildproject(
+                in_channels=query_in_channels,
+                out_channels=transform_channels,
+                num_convs=key_query_num_convs,
+                use_norm=key_query_norm,
+            )
+        # value project
+        self.value_project = self.buildproject(
+            in_channels=key_in_channels,
+            out_channels=transform_channels if with_out_project else out_channels,
+            num_convs=value_out_num_convs,
+            use_norm=value_out_norm,
+        )
+        # Q,K,V用三个project转换
 
-    def forward(self, x):
-        y = x
-        y = self.relu(self.norm1(self.conv1(y)))
-        y = self.relu(self.norm2(self.conv2(y)))
+        # out project
+        self.out_project = None
+        if with_out_project:
+            self.out_project = self.buildproject(
+                in_channels=transform_channels,
+                out_channels=out_channels,
+                num_convs=value_out_num_convs,
+                use_norm=value_out_norm,
+            )
 
-        if self.downsample is not None:
-            x = self.downsample(x)
+        # downsample
+        self.query_downsample = query_downsample #False
+        self.key_downsample = key_downsample #False
+        self.matmul_norm = matmul_norm #True
+        self.transform_channels = transform_channels
 
-        return self.relu(x + y)
+    #修改过的多头自注意力机制，Q和K不同源
+    def forward(self, query_feats, key_feats):
+        # query_feats: [batch, disparity, channels, height ,width]
+        head_dim = 8
+        batch_size, disparity, channels, height, width = query_feats.shape
+        query_feats = query_feats.permute(0, 2, 1, 3, 4).contiguous() # query_feats: [batch, channels, disparity, height, width]
+        key_feats = key_feats.permute(0, 2, 1, 3, 4).contiguous()
 
-class Guidance(nn.Module):
-    def __init__(self, output_dim=64, norm_fn='batch'):
-        super(Guidance, self).__init__()
-        self.norm_fn = norm_fn
+        hw = height*width
+        query = self.query_project(query_feats) #3D卷积，输入的第一维度要应该是channels
 
-        if self.norm_fn == 'group':
-            self.norm1 = nn.GroupNorm(num_groups=8, num_channels=32)
+        if self.query_downsample is not None: query = self.query_downsample(query)
 
-        elif self.norm_fn == 'batch':
-            self.norm1 = nn.BatchNorm2d(32)
+        query = query.reshape(batch_size, channels//head_dim, head_dim, disparity, hw) # batch, heads, head_c, disparity, h*w
+        query = query.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
 
-        elif self.norm_fn == 'instance':
-            self.norm1 = nn.InstanceNorm2d(32)
+        key = self.key_project(key_feats)
+        value = self.value_project(key_feats)
 
-        elif self.norm_fn == 'none':
-            self.norm1 = nn.Sequential()
+        if self.key_downsample is not None:
+            key = self.key_downsample(key)
+            value = self.key_downsample(value)
 
-        ## 4x use ##
-        self.conv_start = nn.Sequential(nn.Conv2d(3, 32, kernel_size=7, stride=2, padding=3), self.norm1, nn.ReLU(inplace=True))
+        key = key.reshape(batch_size, channels//head_dim, head_dim, disparity, hw)
+        key = key.permute(0, 4, 1, 2, 3).contiguous()  # batch, h*w, heads, head_c, disparity
+        value = value.reshape(batch_size, channels//head_dim, head_dim, disparity, hw)
+        value = value.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
+
+        sim_map = torch.matmul(query, key)  # batch, h*w, head, disparity, disparity
+        #Q和K先结合得到关注度sim_map
+        #对所有在[h,w]上的元素，对每个head内，计算Q的[视差d，此视差下所有通道构成的特征向量] @ K的[此视差下所有通道构成的特征向量，视差d]
+        #相当于第一步是用Q的disparity_0的特征向量，点乘K的每个视差的特征向量，依次往后面计算disparity_1，disparity_2，……
+        #得到的结果为[disparity, disparity]，也就是 [Q的disparity，此disparity下对K的每个disparity的关注度] 
+
+        if self.matmul_norm: #True
+            sim_map = (head_dim ** -0.5) * sim_map
+
+        sim_map = F.softmax(sim_map, dim=-1)    # batch, h*w, head, disparity, disparity
+        context = torch.matmul(sim_map, value)  # batch, h*w, head, disparity, head_c
+        #再把sim_map和V矩阵相乘
+        #相当于是用Q的disparity下对K的每个disparity的关注度，点乘V的对应视差下的特征向量，得到包含关注度的V值。 #TODO
+        context = context.permute(0, 1, 2, 4, 3).flatten(2, 3) # batch, h*w, channels, disparity
+
+        context = context.permute(0, 2, 3, 1).contiguous()  # batch, channels, disparity, h*w
+        context = context.reshape(batch_size, channels, disparity, height, width)  # batch, channels, disparity, h, w
+        if self.out_project is not None:
+            context = self.out_project(context)
+        context = context.permute(0, 2, 1, 3, 4).contiguous() # batch, disparity, channels, h, w
+
+        return context
+    
+    def buildproject(self, in_channels, out_channels, num_convs, use_norm):
+        if use_norm: #都是True
+            convs = [
+                nn.Sequential(
+                    nn.Conv3d(in_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False),
+                    nn.BatchNorm3d(out_channels),
+                    nn.LeakyReLU(0.1, inplace=True)
+                )
+            ]
+            for _ in range(num_convs - 1):
+                convs.append(
+                    nn.Sequential(
+                        nn.Conv3d(out_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False),
+                        nn.BatchNorm3d(out_channels),
+                        nn.LeakyReLU(0.1, inplace=True)
+                    )
+                )
+        else:
+            convs = [nn.Conv3d(in_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False)]
+            for _ in range(num_convs - 1):
+                convs.append(
+                    nn.Conv3d(out_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False)
+                )
+        if len(convs) > 1: return nn.Sequential(*convs)
+        return convs[0]
+    
+class cross_attention(nn.Module):
+    def __init__(self, feats_channels, **kwargs):
+        super(cross_attention, self).__init__()
         
-        ## 2x use ##
-        # self.conv1 = nn.Conv2d(3, 32, kernel_size=5, stride=2, padding=2)
-        # self.relu1 = nn.ReLU(inplace=True)
+        self.cross_attention = SelfAttentionBlock(
+            key_in_channels=feats_channels,
+            query_in_channels=feats_channels,
+            transform_channels=feats_channels, #所有project的输出通道
+            out_channels=feats_channels, #最后的输出通道
+            share_key_query=False,
+            query_downsample=None,
+            key_downsample=None,
+            key_query_num_convs=1,
+            value_out_num_convs=1,
+            key_query_norm=True,
+            value_out_norm=True,
+            matmul_norm=True,
+            with_out_project=True,
+        )
 
-        self.in_planes = 32
-        self.layer1 = self._make_layer(32, stride=1)
-        self.layer2 = self._make_layer(64, stride=2)
-
-        # output convolution
-        self.conv_g0 = nn.Sequential(BasicConv(64, 64, kernel_size=3, padding=1), #俩基础2dconv-bn-relu结构
-                                     BasicConv(64, 64, kernel_size=3, padding=1))
-
-        self.guidance = nn.Conv2d(64, output_dim, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-
-
-    def _make_layer(self, dim, stride=1):
-        layer1 = ResidualBlock(self.in_planes, dim, self.norm_fn, stride=stride)
-        layer2 = ResidualBlock(dim, dim, self.norm_fn, stride=1)
-        layers = (layer1, layer2)
-
-        self.in_planes = dim
-        return nn.Sequential(*layers)
-
-    def forward(self, x):
-        x = self.conv_start(x)
-        x = self.layer1(x)
-        x = self.layer2(x)
-
-        x = self.conv_g0(x)
-        g = self.guidance(x)
-
-        return g
+    '''forward'''
+    def forward(self, inputs, value):
+        feats_sl = self.cross_attention(inputs, value)
+        return feats_sl

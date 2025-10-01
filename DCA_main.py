@@ -70,7 +70,7 @@ if __name__ == '__main__':
     train_loader, test_loader = DATA.creat_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
-    Net = AnyNet()
+    Net = AnyNet(args.start_disp,args.end_disp)
     if "cuda:" in args.device:
         torch.cuda.manual_seed(args.seed)
 

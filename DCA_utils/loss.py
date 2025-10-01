@@ -3,14 +3,9 @@ import torch
 def isNaN(x):
     return x != x
 
-def model_loss(disp_ests, disp_gt, mask):
-    weights2 = [1.8, 2.1]
-    assert len(weights2) == len(disp_ests)
-    weights = weights2
-    all_losses = []
-    for disp_est, weight in zip(disp_ests, weights):
-        all_losses.append(weight * F.smooth_l1_loss(disp_est[:,mask].squeeze(), disp_gt[mask], reduction='mean')) #这里修改过 disp_est[mask] to disp_est[:,mask].squeeze()
-    return sum(all_losses)
+def model_loss(disp_est, disp_gt, mask):
+
+    return F.smooth_l1_loss(disp_est[:,mask].squeeze(), disp_gt[mask], reduction='mean')
 
 def focal_loss(disp_ests, disp_gt, start_disp, end_disp, focal_coefficient, sparse):
     # 多阶段视差估计网络的加权 Focal Loss 总和
@@ -18,7 +13,7 @@ def focal_loss(disp_ests, disp_gt, start_disp, end_disp, focal_coefficient, spar
 
     focal_loss_evaluator = StereoFocalLoss(start_disp, end_disp, focal_coefficient=focal_coefficient, sparse=sparse)
 
-    weights = [0.5, 0.7, 1.0, 1.2, 1.5]
+    weights = [0.5, 0.7]
     all_losses = []
     for disp_est, weight in zip(disp_ests, weights):
         loss = weight * focal_loss_evaluator(disp_est, disp_gt, variance=1)
