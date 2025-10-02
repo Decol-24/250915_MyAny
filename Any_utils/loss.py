@@ -43,7 +43,7 @@ class l1_loss(object):
 
                 if mask.sum() < 1.0:
                     loss = disp_est_b.sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
-                    self.logger.info('No point in range!')
+                    # self.logger.info('No point in range!')
                 else:
                     mask_scaled_gtDisp = scaled_gtDisp * mask
                     loss = F.smooth_l1_loss(disp_est_b, mask_scaled_gtDisp, reduction='mean')

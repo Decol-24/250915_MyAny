@@ -46,7 +46,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-g', '--gpu', default=0, dest='gpu', type=int, help='GPU number')
     parser.add_argument('-save_path', default='./pth', type=str)
-    parser.add_argument('-save_epe', default=1., type=float)
+    parser.add_argument('-save_epe', default=8., type=float)
     parser.add_argument('-data_path', default='/home/liqi/Code/Scene_Flow_Datasets/')
     parser.add_argument('-pth_load', default='./sceneflow_2.pth', type=str)
 

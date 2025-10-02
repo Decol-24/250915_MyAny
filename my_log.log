@@ -1,0 +1,1607 @@
+10/02 13:05 INFO gpu: 0
+10/02 13:05 INFO save_path: ./pth
+10/02 13:05 INFO save_epe: 1.0
+10/02 13:05 INFO data_path: /home/liqi/Code/Scene_Flow_Datasets/
+10/02 13:05 INFO pth_load: ./sceneflow_2.pth
+10/02 13:05 INFO device: cuda:0
+10/02 13:05 INFO seed: 7777
+10/02 13:05 INFO train_EPOCHS: 500
+10/02 13:05 INFO train_warm_up: 30
+10/02 13:05 INFO train_lr: 0.01
+10/02 13:05 INFO start_disp: 0
+10/02 13:05 INFO end_disp: 192
+10/02 13:05 INFO focal_coefficient: 5.0
+10/02 13:05 INFO sparse: False
+10/02 13:05 INFO batch_size: 8
+10/02 13:05 INFO mixup_alpha: 0.5
+10/02 13:05 INFO grad_clip_value: 1.0
+10/02 13:05 INFO Train start.
+10/02 13:05 INFO Epoches: [1/500] ============================
+10/02 13:05 INFO step: [0/2799] | loss_1: 1.988 | loss_2: 1.997 | loss_3: 16.670 | epe: 19.637
+10/02 13:05 INFO step: [20/2799] | loss_1: 1.482 | loss_2: 1.493 | loss_3: 11.869 | epe: 11.939
+10/02 13:05 INFO step: [40/2799] | loss_1: 1.256 | loss_2: 1.251 | loss_3: 7.998 | epe: 8.114
+10/02 13:05 INFO step: [60/2799] | loss_1: 1.211 | loss_2: 1.181 | loss_3: 6.526 | epe: 6.571
+10/02 13:05 INFO step: [80/2799] | loss_1: 1.147 | loss_2: 1.093 | loss_3: 5.689 | epe: 5.736
+10/02 13:06 INFO step: [100/2799] | loss_1: 1.090 | loss_2: 1.025 | loss_3: 5.136 | epe: 5.225
+10/02 13:06 INFO step: [120/2799] | loss_1: 1.041 | loss_2: 0.974 | loss_3: 4.762 | epe: 4.892
+10/02 13:06 INFO step: [140/2799] | loss_1: 1.034 | loss_2: 0.966 | loss_3: 4.554 | epe: 4.629
+10/02 13:06 INFO step: [160/2799] | loss_1: 1.046 | loss_2: 0.971 | loss_3: 4.377 | epe: 4.436
+10/02 13:06 INFO step: [180/2799] | loss_1: 1.035 | loss_2: 0.957 | loss_3: 4.245 | epe: 4.287
+10/02 13:06 INFO step: [200/2799] | loss_1: 1.051 | loss_2: 0.971 | loss_3: 4.205 | epe: 4.176
+10/02 13:06 INFO step: [220/2799] | loss_1: 1.022 | loss_2: 0.943 | loss_3: 4.063 | epe: 4.066
+10/02 13:06 INFO step: [240/2799] | loss_1: 1.027 | loss_2: 0.949 | loss_3: 4.028 | epe: 3.979
+10/02 13:06 INFO step: [260/2799] | loss_1: 1.019 | loss_2: 0.942 | loss_3: 3.938 | epe: 3.890
+10/02 13:06 INFO step: [280/2799] | loss_1: 1.003 | loss_2: 0.928 | loss_3: 3.848 | epe: 3.843
+10/02 13:06 INFO step: [300/2799] | loss_1: 1.009 | loss_2: 0.933 | loss_3: 3.827 | epe: 3.788
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO step: [320/2799] | loss_1: 1.007 | loss_2: 0.931 | loss_3: 3.784 | epe: 3.752
+10/02 13:07 INFO step: [340/2799] | loss_1: 1.001 | loss_2: 0.926 | loss_3: 3.749 | epe: 3.706
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO No point in range!
+10/02 13:07 INFO step: [360/2799] | loss_1: 0.982 | loss_2: 0.908 | loss_3: 3.672 | epe: 3.657
+10/02 13:07 INFO step: [380/2799] | loss_1: 0.988 | loss_2: 0.913 | loss_3: 3.654 | epe: 3.626
+10/02 13:07 INFO step: [400/2799] | loss_1: 0.976 | loss_2: 0.902 | loss_3: 3.602 | epe: 3.585
+10/02 13:07 INFO step: [420/2799] | loss_1: 0.983 | loss_2: 0.908 | loss_3: 3.588 | epe: 3.555
+10/02 13:07 INFO step: [440/2799] | loss_1: 0.979 | loss_2: 0.904 | loss_3: 3.545 | epe: 3.525
+10/02 13:07 INFO step: [460/2799] | loss_1: 0.979 | loss_2: 0.903 | loss_3: 3.526 | epe: 3.518
+10/02 13:07 INFO step: [480/2799] | loss_1: 0.976 | loss_2: 0.899 | loss_3: 3.498 | epe: 3.492
+10/02 13:07 INFO step: [500/2799] | loss_1: 0.966 | loss_2: 0.889 | loss_3: 3.458 | epe: 3.465
+10/02 13:08 INFO step: [520/2799] | loss_1: 0.967 | loss_2: 0.890 | loss_3: 3.446 | epe: 3.442
+10/02 13:08 INFO step: [540/2799] | loss_1: 0.968 | loss_2: 0.890 | loss_3: 3.429 | epe: 3.416
+10/02 13:08 INFO step: [560/2799] | loss_1: 0.972 | loss_2: 0.893 | loss_3: 3.421 | epe: 3.395
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO step: [580/2799] | loss_1: 0.967 | loss_2: 0.887 | loss_3: 3.391 | epe: 3.378
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO step: [600/2799] | loss_1: 0.964 | loss_2: 0.883 | loss_3: 3.372 | epe: 3.368
+10/02 13:08 INFO step: [620/2799] | loss_1: 0.963 | loss_2: 0.882 | loss_3: 3.365 | epe: 3.360
+10/02 13:08 INFO step: [640/2799] | loss_1: 0.967 | loss_2: 0.886 | loss_3: 3.363 | epe: 3.344
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO step: [660/2799] | loss_1: 0.971 | loss_2: 0.890 | loss_3: 3.358 | epe: 3.339
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO No point in range!
+10/02 13:08 INFO step: [680/2799] | loss_1: 0.964 | loss_2: 0.882 | loss_3: 3.327 | epe: 3.324
+10/02 13:08 INFO step: [700/2799] | loss_1: 0.961 | loss_2: 0.879 | loss_3: 3.304 | epe: 3.308
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO step: [720/2799] | loss_1: 0.966 | loss_2: 0.883 | loss_3: 3.305 | epe: 3.311
+10/02 13:09 INFO step: [740/2799] | loss_1: 0.966 | loss_2: 0.883 | loss_3: 3.295 | epe: 3.300
+10/02 13:09 INFO step: [760/2799] | loss_1: 0.966 | loss_2: 0.882 | loss_3: 3.294 | epe: 3.288
+10/02 13:09 INFO step: [780/2799] | loss_1: 0.965 | loss_2: 0.882 | loss_3: 3.291 | epe: 3.288
+10/02 13:09 INFO step: [800/2799] | loss_1: 0.965 | loss_2: 0.882 | loss_3: 3.289 | epe: 3.276
+10/02 13:09 INFO step: [820/2799] | loss_1: 0.966 | loss_2: 0.884 | loss_3: 3.290 | epe: 3.275
+10/02 13:09 INFO step: [840/2799] | loss_1: 0.968 | loss_2: 0.886 | loss_3: 3.286 | epe: 3.270
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO step: [860/2799] | loss_1: 0.966 | loss_2: 0.884 | loss_3: 3.278 | epe: 3.267
+10/02 13:09 INFO step: [880/2799] | loss_1: 0.965 | loss_2: 0.882 | loss_3: 3.266 | epe: 3.256
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO No point in range!
+10/02 13:09 INFO step: [900/2799] | loss_1: 0.963 | loss_2: 0.881 | loss_3: 3.251 | epe: 3.245
+10/02 13:10 INFO step: [920/2799] | loss_1: 0.962 | loss_2: 0.880 | loss_3: 3.250 | epe: 3.245
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO step: [940/2799] | loss_1: 0.960 | loss_2: 0.877 | loss_3: 3.235 | epe: 3.235
+10/02 13:10 INFO step: [960/2799] | loss_1: 0.965 | loss_2: 0.882 | loss_3: 3.241 | epe: 3.227
+10/02 13:10 INFO step: [980/2799] | loss_1: 0.968 | loss_2: 0.886 | loss_3: 3.251 | epe: 3.221
+10/02 13:10 INFO step: [1000/2799] | loss_1: 0.966 | loss_2: 0.884 | loss_3: 3.243 | epe: 3.211
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO step: [1020/2799] | loss_1: 0.965 | loss_2: 0.883 | loss_3: 3.230 | epe: 3.205
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO step: [1040/2799] | loss_1: 0.961 | loss_2: 0.878 | loss_3: 3.213 | epe: 3.195
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO No point in range!
+10/02 13:10 INFO step: [1060/2799] | loss_1: 0.959 | loss_2: 0.877 | loss_3: 3.210 | epe: 3.190
+10/02 13:10 INFO step: [1080/2799] | loss_1: 0.959 | loss_2: 0.877 | loss_3: 3.214 | epe: 3.188
+10/02 13:10 INFO step: [1100/2799] | loss_1: 0.960 | loss_2: 0.878 | loss_3: 3.212 | epe: 3.185
+10/02 13:11 INFO step: [1120/2799] | loss_1: 0.960 | loss_2: 0.878 | loss_3: 3.207 | epe: 3.177
+10/02 13:11 INFO No point in range!
+10/02 13:11 INFO No point in range!
+10/02 13:11 INFO No point in range!
+10/02 13:11 INFO step: [1140/2799] | loss_1: 0.958 | loss_2: 0.876 | loss_3: 3.196 | epe: 3.173
+10/02 13:11 INFO step: [1160/2799] | loss_1: 0.958 | loss_2: 0.877 | loss_3: 3.191 | epe: 3.171
+10/02 13:11 INFO step: [1180/2799] | loss_1: 0.955 | loss_2: 0.874 | loss_3: 3.182 | epe: 3.165
+10/02 13:11 INFO step: [1200/2799] | loss_1: 0.954 | loss_2: 0.873 | loss_3: 3.177 | epe: 3.163
+10/02 13:11 INFO step: [1220/2799] | loss_1: 0.952 | loss_2: 0.871 | loss_3: 3.164 | epe: 3.155
+10/02 13:11 INFO step: [1240/2799] | loss_1: 0.951 | loss_2: 0.870 | loss_3: 3.156 | epe: 3.151
+10/02 13:11 INFO step: [1260/2799] | loss_1: 0.949 | loss_2: 0.868 | loss_3: 3.147 | epe: 3.143
+10/02 13:11 INFO step: [1280/2799] | loss_1: 0.947 | loss_2: 0.866 | loss_3: 3.142 | epe: 3.138
+10/02 13:11 INFO step: [1300/2799] | loss_1: 0.946 | loss_2: 0.865 | loss_3: 3.130 | epe: 3.132
+10/02 13:11 INFO step: [1320/2799] | loss_1: 0.945 | loss_2: 0.864 | loss_3: 3.127 | epe: 3.129
+10/02 13:12 INFO step: [1340/2799] | loss_1: 0.943 | loss_2: 0.863 | loss_3: 3.119 | epe: 3.122
+10/02 13:12 INFO step: [1360/2799] | loss_1: 0.942 | loss_2: 0.862 | loss_3: 3.111 | epe: 3.120
+10/02 13:12 INFO step: [1380/2799] | loss_1: 0.944 | loss_2: 0.864 | loss_3: 3.113 | epe: 3.119
+10/02 13:12 INFO step: [1400/2799] | loss_1: 0.944 | loss_2: 0.864 | loss_3: 3.112 | epe: 3.115
+10/02 13:12 INFO step: [1420/2799] | loss_1: 0.943 | loss_2: 0.863 | loss_3: 3.107 | epe: 3.111
+10/02 13:12 INFO step: [1440/2799] | loss_1: 0.940 | loss_2: 0.860 | loss_3: 3.103 | epe: 3.107
+10/02 13:12 INFO No point in range!
+10/02 13:12 INFO No point in range!
+10/02 13:12 INFO No point in range!
+10/02 13:12 INFO step: [1460/2799] | loss_1: 0.941 | loss_2: 0.861 | loss_3: 3.104 | epe: 3.103
+10/02 13:12 INFO step: [1480/2799] | loss_1: 0.939 | loss_2: 0.860 | loss_3: 3.099 | epe: 3.097
+10/02 13:12 INFO step: [1500/2799] | loss_1: 0.938 | loss_2: 0.859 | loss_3: 3.095 | epe: 3.096
+10/02 13:12 INFO step: [1520/2799] | loss_1: 0.938 | loss_2: 0.859 | loss_3: 3.089 | epe: 3.093
+10/02 13:13 INFO step: [1540/2799] | loss_1: 0.936 | loss_2: 0.857 | loss_3: 3.079 | epe: 3.091
+10/02 13:13 INFO step: [1560/2799] | loss_1: 0.937 | loss_2: 0.858 | loss_3: 3.085 | epe: 3.090
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO step: [1580/2799] | loss_1: 0.935 | loss_2: 0.856 | loss_3: 3.078 | epe: 3.088
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO step: [1600/2799] | loss_1: 0.936 | loss_2: 0.857 | loss_3: 3.076 | epe: 3.085
+10/02 13:13 INFO step: [1620/2799] | loss_1: 0.935 | loss_2: 0.857 | loss_3: 3.076 | epe: 3.085
+10/02 13:13 INFO step: [1640/2799] | loss_1: 0.935 | loss_2: 0.856 | loss_3: 3.072 | epe: 3.081
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO step: [1660/2799] | loss_1: 0.933 | loss_2: 0.855 | loss_3: 3.064 | epe: 3.079
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO step: [1680/2799] | loss_1: 0.932 | loss_2: 0.854 | loss_3: 3.063 | epe: 3.077
+10/02 13:13 INFO step: [1700/2799] | loss_1: 0.932 | loss_2: 0.853 | loss_3: 3.060 | epe: 3.075
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO No point in range!
+10/02 13:13 INFO step: [1720/2799] | loss_1: 0.932 | loss_2: 0.854 | loss_3: 3.060 | epe: 3.073
+10/02 13:14 INFO step: [1740/2799] | loss_1: 0.933 | loss_2: 0.854 | loss_3: 3.057 | epe: 3.072
+10/02 13:14 INFO step: [1760/2799] | loss_1: 0.934 | loss_2: 0.855 | loss_3: 3.060 | epe: 3.070
+10/02 13:14 INFO step: [1780/2799] | loss_1: 0.934 | loss_2: 0.856 | loss_3: 3.059 | epe: 3.070
+10/02 13:14 INFO step: [1800/2799] | loss_1: 0.933 | loss_2: 0.855 | loss_3: 3.053 | epe: 3.067
+10/02 13:14 INFO step: [1820/2799] | loss_1: 0.935 | loss_2: 0.856 | loss_3: 3.058 | epe: 3.065
+10/02 13:14 INFO step: [1840/2799] | loss_1: 0.933 | loss_2: 0.855 | loss_3: 3.053 | epe: 3.063
+10/02 13:14 INFO step: [1860/2799] | loss_1: 0.933 | loss_2: 0.854 | loss_3: 3.051 | epe: 3.062
+10/02 13:14 INFO step: [1880/2799] | loss_1: 0.934 | loss_2: 0.856 | loss_3: 3.053 | epe: 3.060
+10/02 13:14 INFO step: [1900/2799] | loss_1: 0.934 | loss_2: 0.855 | loss_3: 3.047 | epe: 3.057
+10/02 13:14 INFO step: [1920/2799] | loss_1: 0.934 | loss_2: 0.855 | loss_3: 3.041 | epe: 3.054
+10/02 13:15 INFO step: [1940/2799] | loss_1: 0.934 | loss_2: 0.855 | loss_3: 3.041 | epe: 3.052
+10/02 13:15 INFO step: [1960/2799] | loss_1: 0.933 | loss_2: 0.855 | loss_3: 3.037 | epe: 3.050
+10/02 13:15 INFO step: [1980/2799] | loss_1: 0.932 | loss_2: 0.853 | loss_3: 3.032 | epe: 3.048
+10/02 13:15 INFO step: [2000/2799] | loss_1: 0.932 | loss_2: 0.854 | loss_3: 3.036 | epe: 3.048
+10/02 13:15 INFO step: [2020/2799] | loss_1: 0.933 | loss_2: 0.855 | loss_3: 3.036 | epe: 3.048
+10/02 13:15 INFO step: [2040/2799] | loss_1: 0.932 | loss_2: 0.854 | loss_3: 3.039 | epe: 3.046
+10/02 13:15 INFO step: [2060/2799] | loss_1: 0.931 | loss_2: 0.854 | loss_3: 3.033 | epe: 3.042
+10/02 13:15 INFO step: [2080/2799] | loss_1: 0.930 | loss_2: 0.853 | loss_3: 3.032 | epe: 3.039
+10/02 13:15 INFO step: [2100/2799] | loss_1: 0.929 | loss_2: 0.852 | loss_3: 3.030 | epe: 3.036
+10/02 13:15 INFO step: [2120/2799] | loss_1: 0.929 | loss_2: 0.852 | loss_3: 3.027 | epe: 3.034
+10/02 13:15 INFO No point in range!
+10/02 13:15 INFO No point in range!
+10/02 13:15 INFO No point in range!
+10/02 13:16 INFO step: [2140/2799] | loss_1: 0.928 | loss_2: 0.852 | loss_3: 3.023 | epe: 3.031
+10/02 13:16 INFO step: [2160/2799] | loss_1: 0.928 | loss_2: 0.852 | loss_3: 3.028 | epe: 3.029
+10/02 13:16 INFO step: [2180/2799] | loss_1: 0.926 | loss_2: 0.851 | loss_3: 3.020 | epe: 3.026
+10/02 13:16 INFO step: [2200/2799] | loss_1: 0.927 | loss_2: 0.851 | loss_3: 3.020 | epe: 3.025
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO step: [2220/2799] | loss_1: 0.926 | loss_2: 0.851 | loss_3: 3.017 | epe: 3.021
+10/02 13:16 INFO step: [2240/2799] | loss_1: 0.925 | loss_2: 0.851 | loss_3: 3.014 | epe: 3.019
+10/02 13:16 INFO step: [2260/2799] | loss_1: 0.925 | loss_2: 0.850 | loss_3: 3.011 | epe: 3.019
+10/02 13:16 INFO step: [2280/2799] | loss_1: 0.924 | loss_2: 0.849 | loss_3: 3.006 | epe: 3.015
+10/02 13:16 INFO step: [2300/2799] | loss_1: 0.924 | loss_2: 0.850 | loss_3: 3.007 | epe: 3.013
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO No point in range!
+10/02 13:16 INFO step: [2320/2799] | loss_1: 0.924 | loss_2: 0.849 | loss_3: 3.004 | epe: 3.011
+10/02 13:16 INFO step: [2340/2799] | loss_1: 0.922 | loss_2: 0.848 | loss_3: 3.000 | epe: 3.008
+10/02 13:17 INFO step: [2360/2799] | loss_1: 0.922 | loss_2: 0.848 | loss_3: 2.999 | epe: 3.007
+10/02 13:17 INFO step: [2380/2799] | loss_1: 0.922 | loss_2: 0.848 | loss_3: 2.998 | epe: 3.003
+10/02 13:17 INFO step: [2400/2799] | loss_1: 0.921 | loss_2: 0.848 | loss_3: 2.992 | epe: 3.001
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO step: [2420/2799] | loss_1: 0.920 | loss_2: 0.847 | loss_3: 2.989 | epe: 2.999
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO step: [2440/2799] | loss_1: 0.919 | loss_2: 0.845 | loss_3: 2.981 | epe: 2.996
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO step: [2460/2799] | loss_1: 0.918 | loss_2: 0.845 | loss_3: 2.980 | epe: 2.993
+10/02 13:17 INFO step: [2480/2799] | loss_1: 0.918 | loss_2: 0.845 | loss_3: 2.978 | epe: 2.990
+10/02 13:17 INFO step: [2500/2799] | loss_1: 0.917 | loss_2: 0.844 | loss_3: 2.974 | epe: 2.986
+10/02 13:17 INFO step: [2520/2799] | loss_1: 0.916 | loss_2: 0.844 | loss_3: 2.972 | epe: 2.983
+10/02 13:17 INFO step: [2540/2799] | loss_1: 0.916 | loss_2: 0.844 | loss_3: 2.971 | epe: 2.982
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:17 INFO No point in range!
+10/02 13:18 INFO step: [2560/2799] | loss_1: 0.916 | loss_2: 0.845 | loss_3: 2.970 | epe: 2.979
+10/02 13:18 INFO step: [2580/2799] | loss_1: 0.916 | loss_2: 0.844 | loss_3: 2.968 | epe: 2.976
+10/02 13:18 INFO step: [2600/2799] | loss_1: 0.915 | loss_2: 0.844 | loss_3: 2.968 | epe: 2.973
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO step: [2620/2799] | loss_1: 0.915 | loss_2: 0.844 | loss_3: 2.966 | epe: 2.970
+10/02 13:18 INFO step: [2640/2799] | loss_1: 0.915 | loss_2: 0.844 | loss_3: 2.964 | epe: 2.967
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO No point in range!
+10/02 13:18 INFO step: [2660/2799] | loss_1: 0.915 | loss_2: 0.844 | loss_3: 2.962 | epe: 2.964
+10/02 13:18 INFO step: [2680/2799] | loss_1: 0.915 | loss_2: 0.845 | loss_3: 2.961 | epe: 2.962
+10/02 13:18 INFO step: [2700/2799] | loss_1: 0.914 | loss_2: 0.844 | loss_3: 2.959 | epe: 2.959
+10/02 13:18 INFO step: [2720/2799] | loss_1: 0.914 | loss_2: 0.844 | loss_3: 2.953 | epe: 2.957
+10/02 13:18 INFO step: [2740/2799] | loss_1: 0.913 | loss_2: 0.843 | loss_3: 2.951 | epe: 2.955
+10/02 13:19 INFO step: [2760/2799] | loss_1: 0.912 | loss_2: 0.842 | loss_3: 2.946 | epe: 2.951
+10/02 13:19 INFO step: [2780/2799] | loss_1: 0.910 | loss_2: 0.841 | loss_3: 2.941 | epe: 2.946
+10/02 13:20 INFO val_epe: 20.329
+10/02 13:20 INFO Epoches: [2/500] ============================
+10/02 13:20 INFO step: [0/2799] | loss_1: 0.522 | loss_2: 0.495 | loss_3: 2.658 | epe: 3.629
+10/02 13:20 INFO step: [20/2799] | loss_1: 0.876 | loss_2: 0.850 | loss_3: 2.572 | epe: 2.687
+10/02 13:20 INFO step: [40/2799] | loss_1: 0.882 | loss_2: 0.855 | loss_3: 2.648 | epe: 2.663
+10/02 13:20 INFO step: [60/2799] | loss_1: 0.848 | loss_2: 0.820 | loss_3: 2.565 | epe: 2.628
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO step: [80/2799] | loss_1: 0.858 | loss_2: 0.831 | loss_3: 2.612 | epe: 2.590
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO No point in range!
+10/02 13:20 INFO step: [100/2799] | loss_1: 0.821 | loss_2: 0.795 | loss_3: 2.482 | epe: 2.547
+10/02 13:20 INFO step: [120/2799] | loss_1: 0.807 | loss_2: 0.782 | loss_3: 2.446 | epe: 2.585
+10/02 13:20 INFO step: [140/2799] | loss_1: 0.811 | loss_2: 0.787 | loss_3: 2.440 | epe: 2.568
+10/02 13:21 INFO step: [160/2799] | loss_1: 0.795 | loss_2: 0.772 | loss_3: 2.431 | epe: 2.558
+10/02 13:21 INFO step: [180/2799] | loss_1: 0.788 | loss_2: 0.766 | loss_3: 2.419 | epe: 2.553
+10/02 13:21 INFO step: [200/2799] | loss_1: 0.791 | loss_2: 0.770 | loss_3: 2.437 | epe: 2.552
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO step: [220/2799] | loss_1: 0.778 | loss_2: 0.758 | loss_3: 2.391 | epe: 2.546
+10/02 13:21 INFO step: [240/2799] | loss_1: 0.786 | loss_2: 0.767 | loss_3: 2.410 | epe: 2.542
+10/02 13:21 INFO step: [260/2799] | loss_1: 0.788 | loss_2: 0.770 | loss_3: 2.409 | epe: 2.534
+10/02 13:21 INFO step: [280/2799] | loss_1: 0.782 | loss_2: 0.764 | loss_3: 2.397 | epe: 2.526
+10/02 13:21 INFO step: [300/2799] | loss_1: 0.778 | loss_2: 0.762 | loss_3: 2.368 | epe: 2.513
+10/02 13:21 INFO step: [320/2799] | loss_1: 0.779 | loss_2: 0.763 | loss_3: 2.370 | epe: 2.511
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO No point in range!
+10/02 13:21 INFO step: [340/2799] | loss_1: 0.781 | loss_2: 0.765 | loss_3: 2.371 | epe: 2.510
+10/02 13:21 INFO step: [360/2799] | loss_1: 0.780 | loss_2: 0.766 | loss_3: 2.367 | epe: 2.509
+10/02 13:22 INFO step: [380/2799] | loss_1: 0.777 | loss_2: 0.763 | loss_3: 2.350 | epe: 2.499
+10/02 13:22 INFO step: [400/2799] | loss_1: 0.778 | loss_2: 0.765 | loss_3: 2.353 | epe: 2.500
+10/02 13:22 INFO step: [420/2799] | loss_1: 0.790 | loss_2: 0.777 | loss_3: 2.382 | epe: 2.504
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO step: [440/2799] | loss_1: 0.795 | loss_2: 0.783 | loss_3: 2.398 | epe: 2.506
+10/02 13:22 INFO step: [460/2799] | loss_1: 0.787 | loss_2: 0.775 | loss_3: 2.377 | epe: 2.494
+10/02 13:22 INFO step: [480/2799] | loss_1: 0.787 | loss_2: 0.776 | loss_3: 2.366 | epe: 2.485
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO step: [500/2799] | loss_1: 0.788 | loss_2: 0.778 | loss_3: 2.363 | epe: 2.483
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO No point in range!
+10/02 13:22 INFO step: [520/2799] | loss_1: 0.789 | loss_2: 0.779 | loss_3: 2.376 | epe: 2.481
+10/02 13:22 INFO step: [540/2799] | loss_1: 0.789 | loss_2: 0.780 | loss_3: 2.386 | epe: 2.474
+10/02 13:22 INFO step: [560/2799] | loss_1: 0.786 | loss_2: 0.777 | loss_3: 2.381 | epe: 2.468
+10/02 13:23 INFO step: [580/2799] | loss_1: 0.784 | loss_2: 0.776 | loss_3: 2.370 | epe: 2.462
+10/02 13:23 INFO step: [600/2799] | loss_1: 0.782 | loss_2: 0.775 | loss_3: 2.355 | epe: 2.447
+10/02 13:23 INFO step: [620/2799] | loss_1: 0.781 | loss_2: 0.775 | loss_3: 2.346 | epe: 2.442
+10/02 13:23 INFO No point in range!
+10/02 13:23 INFO No point in range!
+10/02 13:23 INFO No point in range!
+10/02 13:23 INFO step: [640/2799] | loss_1: 0.778 | loss_2: 0.772 | loss_3: 2.334 | epe: 2.440
+10/02 13:23 INFO step: [660/2799] | loss_1: 0.776 | loss_2: 0.772 | loss_3: 2.331 | epe: 2.434
+10/02 13:23 INFO step: [680/2799] | loss_1: 0.774 | loss_2: 0.770 | loss_3: 2.323 | epe: 2.428
+10/02 13:23 INFO step: [700/2799] | loss_1: 0.769 | loss_2: 0.766 | loss_3: 2.311 | epe: 2.418
+10/02 13:23 INFO step: [720/2799] | loss_1: 0.766 | loss_2: 0.765 | loss_3: 2.308 | epe: 2.413
+10/02 13:23 INFO step: [740/2799] | loss_1: 0.766 | loss_2: 0.765 | loss_3: 2.300 | epe: 2.405
+10/02 13:23 INFO step: [760/2799] | loss_1: 0.765 | loss_2: 0.765 | loss_3: 2.298 | epe: 2.399
+10/02 13:24 INFO step: [780/2799] | loss_1: 0.760 | loss_2: 0.761 | loss_3: 2.281 | epe: 2.389
+10/02 13:24 INFO step: [800/2799] | loss_1: 0.764 | loss_2: 0.766 | loss_3: 2.291 | epe: 2.387
+10/02 13:24 INFO step: [820/2799] | loss_1: 0.763 | loss_2: 0.766 | loss_3: 2.293 | epe: 2.382
+10/02 13:24 INFO step: [840/2799] | loss_1: 0.762 | loss_2: 0.766 | loss_3: 2.287 | epe: 2.378
+10/02 13:24 INFO step: [860/2799] | loss_1: 0.760 | loss_2: 0.765 | loss_3: 2.281 | epe: 2.375
+10/02 13:24 INFO step: [880/2799] | loss_1: 0.760 | loss_2: 0.765 | loss_3: 2.282 | epe: 2.367
+10/02 13:24 INFO step: [900/2799] | loss_1: 0.757 | loss_2: 0.763 | loss_3: 2.274 | epe: 2.363
+10/02 13:24 INFO step: [920/2799] | loss_1: 0.755 | loss_2: 0.762 | loss_3: 2.265 | epe: 2.361
+10/02 13:24 INFO No point in range!
+10/02 13:24 INFO No point in range!
+10/02 13:24 INFO No point in range!
+10/02 13:24 INFO step: [940/2799] | loss_1: 0.756 | loss_2: 0.765 | loss_3: 2.266 | epe: 2.356
+10/02 13:24 INFO step: [960/2799] | loss_1: 0.757 | loss_2: 0.766 | loss_3: 2.269 | epe: 2.351
+10/02 13:25 INFO step: [980/2799] | loss_1: 0.757 | loss_2: 0.767 | loss_3: 2.272 | epe: 2.348
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO step: [1000/2799] | loss_1: 0.756 | loss_2: 0.767 | loss_3: 2.272 | epe: 2.344
+10/02 13:25 INFO step: [1020/2799] | loss_1: 0.753 | loss_2: 0.764 | loss_3: 2.259 | epe: 2.339
+10/02 13:25 INFO step: [1040/2799] | loss_1: 0.752 | loss_2: 0.764 | loss_3: 2.260 | epe: 2.334
+10/02 13:25 INFO step: [1060/2799] | loss_1: 0.752 | loss_2: 0.764 | loss_3: 2.262 | epe: 2.332
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO No point in range!
+10/02 13:25 INFO step: [1080/2799] | loss_1: 0.749 | loss_2: 0.763 | loss_3: 2.254 | epe: 2.330
+10/02 13:25 INFO step: [1100/2799] | loss_1: 0.748 | loss_2: 0.762 | loss_3: 2.248 | epe: 2.329
+10/02 13:25 INFO step: [1120/2799] | loss_1: 0.749 | loss_2: 0.765 | loss_3: 2.249 | epe: 2.324
+10/02 13:25 INFO step: [1140/2799] | loss_1: 0.746 | loss_2: 0.762 | loss_3: 2.239 | epe: 2.319
+10/02 13:25 INFO step: [1160/2799] | loss_1: 0.748 | loss_2: 0.765 | loss_3: 2.243 | epe: 2.315
+10/02 13:26 INFO step: [1180/2799] | loss_1: 0.746 | loss_2: 0.763 | loss_3: 2.235 | epe: 2.309
+10/02 13:26 INFO step: [1200/2799] | loss_1: 0.747 | loss_2: 0.765 | loss_3: 2.236 | epe: 2.306
+10/02 13:26 INFO No point in range!
+10/02 13:26 INFO No point in range!
+10/02 13:26 INFO No point in range!
+10/02 13:26 INFO step: [1220/2799] | loss_1: 0.746 | loss_2: 0.765 | loss_3: 2.233 | epe: 2.301
+10/02 13:26 INFO step: [1240/2799] | loss_1: 0.744 | loss_2: 0.763 | loss_3: 2.226 | epe: 2.299
+10/02 13:26 INFO step: [1260/2799] | loss_1: 0.743 | loss_2: 0.763 | loss_3: 2.227 | epe: 2.299
+10/02 13:26 INFO step: [1280/2799] | loss_1: 0.741 | loss_2: 0.762 | loss_3: 2.218 | epe: 2.296
+10/02 13:26 INFO step: [1300/2799] | loss_1: 0.738 | loss_2: 0.759 | loss_3: 2.210 | epe: 2.292
+10/02 13:26 INFO step: [1320/2799] | loss_1: 0.739 | loss_2: 0.762 | loss_3: 2.213 | epe: 2.288
+10/02 13:26 INFO step: [1340/2799] | loss_1: 0.741 | loss_2: 0.763 | loss_3: 2.225 | epe: 2.286
+10/02 13:26 INFO step: [1360/2799] | loss_1: 0.740 | loss_2: 0.763 | loss_3: 2.224 | epe: 2.283
+10/02 13:26 INFO step: [1380/2799] | loss_1: 0.739 | loss_2: 0.762 | loss_3: 2.217 | epe: 2.279
+10/02 13:27 INFO step: [1400/2799] | loss_1: 0.737 | loss_2: 0.761 | loss_3: 2.211 | epe: 2.273
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO step: [1420/2799] | loss_1: 0.737 | loss_2: 0.761 | loss_3: 2.210 | epe: 2.271
+10/02 13:27 INFO step: [1440/2799] | loss_1: 0.738 | loss_2: 0.763 | loss_3: 2.211 | epe: 2.269
+10/02 13:27 INFO step: [1460/2799] | loss_1: 0.737 | loss_2: 0.763 | loss_3: 2.209 | epe: 2.265
+10/02 13:27 INFO step: [1480/2799] | loss_1: 0.736 | loss_2: 0.762 | loss_3: 2.206 | epe: 2.261
+10/02 13:27 INFO step: [1500/2799] | loss_1: 0.734 | loss_2: 0.760 | loss_3: 2.198 | epe: 2.258
+10/02 13:27 INFO step: [1520/2799] | loss_1: 0.732 | loss_2: 0.759 | loss_3: 2.190 | epe: 2.252
+10/02 13:27 INFO step: [1540/2799] | loss_1: 0.732 | loss_2: 0.759 | loss_3: 2.187 | epe: 2.248
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO No point in range!
+10/02 13:27 INFO step: [1560/2799] | loss_1: 0.733 | loss_2: 0.761 | loss_3: 2.189 | epe: 2.247
+10/02 13:27 INFO step: [1580/2799] | loss_1: 0.734 | loss_2: 0.762 | loss_3: 2.191 | epe: 2.244
+10/02 13:28 INFO step: [1600/2799] | loss_1: 0.734 | loss_2: 0.763 | loss_3: 2.189 | epe: 2.238
+10/02 13:28 INFO step: [1620/2799] | loss_1: 0.733 | loss_2: 0.762 | loss_3: 2.185 | epe: 2.237
+10/02 13:28 INFO step: [1640/2799] | loss_1: 0.730 | loss_2: 0.760 | loss_3: 2.178 | epe: 2.233
+10/02 13:28 INFO step: [1660/2799] | loss_1: 0.729 | loss_2: 0.759 | loss_3: 2.174 | epe: 2.230
+10/02 13:28 INFO step: [1680/2799] | loss_1: 0.727 | loss_2: 0.759 | loss_3: 2.171 | epe: 2.226
+10/02 13:28 INFO step: [1700/2799] | loss_1: 0.726 | loss_2: 0.757 | loss_3: 2.166 | epe: 2.222
+10/02 13:28 INFO step: [1720/2799] | loss_1: 0.726 | loss_2: 0.759 | loss_3: 2.165 | epe: 2.220
+10/02 13:28 INFO No point in range!
+10/02 13:28 INFO No point in range!
+10/02 13:28 INFO No point in range!
+10/02 13:28 INFO step: [1740/2799] | loss_1: 0.726 | loss_2: 0.758 | loss_3: 2.162 | epe: 2.218
+10/02 13:28 INFO step: [1760/2799] | loss_1: 0.725 | loss_2: 0.758 | loss_3: 2.159 | epe: 2.216
+10/02 13:28 INFO step: [1780/2799] | loss_1: 0.725 | loss_2: 0.758 | loss_3: 2.158 | epe: 2.214
+10/02 13:29 INFO step: [1800/2799] | loss_1: 0.722 | loss_2: 0.756 | loss_3: 2.149 | epe: 2.211
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO step: [1820/2799] | loss_1: 0.723 | loss_2: 0.758 | loss_3: 2.149 | epe: 2.208
+10/02 13:29 INFO step: [1840/2799] | loss_1: 0.723 | loss_2: 0.758 | loss_3: 2.148 | epe: 2.206
+10/02 13:29 INFO step: [1860/2799] | loss_1: 0.723 | loss_2: 0.758 | loss_3: 2.145 | epe: 2.202
+10/02 13:29 INFO step: [1880/2799] | loss_1: 0.721 | loss_2: 0.757 | loss_3: 2.138 | epe: 2.197
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO No point in range!
+10/02 13:29 INFO step: [1900/2799] | loss_1: 0.720 | loss_2: 0.756 | loss_3: 2.135 | epe: 2.193
+10/02 13:29 INFO step: [1920/2799] | loss_1: 0.718 | loss_2: 0.755 | loss_3: 2.129 | epe: 2.188
+10/02 13:29 INFO step: [1940/2799] | loss_1: 0.717 | loss_2: 0.754 | loss_3: 2.127 | epe: 2.185
+10/02 13:29 INFO step: [1960/2799] | loss_1: 0.716 | loss_2: 0.753 | loss_3: 2.125 | epe: 2.181
+10/02 13:29 INFO step: [1980/2799] | loss_1: 0.718 | loss_2: 0.755 | loss_3: 2.133 | epe: 2.179
+10/02 13:30 INFO step: [2000/2799] | loss_1: 0.717 | loss_2: 0.754 | loss_3: 2.130 | epe: 2.176
+10/02 13:30 INFO step: [2020/2799] | loss_1: 0.717 | loss_2: 0.755 | loss_3: 2.129 | epe: 2.172
+10/02 13:30 INFO step: [2040/2799] | loss_1: 0.716 | loss_2: 0.754 | loss_3: 2.125 | epe: 2.171
+10/02 13:30 INFO No point in range!
+10/02 13:30 INFO No point in range!
+10/02 13:30 INFO No point in range!
+10/02 13:30 INFO step: [2060/2799] | loss_1: 0.714 | loss_2: 0.752 | loss_3: 2.118 | epe: 2.168
+10/02 13:30 INFO step: [2080/2799] | loss_1: 0.713 | loss_2: 0.752 | loss_3: 2.115 | epe: 2.164
+10/02 13:30 INFO step: [2100/2799] | loss_1: 0.712 | loss_2: 0.751 | loss_3: 2.110 | epe: 2.161
+10/02 13:30 INFO step: [2120/2799] | loss_1: 0.711 | loss_2: 0.750 | loss_3: 2.104 | epe: 2.158
+10/02 13:30 INFO step: [2140/2799] | loss_1: 0.709 | loss_2: 0.749 | loss_3: 2.100 | epe: 2.156
+10/02 13:30 INFO step: [2160/2799] | loss_1: 0.709 | loss_2: 0.749 | loss_3: 2.097 | epe: 2.153
+10/02 13:30 INFO step: [2180/2799] | loss_1: 0.708 | loss_2: 0.749 | loss_3: 2.096 | epe: 2.150
+10/02 13:31 INFO step: [2200/2799] | loss_1: 0.708 | loss_2: 0.749 | loss_3: 2.095 | epe: 2.147
+10/02 13:31 INFO step: [2220/2799] | loss_1: 0.709 | loss_2: 0.750 | loss_3: 2.098 | epe: 2.145
+10/02 13:31 INFO step: [2240/2799] | loss_1: 0.709 | loss_2: 0.750 | loss_3: 2.096 | epe: 2.142
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO step: [2260/2799] | loss_1: 0.709 | loss_2: 0.751 | loss_3: 2.097 | epe: 2.138
+10/02 13:31 INFO step: [2280/2799] | loss_1: 0.709 | loss_2: 0.751 | loss_3: 2.095 | epe: 2.136
+10/02 13:31 INFO step: [2300/2799] | loss_1: 0.708 | loss_2: 0.751 | loss_3: 2.090 | epe: 2.132
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO step: [2320/2799] | loss_1: 0.709 | loss_2: 0.751 | loss_3: 2.089 | epe: 2.130
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO step: [2340/2799] | loss_1: 0.708 | loss_2: 0.751 | loss_3: 2.086 | epe: 2.128
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO No point in range!
+10/02 13:31 INFO step: [2360/2799] | loss_1: 0.708 | loss_2: 0.751 | loss_3: 2.084 | epe: 2.124
+10/02 13:31 INFO step: [2380/2799] | loss_1: 0.708 | loss_2: 0.751 | loss_3: 2.083 | epe: 2.122
+10/02 13:31 INFO step: [2400/2799] | loss_1: 0.707 | loss_2: 0.751 | loss_3: 2.080 | epe: 2.120
+10/02 13:32 INFO step: [2420/2799] | loss_1: 0.707 | loss_2: 0.751 | loss_3: 2.077 | epe: 2.117
+10/02 13:32 INFO step: [2440/2799] | loss_1: 0.706 | loss_2: 0.750 | loss_3: 2.072 | epe: 2.115
+10/02 13:32 INFO step: [2460/2799] | loss_1: 0.705 | loss_2: 0.750 | loss_3: 2.068 | epe: 2.112
+10/02 13:32 INFO step: [2480/2799] | loss_1: 0.706 | loss_2: 0.750 | loss_3: 2.068 | epe: 2.110
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO step: [2500/2799] | loss_1: 0.704 | loss_2: 0.749 | loss_3: 2.063 | epe: 2.107
+10/02 13:32 INFO step: [2520/2799] | loss_1: 0.703 | loss_2: 0.748 | loss_3: 2.058 | epe: 2.105
+10/02 13:32 INFO step: [2540/2799] | loss_1: 0.703 | loss_2: 0.748 | loss_3: 2.056 | epe: 2.103
+10/02 13:32 INFO step: [2560/2799] | loss_1: 0.702 | loss_2: 0.748 | loss_3: 2.053 | epe: 2.101
+10/02 13:32 INFO step: [2580/2799] | loss_1: 0.701 | loss_2: 0.747 | loss_3: 2.049 | epe: 2.098
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO No point in range!
+10/02 13:32 INFO step: [2600/2799] | loss_1: 0.700 | loss_2: 0.746 | loss_3: 2.043 | epe: 2.096
+10/02 13:33 INFO step: [2620/2799] | loss_1: 0.699 | loss_2: 0.745 | loss_3: 2.039 | epe: 2.094
+10/02 13:33 INFO step: [2640/2799] | loss_1: 0.701 | loss_2: 0.747 | loss_3: 2.044 | epe: 2.092
+10/02 13:33 INFO step: [2660/2799] | loss_1: 0.700 | loss_2: 0.747 | loss_3: 2.042 | epe: 2.089
+10/02 13:33 INFO No point in range!
+10/02 13:33 INFO No point in range!
+10/02 13:33 INFO No point in range!
+10/02 13:33 INFO step: [2680/2799] | loss_1: 0.700 | loss_2: 0.747 | loss_3: 2.039 | epe: 2.086
+10/02 13:33 INFO step: [2700/2799] | loss_1: 0.699 | loss_2: 0.747 | loss_3: 2.038 | epe: 2.083
+10/02 13:33 INFO step: [2720/2799] | loss_1: 0.699 | loss_2: 0.747 | loss_3: 2.035 | epe: 2.081
+10/02 13:33 INFO step: [2740/2799] | loss_1: 0.698 | loss_2: 0.746 | loss_3: 2.031 | epe: 2.078
+10/02 13:33 INFO step: [2760/2799] | loss_1: 0.699 | loss_2: 0.747 | loss_3: 2.034 | epe: 2.077
+10/02 13:33 INFO step: [2780/2799] | loss_1: 0.699 | loss_2: 0.747 | loss_3: 2.032 | epe: 2.074
+10/02 13:34 INFO val_epe: 13.242
+10/02 13:34 INFO Epoches: [3/500] ============================
+10/02 13:34 INFO step: [0/2799] | loss_1: 1.042 | loss_2: 1.112 | loss_3: 3.377 | epe: 2.540
+10/02 13:34 INFO step: [20/2799] | loss_1: 0.656 | loss_2: 0.721 | loss_3: 1.880 | epe: 1.777
+10/02 13:35 INFO step: [40/2799] | loss_1: 0.613 | loss_2: 0.682 | loss_3: 1.711 | epe: 1.694
+10/02 13:35 INFO step: [60/2799] | loss_1: 0.594 | loss_2: 0.667 | loss_3: 1.637 | epe: 1.687
+10/02 13:35 INFO step: [80/2799] | loss_1: 0.603 | loss_2: 0.676 | loss_3: 1.682 | epe: 1.720
+10/02 13:35 INFO step: [100/2799] | loss_1: 0.611 | loss_2: 0.687 | loss_3: 1.666 | epe: 1.711
+10/02 13:35 INFO No point in range!
+10/02 13:35 INFO No point in range!
+10/02 13:35 INFO step: [120/2799] | loss_1: 0.623 | loss_2: 0.700 | loss_3: 1.702 | epe: 1.714
+10/02 13:35 INFO step: [140/2799] | loss_1: 0.632 | loss_2: 0.710 | loss_3: 1.714 | epe: 1.716
+10/02 13:35 INFO No point in range!
+10/02 13:35 INFO No point in range!
+10/02 13:35 INFO No point in range!
+10/02 13:35 INFO step: [160/2799] | loss_1: 0.612 | loss_2: 0.690 | loss_3: 1.640 | epe: 1.724
+10/02 13:35 INFO step: [180/2799] | loss_1: 0.619 | loss_2: 0.699 | loss_3: 1.650 | epe: 1.723
+10/02 13:35 INFO step: [200/2799] | loss_1: 0.614 | loss_2: 0.694 | loss_3: 1.630 | epe: 1.711
+10/02 13:35 INFO step: [220/2799] | loss_1: 0.616 | loss_2: 0.694 | loss_3: 1.650 | epe: 1.708
+10/02 13:36 INFO step: [240/2799] | loss_1: 0.610 | loss_2: 0.689 | loss_3: 1.634 | epe: 1.704
+10/02 13:36 INFO step: [260/2799] | loss_1: 0.612 | loss_2: 0.691 | loss_3: 1.630 | epe: 1.708
+10/02 13:36 INFO step: [280/2799] | loss_1: 0.603 | loss_2: 0.682 | loss_3: 1.604 | epe: 1.692
+10/02 13:36 INFO step: [300/2799] | loss_1: 0.601 | loss_2: 0.680 | loss_3: 1.599 | epe: 1.685
+10/02 13:36 INFO step: [320/2799] | loss_1: 0.596 | loss_2: 0.675 | loss_3: 1.590 | epe: 1.694
+10/02 13:36 INFO step: [340/2799] | loss_1: 0.598 | loss_2: 0.677 | loss_3: 1.587 | epe: 1.690
+10/02 13:36 INFO step: [360/2799] | loss_1: 0.603 | loss_2: 0.683 | loss_3: 1.596 | epe: 1.689
+10/02 13:36 INFO step: [380/2799] | loss_1: 0.601 | loss_2: 0.681 | loss_3: 1.589 | epe: 1.693
+10/02 13:36 INFO step: [400/2799] | loss_1: 0.607 | loss_2: 0.687 | loss_3: 1.608 | epe: 1.704
+10/02 13:36 INFO step: [420/2799] | loss_1: 0.609 | loss_2: 0.689 | loss_3: 1.616 | epe: 1.704
+10/02 13:37 INFO step: [440/2799] | loss_1: 0.612 | loss_2: 0.692 | loss_3: 1.612 | epe: 1.703
+10/02 13:37 INFO step: [460/2799] | loss_1: 0.611 | loss_2: 0.691 | loss_3: 1.603 | epe: 1.698
+10/02 13:37 INFO step: [480/2799] | loss_1: 0.607 | loss_2: 0.688 | loss_3: 1.589 | epe: 1.696
+10/02 13:37 INFO step: [500/2799] | loss_1: 0.604 | loss_2: 0.685 | loss_3: 1.583 | epe: 1.695
+10/02 13:37 INFO No point in range!
+10/02 13:37 INFO No point in range!
+10/02 13:37 INFO No point in range!
+10/02 13:37 INFO step: [520/2799] | loss_1: 0.601 | loss_2: 0.683 | loss_3: 1.577 | epe: 1.696
+10/02 13:37 INFO step: [540/2799] | loss_1: 0.603 | loss_2: 0.684 | loss_3: 1.583 | epe: 1.701
+10/02 13:37 INFO step: [560/2799] | loss_1: 0.605 | loss_2: 0.687 | loss_3: 1.584 | epe: 1.699
+10/02 13:37 INFO step: [580/2799] | loss_1: 0.606 | loss_2: 0.688 | loss_3: 1.589 | epe: 1.700
+10/02 13:37 INFO step: [600/2799] | loss_1: 0.608 | loss_2: 0.690 | loss_3: 1.595 | epe: 1.700
+10/02 13:37 INFO step: [620/2799] | loss_1: 0.611 | loss_2: 0.692 | loss_3: 1.604 | epe: 1.699
+10/02 13:38 INFO step: [640/2799] | loss_1: 0.609 | loss_2: 0.691 | loss_3: 1.596 | epe: 1.695
+10/02 13:38 INFO step: [660/2799] | loss_1: 0.609 | loss_2: 0.691 | loss_3: 1.595 | epe: 1.692
+10/02 13:38 INFO step: [680/2799] | loss_1: 0.609 | loss_2: 0.691 | loss_3: 1.592 | epe: 1.691
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO step: [700/2799] | loss_1: 0.609 | loss_2: 0.692 | loss_3: 1.588 | epe: 1.686
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO No point in range!
+10/02 13:38 INFO step: [720/2799] | loss_1: 0.610 | loss_2: 0.692 | loss_3: 1.589 | epe: 1.685
+10/02 13:38 INFO step: [740/2799] | loss_1: 0.611 | loss_2: 0.693 | loss_3: 1.591 | epe: 1.685
+10/02 13:38 INFO step: [760/2799] | loss_1: 0.613 | loss_2: 0.695 | loss_3: 1.594 | epe: 1.687
+10/02 13:38 INFO step: [780/2799] | loss_1: 0.611 | loss_2: 0.693 | loss_3: 1.591 | epe: 1.681
+10/02 13:38 INFO step: [800/2799] | loss_1: 0.612 | loss_2: 0.694 | loss_3: 1.593 | epe: 1.680
+10/02 13:38 INFO step: [820/2799] | loss_1: 0.612 | loss_2: 0.695 | loss_3: 1.589 | epe: 1.678
+10/02 13:38 INFO step: [840/2799] | loss_1: 0.614 | loss_2: 0.697 | loss_3: 1.586 | epe: 1.677
+10/02 13:39 INFO step: [860/2799] | loss_1: 0.614 | loss_2: 0.697 | loss_3: 1.586 | epe: 1.676
+10/02 13:39 INFO step: [880/2799] | loss_1: 0.615 | loss_2: 0.698 | loss_3: 1.585 | epe: 1.675
+10/02 13:39 INFO step: [900/2799] | loss_1: 0.617 | loss_2: 0.700 | loss_3: 1.593 | epe: 1.674
+10/02 13:39 INFO step: [920/2799] | loss_1: 0.617 | loss_2: 0.700 | loss_3: 1.594 | epe: 1.678
+10/02 13:39 INFO No point in range!
+10/02 13:39 INFO No point in range!
+10/02 13:39 INFO No point in range!
+10/02 13:39 INFO step: [940/2799] | loss_1: 0.618 | loss_2: 0.701 | loss_3: 1.590 | epe: 1.677
+10/02 13:39 INFO step: [960/2799] | loss_1: 0.618 | loss_2: 0.701 | loss_3: 1.590 | epe: 1.679
+10/02 13:39 INFO step: [980/2799] | loss_1: 0.621 | loss_2: 0.704 | loss_3: 1.599 | epe: 1.676
+10/02 13:39 INFO step: [1000/2799] | loss_1: 0.620 | loss_2: 0.703 | loss_3: 1.596 | epe: 1.676
+10/02 13:39 INFO step: [1020/2799] | loss_1: 0.619 | loss_2: 0.702 | loss_3: 1.593 | epe: 1.675
+10/02 13:39 INFO step: [1040/2799] | loss_1: 0.620 | loss_2: 0.704 | loss_3: 1.594 | epe: 1.674
+10/02 13:40 INFO step: [1060/2799] | loss_1: 0.622 | loss_2: 0.705 | loss_3: 1.597 | epe: 1.673
+10/02 13:40 INFO step: [1080/2799] | loss_1: 0.622 | loss_2: 0.705 | loss_3: 1.593 | epe: 1.671
+10/02 13:40 INFO step: [1100/2799] | loss_1: 0.623 | loss_2: 0.706 | loss_3: 1.591 | epe: 1.668
+10/02 13:40 INFO step: [1120/2799] | loss_1: 0.623 | loss_2: 0.707 | loss_3: 1.587 | epe: 1.669
+10/02 13:40 INFO step: [1140/2799] | loss_1: 0.623 | loss_2: 0.706 | loss_3: 1.583 | epe: 1.666
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO No point in range!
+10/02 13:40 INFO step: [1160/2799] | loss_1: 0.622 | loss_2: 0.706 | loss_3: 1.583 | epe: 1.664
+10/02 13:40 INFO step: [1180/2799] | loss_1: 0.621 | loss_2: 0.705 | loss_3: 1.580 | epe: 1.663
+10/02 13:40 INFO step: [1200/2799] | loss_1: 0.622 | loss_2: 0.706 | loss_3: 1.584 | epe: 1.661
+10/02 13:40 INFO step: [1220/2799] | loss_1: 0.621 | loss_2: 0.704 | loss_3: 1.583 | epe: 1.657
+10/02 13:40 INFO step: [1240/2799] | loss_1: 0.621 | loss_2: 0.705 | loss_3: 1.581 | epe: 1.657
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO step: [1260/2799] | loss_1: 0.622 | loss_2: 0.706 | loss_3: 1.584 | epe: 1.656
+10/02 13:41 INFO step: [1280/2799] | loss_1: 0.623 | loss_2: 0.707 | loss_3: 1.584 | epe: 1.655
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO No point in range!
+10/02 13:41 INFO step: [1300/2799] | loss_1: 0.622 | loss_2: 0.705 | loss_3: 1.582 | epe: 1.652
+10/02 13:41 INFO step: [1320/2799] | loss_1: 0.621 | loss_2: 0.705 | loss_3: 1.580 | epe: 1.651
+10/02 13:41 INFO step: [1340/2799] | loss_1: 0.622 | loss_2: 0.706 | loss_3: 1.580 | epe: 1.650
+10/02 13:41 INFO step: [1360/2799] | loss_1: 0.623 | loss_2: 0.707 | loss_3: 1.581 | epe: 1.649
+10/02 13:41 INFO step: [1380/2799] | loss_1: 0.622 | loss_2: 0.707 | loss_3: 1.578 | epe: 1.646
+10/02 13:41 INFO step: [1400/2799] | loss_1: 0.622 | loss_2: 0.707 | loss_3: 1.576 | epe: 1.643
+10/02 13:41 INFO step: [1420/2799] | loss_1: 0.625 | loss_2: 0.709 | loss_3: 1.580 | epe: 1.644
+10/02 13:41 INFO step: [1440/2799] | loss_1: 0.626 | loss_2: 0.711 | loss_3: 1.585 | epe: 1.641
+10/02 13:42 INFO step: [1460/2799] | loss_1: 0.627 | loss_2: 0.712 | loss_3: 1.586 | epe: 1.641
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO step: [1480/2799] | loss_1: 0.626 | loss_2: 0.711 | loss_3: 1.583 | epe: 1.639
+10/02 13:42 INFO step: [1500/2799] | loss_1: 0.630 | loss_2: 0.714 | loss_3: 1.591 | epe: 1.640
+10/02 13:42 INFO step: [1520/2799] | loss_1: 0.628 | loss_2: 0.713 | loss_3: 1.590 | epe: 1.637
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO step: [1540/2799] | loss_1: 0.628 | loss_2: 0.713 | loss_3: 1.589 | epe: 1.636
+10/02 13:42 INFO step: [1560/2799] | loss_1: 0.630 | loss_2: 0.715 | loss_3: 1.593 | epe: 1.634
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO No point in range!
+10/02 13:42 INFO step: [1580/2799] | loss_1: 0.630 | loss_2: 0.715 | loss_3: 1.593 | epe: 1.632
+10/02 13:42 INFO step: [1600/2799] | loss_1: 0.630 | loss_2: 0.715 | loss_3: 1.592 | epe: 1.631
+10/02 13:42 INFO step: [1620/2799] | loss_1: 0.628 | loss_2: 0.713 | loss_3: 1.585 | epe: 1.628
+10/02 13:42 INFO step: [1640/2799] | loss_1: 0.627 | loss_2: 0.713 | loss_3: 1.581 | epe: 1.625
+10/02 13:43 INFO step: [1660/2799] | loss_1: 0.629 | loss_2: 0.715 | loss_3: 1.587 | epe: 1.626
+10/02 13:43 INFO step: [1680/2799] | loss_1: 0.629 | loss_2: 0.715 | loss_3: 1.584 | epe: 1.626
+10/02 13:43 INFO step: [1700/2799] | loss_1: 0.629 | loss_2: 0.715 | loss_3: 1.582 | epe: 1.623
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO step: [1720/2799] | loss_1: 0.630 | loss_2: 0.716 | loss_3: 1.580 | epe: 1.623
+10/02 13:43 INFO step: [1740/2799] | loss_1: 0.629 | loss_2: 0.716 | loss_3: 1.578 | epe: 1.621
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO No point in range!
+10/02 13:43 INFO step: [1760/2799] | loss_1: 0.630 | loss_2: 0.717 | loss_3: 1.581 | epe: 1.620
+10/02 13:43 INFO step: [1780/2799] | loss_1: 0.628 | loss_2: 0.715 | loss_3: 1.576 | epe: 1.618
+10/02 13:43 INFO step: [1800/2799] | loss_1: 0.628 | loss_2: 0.715 | loss_3: 1.577 | epe: 1.617
+10/02 13:43 INFO step: [1820/2799] | loss_1: 0.627 | loss_2: 0.715 | loss_3: 1.575 | epe: 1.616
+10/02 13:43 INFO step: [1840/2799] | loss_1: 0.626 | loss_2: 0.713 | loss_3: 1.572 | epe: 1.614
+10/02 13:43 INFO step: [1860/2799] | loss_1: 0.624 | loss_2: 0.712 | loss_3: 1.568 | epe: 1.612
+10/02 13:44 INFO step: [1880/2799] | loss_1: 0.624 | loss_2: 0.713 | loss_3: 1.567 | epe: 1.611
+10/02 13:44 INFO step: [1900/2799] | loss_1: 0.624 | loss_2: 0.712 | loss_3: 1.565 | epe: 1.610
+10/02 13:44 INFO step: [1920/2799] | loss_1: 0.623 | loss_2: 0.712 | loss_3: 1.565 | epe: 1.608
+10/02 13:44 INFO step: [1940/2799] | loss_1: 0.623 | loss_2: 0.712 | loss_3: 1.564 | epe: 1.606
+10/02 13:44 INFO step: [1960/2799] | loss_1: 0.623 | loss_2: 0.713 | loss_3: 1.566 | epe: 1.606
+10/02 13:44 INFO step: [1980/2799] | loss_1: 0.623 | loss_2: 0.713 | loss_3: 1.564 | epe: 1.604
+10/02 13:44 INFO step: [2000/2799] | loss_1: 0.623 | loss_2: 0.714 | loss_3: 1.568 | epe: 1.604
+10/02 13:44 INFO step: [2020/2799] | loss_1: 0.623 | loss_2: 0.715 | loss_3: 1.568 | epe: 1.602
+10/02 13:44 INFO step: [2040/2799] | loss_1: 0.623 | loss_2: 0.714 | loss_3: 1.568 | epe: 1.601
+10/02 13:44 INFO step: [2060/2799] | loss_1: 0.622 | loss_2: 0.714 | loss_3: 1.565 | epe: 1.599
+10/02 13:45 INFO step: [2080/2799] | loss_1: 0.620 | loss_2: 0.713 | loss_3: 1.562 | epe: 1.598
+10/02 13:45 INFO step: [2100/2799] | loss_1: 0.619 | loss_2: 0.711 | loss_3: 1.557 | epe: 1.597
+10/02 13:45 INFO step: [2120/2799] | loss_1: 0.618 | loss_2: 0.711 | loss_3: 1.555 | epe: 1.596
+10/02 13:45 INFO step: [2140/2799] | loss_1: 0.619 | loss_2: 0.712 | loss_3: 1.558 | epe: 1.594
+10/02 13:45 INFO step: [2160/2799] | loss_1: 0.618 | loss_2: 0.712 | loss_3: 1.553 | epe: 1.592
+10/02 13:45 INFO step: [2180/2799] | loss_1: 0.618 | loss_2: 0.712 | loss_3: 1.552 | epe: 1.591
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO step: [2200/2799] | loss_1: 0.618 | loss_2: 0.712 | loss_3: 1.551 | epe: 1.589
+10/02 13:45 INFO step: [2220/2799] | loss_1: 0.618 | loss_2: 0.713 | loss_3: 1.551 | epe: 1.587
+10/02 13:45 INFO step: [2240/2799] | loss_1: 0.618 | loss_2: 0.713 | loss_3: 1.548 | epe: 1.587
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO No point in range!
+10/02 13:45 INFO step: [2260/2799] | loss_1: 0.617 | loss_2: 0.713 | loss_3: 1.545 | epe: 1.585
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO step: [2280/2799] | loss_1: 0.616 | loss_2: 0.712 | loss_3: 1.541 | epe: 1.583
+10/02 13:46 INFO step: [2300/2799] | loss_1: 0.615 | loss_2: 0.711 | loss_3: 1.537 | epe: 1.583
+10/02 13:46 INFO step: [2320/2799] | loss_1: 0.614 | loss_2: 0.711 | loss_3: 1.534 | epe: 1.583
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO No point in range!
+10/02 13:46 INFO step: [2340/2799] | loss_1: 0.612 | loss_2: 0.709 | loss_3: 1.530 | epe: 1.580
+10/02 13:46 INFO step: [2360/2799] | loss_1: 0.612 | loss_2: 0.710 | loss_3: 1.528 | epe: 1.580
+10/02 13:46 INFO step: [2380/2799] | loss_1: 0.612 | loss_2: 0.710 | loss_3: 1.530 | epe: 1.578
+10/02 13:46 INFO step: [2400/2799] | loss_1: 0.613 | loss_2: 0.711 | loss_3: 1.530 | epe: 1.578
+10/02 13:46 INFO step: [2420/2799] | loss_1: 0.612 | loss_2: 0.711 | loss_3: 1.528 | epe: 1.576
+10/02 13:46 INFO step: [2440/2799] | loss_1: 0.611 | loss_2: 0.710 | loss_3: 1.525 | epe: 1.576
+10/02 13:46 INFO step: [2460/2799] | loss_1: 0.611 | loss_2: 0.710 | loss_3: 1.523 | epe: 1.575
+10/02 13:47 INFO step: [2480/2799] | loss_1: 0.611 | loss_2: 0.710 | loss_3: 1.522 | epe: 1.573
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO step: [2500/2799] | loss_1: 0.611 | loss_2: 0.711 | loss_3: 1.523 | epe: 1.572
+10/02 13:47 INFO step: [2520/2799] | loss_1: 0.610 | loss_2: 0.711 | loss_3: 1.520 | epe: 1.569
+10/02 13:47 INFO step: [2540/2799] | loss_1: 0.611 | loss_2: 0.711 | loss_3: 1.519 | epe: 1.568
+10/02 13:47 INFO step: [2560/2799] | loss_1: 0.611 | loss_2: 0.712 | loss_3: 1.520 | epe: 1.568
+10/02 13:47 INFO step: [2580/2799] | loss_1: 0.612 | loss_2: 0.713 | loss_3: 1.523 | epe: 1.567
+10/02 13:47 INFO step: [2600/2799] | loss_1: 0.612 | loss_2: 0.713 | loss_3: 1.524 | epe: 1.566
+10/02 13:47 INFO step: [2620/2799] | loss_1: 0.611 | loss_2: 0.713 | loss_3: 1.521 | epe: 1.565
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO step: [2640/2799] | loss_1: 0.610 | loss_2: 0.713 | loss_3: 1.519 | epe: 1.564
+10/02 13:47 INFO step: [2660/2799] | loss_1: 0.611 | loss_2: 0.713 | loss_3: 1.519 | epe: 1.564
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO No point in range!
+10/02 13:47 INFO step: [2680/2799] | loss_1: 0.610 | loss_2: 0.713 | loss_3: 1.518 | epe: 1.563
+10/02 13:48 INFO step: [2700/2799] | loss_1: 0.610 | loss_2: 0.713 | loss_3: 1.517 | epe: 1.561
+10/02 13:48 INFO step: [2720/2799] | loss_1: 0.610 | loss_2: 0.713 | loss_3: 1.515 | epe: 1.560
+10/02 13:48 INFO step: [2740/2799] | loss_1: 0.610 | loss_2: 0.714 | loss_3: 1.515 | epe: 1.559
+10/02 13:48 INFO step: [2760/2799] | loss_1: 0.609 | loss_2: 0.713 | loss_3: 1.513 | epe: 1.559
+10/02 13:48 INFO step: [2780/2799] | loss_1: 0.608 | loss_2: 0.713 | loss_3: 1.510 | epe: 1.558
+10/02 13:49 INFO val_epe: 10.957
+10/02 13:49 INFO Epoches: [4/500] ============================
+10/02 13:49 INFO step: [0/2799] | loss_1: 0.815 | loss_2: 0.969 | loss_3: 1.535 | epe: 1.182
+10/02 13:49 INFO step: [20/2799] | loss_1: 0.675 | loss_2: 0.808 | loss_3: 1.780 | epe: 1.276
+10/02 13:49 INFO step: [40/2799] | loss_1: 0.600 | loss_2: 0.744 | loss_3: 1.442 | epe: 1.312
+10/02 13:49 INFO step: [60/2799] | loss_1: 0.589 | loss_2: 0.735 | loss_3: 1.411 | epe: 1.316
+10/02 13:49 INFO step: [80/2799] | loss_1: 0.573 | loss_2: 0.720 | loss_3: 1.341 | epe: 1.350
+10/02 13:49 INFO step: [100/2799] | loss_1: 0.594 | loss_2: 0.737 | loss_3: 1.430 | epe: 1.367
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO step: [120/2799] | loss_1: 0.602 | loss_2: 0.746 | loss_3: 1.447 | epe: 1.374
+10/02 13:50 INFO step: [140/2799] | loss_1: 0.596 | loss_2: 0.741 | loss_3: 1.424 | epe: 1.379
+10/02 13:50 INFO step: [160/2799] | loss_1: 0.584 | loss_2: 0.726 | loss_3: 1.401 | epe: 1.374
+10/02 13:50 INFO step: [180/2799] | loss_1: 0.576 | loss_2: 0.720 | loss_3: 1.388 | epe: 1.371
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO step: [200/2799] | loss_1: 0.573 | loss_2: 0.717 | loss_3: 1.380 | epe: 1.373
+10/02 13:50 INFO step: [220/2799] | loss_1: 0.573 | loss_2: 0.718 | loss_3: 1.371 | epe: 1.372
+10/02 13:50 INFO step: [240/2799] | loss_1: 0.575 | loss_2: 0.720 | loss_3: 1.376 | epe: 1.372
+10/02 13:50 INFO step: [260/2799] | loss_1: 0.571 | loss_2: 0.717 | loss_3: 1.362 | epe: 1.372
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO No point in range!
+10/02 13:50 INFO step: [280/2799] | loss_1: 0.578 | loss_2: 0.724 | loss_3: 1.392 | epe: 1.384
+10/02 13:50 INFO step: [300/2799] | loss_1: 0.573 | loss_2: 0.718 | loss_3: 1.385 | epe: 1.384
+10/02 13:51 INFO step: [320/2799] | loss_1: 0.574 | loss_2: 0.719 | loss_3: 1.392 | epe: 1.399
+10/02 13:51 INFO step: [340/2799] | loss_1: 0.572 | loss_2: 0.717 | loss_3: 1.389 | epe: 1.396
+10/02 13:51 INFO step: [360/2799] | loss_1: 0.572 | loss_2: 0.716 | loss_3: 1.384 | epe: 1.396
+10/02 13:51 INFO step: [380/2799] | loss_1: 0.566 | loss_2: 0.711 | loss_3: 1.370 | epe: 1.400
+10/02 13:51 INFO step: [400/2799] | loss_1: 0.566 | loss_2: 0.712 | loss_3: 1.366 | epe: 1.402
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO step: [420/2799] | loss_1: 0.566 | loss_2: 0.712 | loss_3: 1.361 | epe: 1.403
+10/02 13:51 INFO step: [440/2799] | loss_1: 0.569 | loss_2: 0.715 | loss_3: 1.365 | epe: 1.400
+10/02 13:51 INFO step: [460/2799] | loss_1: 0.567 | loss_2: 0.713 | loss_3: 1.358 | epe: 1.394
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO step: [480/2799] | loss_1: 0.564 | loss_2: 0.710 | loss_3: 1.353 | epe: 1.394
+10/02 13:51 INFO step: [500/2799] | loss_1: 0.569 | loss_2: 0.715 | loss_3: 1.364 | epe: 1.399
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:51 INFO No point in range!
+10/02 13:52 INFO step: [520/2799] | loss_1: 0.573 | loss_2: 0.719 | loss_3: 1.376 | epe: 1.398
+10/02 13:52 INFO step: [540/2799] | loss_1: 0.571 | loss_2: 0.717 | loss_3: 1.372 | epe: 1.395
+10/02 13:52 INFO step: [560/2799] | loss_1: 0.570 | loss_2: 0.717 | loss_3: 1.365 | epe: 1.395
+10/02 13:52 INFO step: [580/2799] | loss_1: 0.571 | loss_2: 0.719 | loss_3: 1.367 | epe: 1.394
+10/02 13:52 INFO step: [600/2799] | loss_1: 0.571 | loss_2: 0.719 | loss_3: 1.365 | epe: 1.394
+10/02 13:52 INFO step: [620/2799] | loss_1: 0.569 | loss_2: 0.717 | loss_3: 1.360 | epe: 1.390
+10/02 13:52 INFO step: [640/2799] | loss_1: 0.567 | loss_2: 0.715 | loss_3: 1.349 | epe: 1.388
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO step: [660/2799] | loss_1: 0.567 | loss_2: 0.715 | loss_3: 1.345 | epe: 1.390
+10/02 13:52 INFO step: [680/2799] | loss_1: 0.569 | loss_2: 0.717 | loss_3: 1.360 | epe: 1.392
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO No point in range!
+10/02 13:52 INFO step: [700/2799] | loss_1: 0.572 | loss_2: 0.720 | loss_3: 1.364 | epe: 1.393
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO step: [720/2799] | loss_1: 0.573 | loss_2: 0.722 | loss_3: 1.364 | epe: 1.394
+10/02 13:53 INFO step: [740/2799] | loss_1: 0.575 | loss_2: 0.724 | loss_3: 1.368 | epe: 1.396
+10/02 13:53 INFO step: [760/2799] | loss_1: 0.579 | loss_2: 0.727 | loss_3: 1.381 | epe: 1.398
+10/02 13:53 INFO step: [780/2799] | loss_1: 0.577 | loss_2: 0.726 | loss_3: 1.376 | epe: 1.395
+10/02 13:53 INFO step: [800/2799] | loss_1: 0.578 | loss_2: 0.727 | loss_3: 1.379 | epe: 1.394
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO step: [820/2799] | loss_1: 0.580 | loss_2: 0.729 | loss_3: 1.382 | epe: 1.391
+10/02 13:53 INFO step: [840/2799] | loss_1: 0.577 | loss_2: 0.726 | loss_3: 1.372 | epe: 1.388
+10/02 13:53 INFO step: [860/2799] | loss_1: 0.577 | loss_2: 0.727 | loss_3: 1.372 | epe: 1.387
+10/02 13:53 INFO step: [880/2799] | loss_1: 0.579 | loss_2: 0.729 | loss_3: 1.373 | epe: 1.386
+10/02 13:53 INFO step: [900/2799] | loss_1: 0.582 | loss_2: 0.732 | loss_3: 1.380 | epe: 1.388
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO No point in range!
+10/02 13:53 INFO step: [920/2799] | loss_1: 0.582 | loss_2: 0.732 | loss_3: 1.382 | epe: 1.388
+10/02 13:54 INFO step: [940/2799] | loss_1: 0.583 | loss_2: 0.732 | loss_3: 1.386 | epe: 1.388
+10/02 13:54 INFO step: [960/2799] | loss_1: 0.581 | loss_2: 0.730 | loss_3: 1.379 | epe: 1.386
+10/02 13:54 INFO step: [980/2799] | loss_1: 0.582 | loss_2: 0.732 | loss_3: 1.378 | epe: 1.385
+10/02 13:54 INFO step: [1000/2799] | loss_1: 0.581 | loss_2: 0.730 | loss_3: 1.377 | epe: 1.387
+10/02 13:54 INFO step: [1020/2799] | loss_1: 0.582 | loss_2: 0.732 | loss_3: 1.384 | epe: 1.390
+10/02 13:54 INFO step: [1040/2799] | loss_1: 0.582 | loss_2: 0.732 | loss_3: 1.382 | epe: 1.388
+10/02 13:54 INFO step: [1060/2799] | loss_1: 0.581 | loss_2: 0.730 | loss_3: 1.381 | epe: 1.388
+10/02 13:54 INFO step: [1080/2799] | loss_1: 0.580 | loss_2: 0.730 | loss_3: 1.376 | epe: 1.386
+10/02 13:54 INFO step: [1100/2799] | loss_1: 0.579 | loss_2: 0.728 | loss_3: 1.372 | epe: 1.385
+10/02 13:54 INFO step: [1120/2799] | loss_1: 0.577 | loss_2: 0.727 | loss_3: 1.364 | epe: 1.384
+10/02 13:54 INFO No point in range!
+10/02 13:54 INFO No point in range!
+10/02 13:54 INFO No point in range!
+10/02 13:55 INFO step: [1140/2799] | loss_1: 0.576 | loss_2: 0.726 | loss_3: 1.360 | epe: 1.381
+10/02 13:55 INFO step: [1160/2799] | loss_1: 0.574 | loss_2: 0.724 | loss_3: 1.353 | epe: 1.381
+10/02 13:55 INFO step: [1180/2799] | loss_1: 0.573 | loss_2: 0.723 | loss_3: 1.350 | epe: 1.379
+10/02 13:55 INFO step: [1200/2799] | loss_1: 0.572 | loss_2: 0.723 | loss_3: 1.345 | epe: 1.380
+10/02 13:55 INFO step: [1220/2799] | loss_1: 0.570 | loss_2: 0.721 | loss_3: 1.339 | epe: 1.377
+10/02 13:55 INFO step: [1240/2799] | loss_1: 0.570 | loss_2: 0.721 | loss_3: 1.341 | epe: 1.375
+10/02 13:55 INFO No point in range!
+10/02 13:55 INFO No point in range!
+10/02 13:55 INFO No point in range!
+10/02 13:55 INFO step: [1260/2799] | loss_1: 0.570 | loss_2: 0.721 | loss_3: 1.338 | epe: 1.375
+10/02 13:55 INFO step: [1280/2799] | loss_1: 0.568 | loss_2: 0.719 | loss_3: 1.335 | epe: 1.373
+10/02 13:55 INFO step: [1300/2799] | loss_1: 0.567 | loss_2: 0.718 | loss_3: 1.331 | epe: 1.371
+10/02 13:55 INFO step: [1320/2799] | loss_1: 0.567 | loss_2: 0.718 | loss_3: 1.329 | epe: 1.371
+10/02 13:56 INFO step: [1340/2799] | loss_1: 0.569 | loss_2: 0.719 | loss_3: 1.334 | epe: 1.372
+10/02 13:56 INFO step: [1360/2799] | loss_1: 0.568 | loss_2: 0.719 | loss_3: 1.333 | epe: 1.369
+10/02 13:56 INFO step: [1380/2799] | loss_1: 0.567 | loss_2: 0.718 | loss_3: 1.329 | epe: 1.368
+10/02 13:56 INFO No point in range!
+10/02 13:56 INFO No point in range!
+10/02 13:56 INFO No point in range!
+10/02 13:56 INFO step: [1400/2799] | loss_1: 0.567 | loss_2: 0.718 | loss_3: 1.328 | epe: 1.370
+10/02 13:56 INFO step: [1420/2799] | loss_1: 0.568 | loss_2: 0.718 | loss_3: 1.335 | epe: 1.369
+10/02 13:56 INFO step: [1440/2799] | loss_1: 0.567 | loss_2: 0.718 | loss_3: 1.332 | epe: 1.368
+10/02 13:56 INFO step: [1460/2799] | loss_1: 0.568 | loss_2: 0.718 | loss_3: 1.332 | epe: 1.367
+10/02 13:56 INFO step: [1480/2799] | loss_1: 0.567 | loss_2: 0.717 | loss_3: 1.335 | epe: 1.367
+10/02 13:56 INFO step: [1500/2799] | loss_1: 0.569 | loss_2: 0.719 | loss_3: 1.335 | epe: 1.367
+10/02 13:56 INFO step: [1520/2799] | loss_1: 0.569 | loss_2: 0.720 | loss_3: 1.336 | epe: 1.368
+10/02 13:57 INFO step: [1540/2799] | loss_1: 0.571 | loss_2: 0.722 | loss_3: 1.339 | epe: 1.368
+10/02 13:57 INFO step: [1560/2799] | loss_1: 0.571 | loss_2: 0.722 | loss_3: 1.339 | epe: 1.369
+10/02 13:57 INFO step: [1580/2799] | loss_1: 0.569 | loss_2: 0.720 | loss_3: 1.335 | epe: 1.367
+10/02 13:57 INFO step: [1600/2799] | loss_1: 0.569 | loss_2: 0.720 | loss_3: 1.335 | epe: 1.366
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO step: [1620/2799] | loss_1: 0.571 | loss_2: 0.722 | loss_3: 1.339 | epe: 1.366
+10/02 13:57 INFO step: [1640/2799] | loss_1: 0.572 | loss_2: 0.724 | loss_3: 1.340 | epe: 1.367
+10/02 13:57 INFO step: [1660/2799] | loss_1: 0.573 | loss_2: 0.725 | loss_3: 1.341 | epe: 1.365
+10/02 13:57 INFO step: [1680/2799] | loss_1: 0.573 | loss_2: 0.724 | loss_3: 1.341 | epe: 1.364
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO No point in range!
+10/02 13:57 INFO step: [1700/2799] | loss_1: 0.572 | loss_2: 0.724 | loss_3: 1.338 | epe: 1.363
+10/02 13:57 INFO step: [1720/2799] | loss_1: 0.574 | loss_2: 0.726 | loss_3: 1.344 | epe: 1.365
+10/02 13:58 INFO step: [1740/2799] | loss_1: 0.573 | loss_2: 0.725 | loss_3: 1.341 | epe: 1.364
+10/02 13:58 INFO step: [1760/2799] | loss_1: 0.573 | loss_2: 0.725 | loss_3: 1.339 | epe: 1.363
+10/02 13:58 INFO step: [1780/2799] | loss_1: 0.572 | loss_2: 0.725 | loss_3: 1.337 | epe: 1.363
+10/02 13:58 INFO step: [1800/2799] | loss_1: 0.573 | loss_2: 0.725 | loss_3: 1.339 | epe: 1.361
+10/02 13:58 INFO step: [1820/2799] | loss_1: 0.573 | loss_2: 0.725 | loss_3: 1.339 | epe: 1.360
+10/02 13:58 INFO No point in range!
+10/02 13:58 INFO No point in range!
+10/02 13:58 INFO No point in range!
+10/02 13:58 INFO step: [1840/2799] | loss_1: 0.574 | loss_2: 0.727 | loss_3: 1.342 | epe: 1.359
+10/02 13:58 INFO step: [1860/2799] | loss_1: 0.575 | loss_2: 0.728 | loss_3: 1.344 | epe: 1.358
+10/02 13:58 INFO step: [1880/2799] | loss_1: 0.577 | loss_2: 0.729 | loss_3: 1.348 | epe: 1.358
+10/02 13:58 INFO step: [1900/2799] | loss_1: 0.576 | loss_2: 0.728 | loss_3: 1.346 | epe: 1.359
+10/02 13:58 INFO step: [1920/2799] | loss_1: 0.575 | loss_2: 0.727 | loss_3: 1.343 | epe: 1.357
+10/02 13:58 INFO step: [1940/2799] | loss_1: 0.576 | loss_2: 0.729 | loss_3: 1.345 | epe: 1.358
+10/02 13:59 INFO step: [1960/2799] | loss_1: 0.575 | loss_2: 0.728 | loss_3: 1.342 | epe: 1.357
+10/02 13:59 INFO step: [1980/2799] | loss_1: 0.575 | loss_2: 0.727 | loss_3: 1.340 | epe: 1.356
+10/02 13:59 INFO step: [2000/2799] | loss_1: 0.573 | loss_2: 0.726 | loss_3: 1.337 | epe: 1.355
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO step: [2020/2799] | loss_1: 0.572 | loss_2: 0.724 | loss_3: 1.333 | epe: 1.353
+10/02 13:59 INFO step: [2040/2799] | loss_1: 0.571 | loss_2: 0.723 | loss_3: 1.331 | epe: 1.352
+10/02 13:59 INFO step: [2060/2799] | loss_1: 0.571 | loss_2: 0.723 | loss_3: 1.330 | epe: 1.351
+10/02 13:59 INFO step: [2080/2799] | loss_1: 0.570 | loss_2: 0.723 | loss_3: 1.328 | epe: 1.351
+10/02 13:59 INFO step: [2100/2799] | loss_1: 0.571 | loss_2: 0.724 | loss_3: 1.329 | epe: 1.351
+10/02 13:59 INFO step: [2120/2799] | loss_1: 0.570 | loss_2: 0.722 | loss_3: 1.326 | epe: 1.349
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO No point in range!
+10/02 13:59 INFO step: [2140/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.323 | epe: 1.348
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO step: [2160/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.323 | epe: 1.347
+10/02 14:00 INFO step: [2180/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.321 | epe: 1.346
+10/02 14:00 INFO step: [2200/2799] | loss_1: 0.568 | loss_2: 0.720 | loss_3: 1.318 | epe: 1.344
+10/02 14:00 INFO step: [2220/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.318 | epe: 1.345
+10/02 14:00 INFO step: [2240/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.321 | epe: 1.344
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO No point in range!
+10/02 14:00 INFO step: [2260/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.320 | epe: 1.344
+10/02 14:00 INFO step: [2280/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.320 | epe: 1.343
+10/02 14:00 INFO step: [2300/2799] | loss_1: 0.569 | loss_2: 0.723 | loss_3: 1.320 | epe: 1.342
+10/02 14:00 INFO step: [2320/2799] | loss_1: 0.570 | loss_2: 0.723 | loss_3: 1.321 | epe: 1.342
+10/02 14:00 INFO step: [2340/2799] | loss_1: 0.569 | loss_2: 0.722 | loss_3: 1.318 | epe: 1.340
+10/02 14:01 INFO step: [2360/2799] | loss_1: 0.568 | loss_2: 0.722 | loss_3: 1.316 | epe: 1.339
+10/02 14:01 INFO No point in range!
+10/02 14:01 INFO No point in range!
+10/02 14:01 INFO step: [2380/2799] | loss_1: 0.568 | loss_2: 0.721 | loss_3: 1.316 | epe: 1.339
+10/02 14:01 INFO step: [2400/2799] | loss_1: 0.567 | loss_2: 0.721 | loss_3: 1.316 | epe: 1.339
+10/02 14:01 INFO step: [2420/2799] | loss_1: 0.567 | loss_2: 0.720 | loss_3: 1.315 | epe: 1.338
+10/02 14:01 INFO step: [2440/2799] | loss_1: 0.566 | loss_2: 0.720 | loss_3: 1.314 | epe: 1.337
+10/02 14:01 INFO step: [2460/2799] | loss_1: 0.565 | loss_2: 0.719 | loss_3: 1.311 | epe: 1.336
+10/02 14:01 INFO step: [2480/2799] | loss_1: 0.566 | loss_2: 0.720 | loss_3: 1.312 | epe: 1.336
+10/02 14:01 INFO step: [2500/2799] | loss_1: 0.566 | loss_2: 0.720 | loss_3: 1.311 | epe: 1.335
+10/02 14:01 INFO step: [2520/2799] | loss_1: 0.565 | loss_2: 0.719 | loss_3: 1.310 | epe: 1.336
+10/02 14:01 INFO step: [2540/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.307 | epe: 1.335
+10/02 14:02 INFO step: [2560/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.307 | epe: 1.335
+10/02 14:02 INFO step: [2580/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.307 | epe: 1.334
+10/02 14:02 INFO step: [2600/2799] | loss_1: 0.565 | loss_2: 0.719 | loss_3: 1.306 | epe: 1.334
+10/02 14:02 INFO step: [2620/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.305 | epe: 1.333
+10/02 14:02 INFO step: [2640/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.303 | epe: 1.333
+10/02 14:02 INFO step: [2660/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.302 | epe: 1.334
+10/02 14:02 INFO step: [2680/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.302 | epe: 1.334
+10/02 14:02 INFO step: [2700/2799] | loss_1: 0.564 | loss_2: 0.718 | loss_3: 1.300 | epe: 1.333
+10/02 14:02 INFO step: [2720/2799] | loss_1: 0.563 | loss_2: 0.718 | loss_3: 1.298 | epe: 1.332
+10/02 14:02 INFO step: [2740/2799] | loss_1: 0.563 | loss_2: 0.718 | loss_3: 1.298 | epe: 1.332
+10/02 14:03 INFO step: [2760/2799] | loss_1: 0.562 | loss_2: 0.717 | loss_3: 1.296 | epe: 1.331
+10/02 14:03 INFO No point in range!
+10/02 14:03 INFO No point in range!
+10/02 14:03 INFO No point in range!
+10/02 14:03 INFO step: [2780/2799] | loss_1: 0.563 | loss_2: 0.718 | loss_3: 1.298 | epe: 1.332
+10/02 14:04 INFO val_epe: 9.473
+10/02 14:04 INFO Epoches: [5/500] ============================
+10/02 14:04 INFO step: [0/2799] | loss_1: 0.179 | loss_2: 0.246 | loss_3: 0.520 | epe: 0.965
+10/02 14:04 INFO step: [20/2799] | loss_1: 0.549 | loss_2: 0.704 | loss_3: 1.239 | epe: 1.245
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO step: [40/2799] | loss_1: 0.496 | loss_2: 0.655 | loss_3: 1.078 | epe: 1.239
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO No point in range!
+10/02 14:04 INFO step: [60/2799] | loss_1: 0.564 | loss_2: 0.724 | loss_3: 1.255 | epe: 1.213
+10/02 14:04 INFO step: [80/2799] | loss_1: 0.549 | loss_2: 0.709 | loss_3: 1.234 | epe: 1.215
+10/02 14:04 INFO step: [100/2799] | loss_1: 0.554 | loss_2: 0.713 | loss_3: 1.215 | epe: 1.222
+10/02 14:04 INFO step: [120/2799] | loss_1: 0.553 | loss_2: 0.714 | loss_3: 1.208 | epe: 1.219
+10/02 14:04 INFO step: [140/2799] | loss_1: 0.548 | loss_2: 0.710 | loss_3: 1.181 | epe: 1.210
+10/02 14:04 INFO step: [160/2799] | loss_1: 0.544 | loss_2: 0.708 | loss_3: 1.177 | epe: 1.214
+10/02 14:05 INFO step: [180/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.204 | epe: 1.218
+10/02 14:05 INFO step: [200/2799] | loss_1: 0.562 | loss_2: 0.726 | loss_3: 1.247 | epe: 1.219
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO step: [220/2799] | loss_1: 0.545 | loss_2: 0.708 | loss_3: 1.215 | epe: 1.210
+10/02 14:05 INFO step: [240/2799] | loss_1: 0.544 | loss_2: 0.709 | loss_3: 1.206 | epe: 1.220
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO step: [260/2799] | loss_1: 0.535 | loss_2: 0.698 | loss_3: 1.183 | epe: 1.224
+10/02 14:05 INFO step: [280/2799] | loss_1: 0.540 | loss_2: 0.705 | loss_3: 1.190 | epe: 1.220
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO No point in range!
+10/02 14:05 INFO step: [300/2799] | loss_1: 0.535 | loss_2: 0.701 | loss_3: 1.167 | epe: 1.219
+10/02 14:05 INFO step: [320/2799] | loss_1: 0.545 | loss_2: 0.711 | loss_3: 1.201 | epe: 1.215
+10/02 14:05 INFO step: [340/2799] | loss_1: 0.539 | loss_2: 0.704 | loss_3: 1.185 | epe: 1.214
+10/02 14:05 INFO step: [360/2799] | loss_1: 0.538 | loss_2: 0.704 | loss_3: 1.185 | epe: 1.215
+10/02 14:06 INFO step: [380/2799] | loss_1: 0.540 | loss_2: 0.706 | loss_3: 1.191 | epe: 1.213
+10/02 14:06 INFO step: [400/2799] | loss_1: 0.542 | loss_2: 0.708 | loss_3: 1.192 | epe: 1.213
+10/02 14:06 INFO step: [420/2799] | loss_1: 0.544 | loss_2: 0.710 | loss_3: 1.209 | epe: 1.211
+10/02 14:06 INFO step: [440/2799] | loss_1: 0.537 | loss_2: 0.703 | loss_3: 1.191 | epe: 1.210
+10/02 14:06 INFO step: [460/2799] | loss_1: 0.541 | loss_2: 0.707 | loss_3: 1.192 | epe: 1.214
+10/02 14:06 INFO step: [480/2799] | loss_1: 0.539 | loss_2: 0.704 | loss_3: 1.193 | epe: 1.217
+10/02 14:06 INFO step: [500/2799] | loss_1: 0.544 | loss_2: 0.710 | loss_3: 1.202 | epe: 1.215
+10/02 14:06 INFO step: [520/2799] | loss_1: 0.552 | loss_2: 0.719 | loss_3: 1.220 | epe: 1.217
+10/02 14:06 INFO step: [540/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.231 | epe: 1.219
+10/02 14:06 INFO step: [560/2799] | loss_1: 0.551 | loss_2: 0.717 | loss_3: 1.223 | epe: 1.221
+10/02 14:06 INFO step: [580/2799] | loss_1: 0.551 | loss_2: 0.717 | loss_3: 1.222 | epe: 1.222
+10/02 14:07 INFO step: [600/2799] | loss_1: 0.550 | loss_2: 0.716 | loss_3: 1.224 | epe: 1.225
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO step: [620/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.231 | epe: 1.225
+10/02 14:07 INFO step: [640/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.232 | epe: 1.223
+10/02 14:07 INFO step: [660/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.223 | epe: 1.222
+10/02 14:07 INFO step: [680/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.226 | epe: 1.222
+10/02 14:07 INFO step: [700/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.224 | epe: 1.219
+10/02 14:07 INFO step: [720/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.224 | epe: 1.220
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO No point in range!
+10/02 14:07 INFO step: [740/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.226 | epe: 1.222
+10/02 14:07 INFO step: [760/2799] | loss_1: 0.559 | loss_2: 0.725 | loss_3: 1.231 | epe: 1.224
+10/02 14:07 INFO step: [780/2799] | loss_1: 0.560 | loss_2: 0.725 | loss_3: 1.230 | epe: 1.222
+10/02 14:08 INFO step: [800/2799] | loss_1: 0.560 | loss_2: 0.727 | loss_3: 1.231 | epe: 1.222
+10/02 14:08 INFO step: [820/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.222 | epe: 1.221
+10/02 14:08 INFO step: [840/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.224 | epe: 1.221
+10/02 14:08 INFO step: [860/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.225 | epe: 1.222
+10/02 14:08 INFO step: [880/2799] | loss_1: 0.555 | loss_2: 0.720 | loss_3: 1.227 | epe: 1.221
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO step: [900/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.222 | epe: 1.221
+10/02 14:08 INFO step: [920/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.223 | epe: 1.221
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO No point in range!
+10/02 14:08 INFO step: [940/2799] | loss_1: 0.558 | loss_2: 0.722 | loss_3: 1.229 | epe: 1.222
+10/02 14:08 INFO step: [960/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.225 | epe: 1.222
+10/02 14:08 INFO step: [980/2799] | loss_1: 0.555 | loss_2: 0.720 | loss_3: 1.223 | epe: 1.224
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO step: [1000/2799] | loss_1: 0.553 | loss_2: 0.717 | loss_3: 1.217 | epe: 1.222
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO step: [1020/2799] | loss_1: 0.551 | loss_2: 0.716 | loss_3: 1.212 | epe: 1.222
+10/02 14:09 INFO step: [1040/2799] | loss_1: 0.552 | loss_2: 0.717 | loss_3: 1.216 | epe: 1.220
+10/02 14:09 INFO step: [1060/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.216 | epe: 1.223
+10/02 14:09 INFO step: [1080/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.220 | epe: 1.223
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO step: [1100/2799] | loss_1: 0.555 | loss_2: 0.720 | loss_3: 1.218 | epe: 1.223
+10/02 14:09 INFO step: [1120/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.217 | epe: 1.224
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO No point in range!
+10/02 14:09 INFO step: [1140/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.216 | epe: 1.224
+10/02 14:09 INFO step: [1160/2799] | loss_1: 0.553 | loss_2: 0.718 | loss_3: 1.213 | epe: 1.223
+10/02 14:09 INFO step: [1180/2799] | loss_1: 0.552 | loss_2: 0.717 | loss_3: 1.212 | epe: 1.222
+10/02 14:10 INFO step: [1200/2799] | loss_1: 0.553 | loss_2: 0.718 | loss_3: 1.212 | epe: 1.221
+10/02 14:10 INFO step: [1220/2799] | loss_1: 0.551 | loss_2: 0.716 | loss_3: 1.206 | epe: 1.220
+10/02 14:10 INFO step: [1240/2799] | loss_1: 0.550 | loss_2: 0.715 | loss_3: 1.204 | epe: 1.220
+10/02 14:10 INFO step: [1260/2799] | loss_1: 0.553 | loss_2: 0.718 | loss_3: 1.216 | epe: 1.221
+10/02 14:10 INFO No point in range!
+10/02 14:10 INFO No point in range!
+10/02 14:10 INFO No point in range!
+10/02 14:10 INFO step: [1280/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.219 | epe: 1.222
+10/02 14:10 INFO step: [1300/2799] | loss_1: 0.552 | loss_2: 0.718 | loss_3: 1.216 | epe: 1.222
+10/02 14:10 INFO step: [1320/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.218 | epe: 1.223
+10/02 14:10 INFO step: [1340/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.225 | epe: 1.222
+10/02 14:10 INFO step: [1360/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.223 | epe: 1.222
+10/02 14:10 INFO step: [1380/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.220 | epe: 1.221
+10/02 14:11 INFO step: [1400/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.215 | epe: 1.219
+10/02 14:11 INFO step: [1420/2799] | loss_1: 0.554 | loss_2: 0.720 | loss_3: 1.218 | epe: 1.220
+10/02 14:11 INFO step: [1440/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.215 | epe: 1.219
+10/02 14:11 INFO step: [1460/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.213 | epe: 1.220
+10/02 14:11 INFO step: [1480/2799] | loss_1: 0.553 | loss_2: 0.719 | loss_3: 1.212 | epe: 1.219
+10/02 14:11 INFO step: [1500/2799] | loss_1: 0.553 | loss_2: 0.718 | loss_3: 1.210 | epe: 1.218
+10/02 14:11 INFO step: [1520/2799] | loss_1: 0.555 | loss_2: 0.720 | loss_3: 1.217 | epe: 1.219
+10/02 14:11 INFO step: [1540/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.218 | epe: 1.220
+10/02 14:11 INFO step: [1560/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.218 | epe: 1.220
+10/02 14:11 INFO step: [1580/2799] | loss_1: 0.556 | loss_2: 0.721 | loss_3: 1.218 | epe: 1.219
+10/02 14:11 INFO step: [1600/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.215 | epe: 1.218
+10/02 14:12 INFO step: [1620/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.223 | epe: 1.219
+10/02 14:12 INFO step: [1640/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.222 | epe: 1.219
+10/02 14:12 INFO step: [1660/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.223 | epe: 1.219
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO step: [1680/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.221 | epe: 1.219
+10/02 14:12 INFO step: [1700/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.220 | epe: 1.219
+10/02 14:12 INFO step: [1720/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.217 | epe: 1.217
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO No point in range!
+10/02 14:12 INFO step: [1740/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.220 | epe: 1.218
+10/02 14:12 INFO step: [1760/2799] | loss_1: 0.557 | loss_2: 0.724 | loss_3: 1.219 | epe: 1.218
+10/02 14:12 INFO step: [1780/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.218 | epe: 1.217
+10/02 14:12 INFO step: [1800/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.216 | epe: 1.216
+10/02 14:13 INFO step: [1820/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.219 | epe: 1.216
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO step: [1840/2799] | loss_1: 0.557 | loss_2: 0.724 | loss_3: 1.219 | epe: 1.215
+10/02 14:13 INFO step: [1860/2799] | loss_1: 0.557 | loss_2: 0.724 | loss_3: 1.217 | epe: 1.214
+10/02 14:13 INFO step: [1880/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.217 | epe: 1.213
+10/02 14:13 INFO step: [1900/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.217 | epe: 1.212
+10/02 14:13 INFO step: [1920/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.216 | epe: 1.212
+10/02 14:13 INFO step: [1940/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.213 | epe: 1.212
+10/02 14:13 INFO step: [1960/2799] | loss_1: 0.554 | loss_2: 0.720 | loss_3: 1.210 | epe: 1.212
+10/02 14:13 INFO step: [1980/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.213 | epe: 1.212
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO No point in range!
+10/02 14:13 INFO step: [2000/2799] | loss_1: 0.554 | loss_2: 0.720 | loss_3: 1.212 | epe: 1.211
+10/02 14:14 INFO step: [2020/2799] | loss_1: 0.554 | loss_2: 0.720 | loss_3: 1.214 | epe: 1.213
+10/02 14:14 INFO step: [2040/2799] | loss_1: 0.554 | loss_2: 0.719 | loss_3: 1.214 | epe: 1.213
+10/02 14:14 INFO step: [2060/2799] | loss_1: 0.555 | loss_2: 0.720 | loss_3: 1.217 | epe: 1.214
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO step: [2080/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.217 | epe: 1.213
+10/02 14:14 INFO step: [2100/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.220 | epe: 1.214
+10/02 14:14 INFO step: [2120/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.219 | epe: 1.214
+10/02 14:14 INFO step: [2140/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.221 | epe: 1.214
+10/02 14:14 INFO step: [2160/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.218 | epe: 1.213
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO step: [2180/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.220 | epe: 1.212
+10/02 14:14 INFO step: [2200/2799] | loss_1: 0.556 | loss_2: 0.722 | loss_3: 1.223 | epe: 1.212
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:14 INFO No point in range!
+10/02 14:15 INFO No point in range!
+10/02 14:15 INFO No point in range!
+10/02 14:15 INFO No point in range!
+10/02 14:15 INFO step: [2220/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.223 | epe: 1.212
+10/02 14:15 INFO step: [2240/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.227 | epe: 1.212
+10/02 14:15 INFO step: [2260/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.227 | epe: 1.212
+10/02 14:15 INFO step: [2280/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.225 | epe: 1.211
+10/02 14:15 INFO step: [2300/2799] | loss_1: 0.559 | loss_2: 0.725 | loss_3: 1.226 | epe: 1.210
+10/02 14:15 INFO step: [2320/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.224 | epe: 1.210
+10/02 14:15 INFO step: [2340/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.223 | epe: 1.210
+10/02 14:15 INFO step: [2360/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.222 | epe: 1.210
+10/02 14:15 INFO step: [2380/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.222 | epe: 1.211
+10/02 14:15 INFO step: [2400/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.220 | epe: 1.210
+10/02 14:15 INFO No point in range!
+10/02 14:15 INFO No point in range!
+10/02 14:15 INFO No point in range!
+10/02 14:16 INFO step: [2420/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.220 | epe: 1.209
+10/02 14:16 INFO step: [2440/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.219 | epe: 1.209
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO step: [2460/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.218 | epe: 1.209
+10/02 14:16 INFO step: [2480/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.220 | epe: 1.208
+10/02 14:16 INFO step: [2500/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.220 | epe: 1.208
+10/02 14:16 INFO step: [2520/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.223 | epe: 1.209
+10/02 14:16 INFO step: [2540/2799] | loss_1: 0.558 | loss_2: 0.724 | loss_3: 1.224 | epe: 1.210
+10/02 14:16 INFO step: [2560/2799] | loss_1: 0.557 | loss_2: 0.724 | loss_3: 1.223 | epe: 1.209
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO No point in range!
+10/02 14:16 INFO step: [2580/2799] | loss_1: 0.557 | loss_2: 0.724 | loss_3: 1.221 | epe: 1.208
+10/02 14:16 INFO step: [2600/2799] | loss_1: 0.557 | loss_2: 0.723 | loss_3: 1.219 | epe: 1.207
+10/02 14:16 INFO step: [2620/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.218 | epe: 1.206
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO step: [2640/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.218 | epe: 1.206
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO No point in range!
+10/02 14:17 INFO step: [2660/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.216 | epe: 1.206
+10/02 14:17 INFO step: [2680/2799] | loss_1: 0.556 | loss_2: 0.723 | loss_3: 1.216 | epe: 1.207
+10/02 14:17 INFO step: [2700/2799] | loss_1: 0.555 | loss_2: 0.722 | loss_3: 1.213 | epe: 1.206
+10/02 14:17 INFO step: [2720/2799] | loss_1: 0.555 | loss_2: 0.722 | loss_3: 1.212 | epe: 1.206
+10/02 14:17 INFO step: [2740/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.213 | epe: 1.207
+10/02 14:17 INFO step: [2760/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.215 | epe: 1.207
+10/02 14:17 INFO step: [2780/2799] | loss_1: 0.555 | loss_2: 0.721 | loss_3: 1.217 | epe: 1.206
+10/02 14:18 INFO val_epe: 8.981
+10/02 14:18 INFO Epoches: [6/500] ============================
+10/02 14:18 INFO step: [0/2799] | loss_1: 0.239 | loss_2: 0.289 | loss_3: 0.838 | epe: 1.847
+10/02 14:18 INFO step: [20/2799] | loss_1: 0.640 | loss_2: 0.821 | loss_3: 1.223 | epe: 1.207
+10/02 14:18 INFO No point in range!
+10/02 14:18 INFO No point in range!
+10/02 14:18 INFO No point in range!
+10/02 14:19 INFO step: [40/2799] | loss_1: 0.518 | loss_2: 0.696 | loss_3: 1.037 | epe: 1.153
+10/02 14:19 INFO step: [60/2799] | loss_1: 0.512 | loss_2: 0.686 | loss_3: 1.038 | epe: 1.162
+10/02 14:19 INFO step: [80/2799] | loss_1: 0.541 | loss_2: 0.712 | loss_3: 1.126 | epe: 1.164
+10/02 14:19 INFO step: [100/2799] | loss_1: 0.527 | loss_2: 0.700 | loss_3: 1.090 | epe: 1.156
+10/02 14:19 INFO step: [120/2799] | loss_1: 0.526 | loss_2: 0.699 | loss_3: 1.072 | epe: 1.150
+10/02 14:19 INFO step: [140/2799] | loss_1: 0.522 | loss_2: 0.695 | loss_3: 1.063 | epe: 1.140
+10/02 14:19 INFO step: [160/2799] | loss_1: 0.516 | loss_2: 0.688 | loss_3: 1.047 | epe: 1.133
+10/02 14:19 INFO step: [180/2799] | loss_1: 0.516 | loss_2: 0.685 | loss_3: 1.066 | epe: 1.140
+10/02 14:19 INFO step: [200/2799] | loss_1: 0.520 | loss_2: 0.692 | loss_3: 1.065 | epe: 1.130
+10/02 14:19 INFO step: [220/2799] | loss_1: 0.524 | loss_2: 0.696 | loss_3: 1.076 | epe: 1.135
+10/02 14:19 INFO step: [240/2799] | loss_1: 0.532 | loss_2: 0.702 | loss_3: 1.105 | epe: 1.140
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO step: [260/2799] | loss_1: 0.536 | loss_2: 0.707 | loss_3: 1.102 | epe: 1.140
+10/02 14:20 INFO step: [280/2799] | loss_1: 0.542 | loss_2: 0.712 | loss_3: 1.139 | epe: 1.147
+10/02 14:20 INFO step: [300/2799] | loss_1: 0.559 | loss_2: 0.729 | loss_3: 1.163 | epe: 1.147
+10/02 14:20 INFO step: [320/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.158 | epe: 1.144
+10/02 14:20 INFO step: [340/2799] | loss_1: 0.561 | loss_2: 0.731 | loss_3: 1.166 | epe: 1.152
+10/02 14:20 INFO step: [360/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.150 | epe: 1.153
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO step: [380/2799] | loss_1: 0.561 | loss_2: 0.730 | loss_3: 1.167 | epe: 1.155
+10/02 14:20 INFO step: [400/2799] | loss_1: 0.559 | loss_2: 0.728 | loss_3: 1.164 | epe: 1.150
+10/02 14:20 INFO step: [420/2799] | loss_1: 0.560 | loss_2: 0.729 | loss_3: 1.170 | epe: 1.150
+10/02 14:20 INFO step: [440/2799] | loss_1: 0.561 | loss_2: 0.730 | loss_3: 1.182 | epe: 1.158
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:20 INFO No point in range!
+10/02 14:21 INFO step: [460/2799] | loss_1: 0.558 | loss_2: 0.727 | loss_3: 1.167 | epe: 1.161
+10/02 14:21 INFO step: [480/2799] | loss_1: 0.562 | loss_2: 0.731 | loss_3: 1.187 | epe: 1.157
+10/02 14:21 INFO step: [500/2799] | loss_1: 0.565 | loss_2: 0.734 | loss_3: 1.192 | epe: 1.156
+10/02 14:21 INFO step: [520/2799] | loss_1: 0.567 | loss_2: 0.736 | loss_3: 1.190 | epe: 1.155
+10/02 14:21 INFO step: [540/2799] | loss_1: 0.569 | loss_2: 0.737 | loss_3: 1.206 | epe: 1.154
+10/02 14:21 INFO No point in range!
+10/02 14:21 INFO No point in range!
+10/02 14:21 INFO No point in range!
+10/02 14:21 INFO step: [560/2799] | loss_1: 0.569 | loss_2: 0.738 | loss_3: 1.207 | epe: 1.155
+10/02 14:21 INFO step: [580/2799] | loss_1: 0.568 | loss_2: 0.736 | loss_3: 1.199 | epe: 1.153
+10/02 14:21 INFO step: [600/2799] | loss_1: 0.568 | loss_2: 0.736 | loss_3: 1.203 | epe: 1.152
+10/02 14:21 INFO step: [620/2799] | loss_1: 0.568 | loss_2: 0.737 | loss_3: 1.201 | epe: 1.152
+10/02 14:21 INFO step: [640/2799] | loss_1: 0.564 | loss_2: 0.734 | loss_3: 1.189 | epe: 1.150
+10/02 14:22 INFO step: [660/2799] | loss_1: 0.563 | loss_2: 0.733 | loss_3: 1.186 | epe: 1.150
+10/02 14:22 INFO step: [680/2799] | loss_1: 0.562 | loss_2: 0.733 | loss_3: 1.179 | epe: 1.149
+10/02 14:22 INFO step: [700/2799] | loss_1: 0.559 | loss_2: 0.730 | loss_3: 1.173 | epe: 1.146
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO step: [720/2799] | loss_1: 0.561 | loss_2: 0.731 | loss_3: 1.177 | epe: 1.147
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO No point in range!
+10/02 14:22 INFO step: [740/2799] | loss_1: 0.558 | loss_2: 0.730 | loss_3: 1.171 | epe: 1.145
+10/02 14:22 INFO step: [760/2799] | loss_1: 0.557 | loss_2: 0.728 | loss_3: 1.171 | epe: 1.142
+10/02 14:22 INFO step: [780/2799] | loss_1: 0.557 | loss_2: 0.728 | loss_3: 1.176 | epe: 1.140
+10/02 14:22 INFO step: [800/2799] | loss_1: 0.556 | loss_2: 0.727 | loss_3: 1.175 | epe: 1.142
+10/02 14:22 INFO step: [820/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.174 | epe: 1.140
+10/02 14:22 INFO step: [840/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.177 | epe: 1.142
+10/02 14:23 INFO step: [860/2799] | loss_1: 0.559 | loss_2: 0.729 | loss_3: 1.184 | epe: 1.145
+10/02 14:23 INFO No point in range!
+10/02 14:23 INFO No point in range!
+10/02 14:23 INFO No point in range!
+10/02 14:23 INFO step: [880/2799] | loss_1: 0.560 | loss_2: 0.730 | loss_3: 1.191 | epe: 1.144
+10/02 14:23 INFO step: [900/2799] | loss_1: 0.559 | loss_2: 0.729 | loss_3: 1.190 | epe: 1.143
+10/02 14:23 INFO step: [920/2799] | loss_1: 0.560 | loss_2: 0.730 | loss_3: 1.186 | epe: 1.144
+10/02 14:23 INFO step: [940/2799] | loss_1: 0.560 | loss_2: 0.731 | loss_3: 1.193 | epe: 1.146
+10/02 14:23 INFO step: [960/2799] | loss_1: 0.562 | loss_2: 0.733 | loss_3: 1.197 | epe: 1.147
+10/02 14:23 INFO step: [980/2799] | loss_1: 0.560 | loss_2: 0.730 | loss_3: 1.191 | epe: 1.147
+10/02 14:23 INFO step: [1000/2799] | loss_1: 0.556 | loss_2: 0.727 | loss_3: 1.183 | epe: 1.148
+10/02 14:23 INFO step: [1020/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.187 | epe: 1.147
+10/02 14:23 INFO step: [1040/2799] | loss_1: 0.557 | loss_2: 0.728 | loss_3: 1.185 | epe: 1.146
+10/02 14:23 INFO No point in range!
+10/02 14:23 INFO No point in range!
+10/02 14:23 INFO No point in range!
+10/02 14:24 INFO step: [1060/2799] | loss_1: 0.558 | loss_2: 0.729 | loss_3: 1.185 | epe: 1.147
+10/02 14:24 INFO step: [1080/2799] | loss_1: 0.559 | loss_2: 0.729 | loss_3: 1.184 | epe: 1.146
+10/02 14:24 INFO No point in range!
+10/02 14:24 INFO No point in range!
+10/02 14:24 INFO step: [1100/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.187 | epe: 1.146
+10/02 14:24 INFO step: [1120/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.188 | epe: 1.145
+10/02 14:24 INFO step: [1140/2799] | loss_1: 0.554 | loss_2: 0.724 | loss_3: 1.183 | epe: 1.145
+10/02 14:24 INFO step: [1160/2799] | loss_1: 0.556 | loss_2: 0.725 | loss_3: 1.184 | epe: 1.145
+10/02 14:24 INFO No point in range!
+10/02 14:24 INFO No point in range!
+10/02 14:24 INFO No point in range!
+10/02 14:24 INFO step: [1180/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.186 | epe: 1.145
+10/02 14:24 INFO step: [1200/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.187 | epe: 1.146
+10/02 14:24 INFO step: [1220/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.185 | epe: 1.145
+10/02 14:24 INFO step: [1240/2799] | loss_1: 0.557 | loss_2: 0.726 | loss_3: 1.182 | epe: 1.146
+10/02 14:24 INFO step: [1260/2799] | loss_1: 0.555 | loss_2: 0.724 | loss_3: 1.180 | epe: 1.144
+10/02 14:25 INFO step: [1280/2799] | loss_1: 0.556 | loss_2: 0.725 | loss_3: 1.184 | epe: 1.144
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO step: [1300/2799] | loss_1: 0.557 | loss_2: 0.726 | loss_3: 1.186 | epe: 1.144
+10/02 14:25 INFO step: [1320/2799] | loss_1: 0.557 | loss_2: 0.726 | loss_3: 1.183 | epe: 1.142
+10/02 14:25 INFO step: [1340/2799] | loss_1: 0.555 | loss_2: 0.725 | loss_3: 1.178 | epe: 1.141
+10/02 14:25 INFO step: [1360/2799] | loss_1: 0.556 | loss_2: 0.725 | loss_3: 1.177 | epe: 1.140
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO No point in range!
+10/02 14:25 INFO step: [1380/2799] | loss_1: 0.557 | loss_2: 0.726 | loss_3: 1.178 | epe: 1.139
+10/02 14:25 INFO step: [1400/2799] | loss_1: 0.556 | loss_2: 0.725 | loss_3: 1.175 | epe: 1.138
+10/02 14:25 INFO step: [1420/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.177 | epe: 1.138
+10/02 14:25 INFO step: [1440/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.176 | epe: 1.139
+10/02 14:25 INFO step: [1460/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.178 | epe: 1.139
+10/02 14:26 INFO step: [1480/2799] | loss_1: 0.559 | loss_2: 0.728 | loss_3: 1.184 | epe: 1.140
+10/02 14:26 INFO No point in range!
+10/02 14:26 INFO No point in range!
+10/02 14:26 INFO No point in range!
+10/02 14:26 INFO step: [1500/2799] | loss_1: 0.558 | loss_2: 0.727 | loss_3: 1.182 | epe: 1.141
+10/02 14:26 INFO step: [1520/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.180 | epe: 1.141
+10/02 14:26 INFO step: [1540/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.182 | epe: 1.140
+10/02 14:26 INFO step: [1560/2799] | loss_1: 0.558 | loss_2: 0.727 | loss_3: 1.182 | epe: 1.140
+10/02 14:26 INFO step: [1580/2799] | loss_1: 0.559 | loss_2: 0.729 | loss_3: 1.185 | epe: 1.140
+10/02 14:26 INFO step: [1600/2799] | loss_1: 0.559 | loss_2: 0.728 | loss_3: 1.184 | epe: 1.140
+10/02 14:26 INFO step: [1620/2799] | loss_1: 0.559 | loss_2: 0.728 | loss_3: 1.182 | epe: 1.139
+10/02 14:26 INFO step: [1640/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.180 | epe: 1.138
+10/02 14:26 INFO step: [1660/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.179 | epe: 1.138
+10/02 14:27 INFO step: [1680/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.177 | epe: 1.139
+10/02 14:27 INFO step: [1700/2799] | loss_1: 0.558 | loss_2: 0.727 | loss_3: 1.179 | epe: 1.140
+10/02 14:27 INFO step: [1720/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.178 | epe: 1.140
+10/02 14:27 INFO step: [1740/2799] | loss_1: 0.558 | loss_2: 0.728 | loss_3: 1.177 | epe: 1.139
+10/02 14:27 INFO step: [1760/2799] | loss_1: 0.557 | loss_2: 0.728 | loss_3: 1.174 | epe: 1.139
+10/02 14:27 INFO step: [1780/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.171 | epe: 1.139
+10/02 14:27 INFO step: [1800/2799] | loss_1: 0.556 | loss_2: 0.726 | loss_3: 1.169 | epe: 1.138
+10/02 14:27 INFO step: [1820/2799] | loss_1: 0.557 | loss_2: 0.727 | loss_3: 1.169 | epe: 1.139
+10/02 14:27 INFO step: [1840/2799] | loss_1: 0.556 | loss_2: 0.727 | loss_3: 1.169 | epe: 1.138
+10/02 14:27 INFO step: [1860/2799] | loss_1: 0.556 | loss_2: 0.727 | loss_3: 1.167 | epe: 1.139
+10/02 14:27 INFO No point in range!
+10/02 14:27 INFO No point in range!
+10/02 14:27 INFO No point in range!
+10/02 14:28 INFO step: [1880/2799] | loss_1: 0.556 | loss_2: 0.727 | loss_3: 1.166 | epe: 1.138
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO step: [1900/2799] | loss_1: 0.555 | loss_2: 0.726 | loss_3: 1.163 | epe: 1.137
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO step: [1920/2799] | loss_1: 0.555 | loss_2: 0.725 | loss_3: 1.161 | epe: 1.135
+10/02 14:28 INFO step: [1940/2799] | loss_1: 0.553 | loss_2: 0.724 | loss_3: 1.158 | epe: 1.134
+10/02 14:28 INFO step: [1960/2799] | loss_1: 0.554 | loss_2: 0.725 | loss_3: 1.157 | epe: 1.133
+10/02 14:28 INFO step: [1980/2799] | loss_1: 0.554 | loss_2: 0.725 | loss_3: 1.155 | epe: 1.132
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO step: [2000/2799] | loss_1: 0.553 | loss_2: 0.724 | loss_3: 1.154 | epe: 1.131
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO step: [2020/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.152 | epe: 1.131
+10/02 14:28 INFO step: [2040/2799] | loss_1: 0.552 | loss_2: 0.724 | loss_3: 1.152 | epe: 1.131
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO No point in range!
+10/02 14:28 INFO step: [2060/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.149 | epe: 1.132
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO step: [2080/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.147 | epe: 1.131
+10/02 14:29 INFO step: [2100/2799] | loss_1: 0.550 | loss_2: 0.721 | loss_3: 1.145 | epe: 1.130
+10/02 14:29 INFO step: [2120/2799] | loss_1: 0.550 | loss_2: 0.721 | loss_3: 1.148 | epe: 1.130
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO step: [2140/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.152 | epe: 1.130
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO No point in range!
+10/02 14:29 INFO step: [2160/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.151 | epe: 1.130
+10/02 14:29 INFO step: [2180/2799] | loss_1: 0.550 | loss_2: 0.721 | loss_3: 1.150 | epe: 1.130
+10/02 14:29 INFO step: [2200/2799] | loss_1: 0.549 | loss_2: 0.720 | loss_3: 1.149 | epe: 1.129
+10/02 14:29 INFO step: [2220/2799] | loss_1: 0.550 | loss_2: 0.721 | loss_3: 1.149 | epe: 1.130
+10/02 14:29 INFO step: [2240/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.153 | epe: 1.129
+10/02 14:29 INFO step: [2260/2799] | loss_1: 0.553 | loss_2: 0.724 | loss_3: 1.155 | epe: 1.130
+10/02 14:30 INFO step: [2280/2799] | loss_1: 0.553 | loss_2: 0.724 | loss_3: 1.155 | epe: 1.129
+10/02 14:30 INFO step: [2300/2799] | loss_1: 0.552 | loss_2: 0.724 | loss_3: 1.153 | epe: 1.129
+10/02 14:30 INFO step: [2320/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.154 | epe: 1.128
+10/02 14:30 INFO step: [2340/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.153 | epe: 1.128
+10/02 14:30 INFO step: [2360/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.152 | epe: 1.128
+10/02 14:30 INFO step: [2380/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.151 | epe: 1.128
+10/02 14:30 INFO step: [2400/2799] | loss_1: 0.553 | loss_2: 0.724 | loss_3: 1.152 | epe: 1.127
+10/02 14:30 INFO step: [2420/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.150 | epe: 1.127
+10/02 14:30 INFO step: [2440/2799] | loss_1: 0.551 | loss_2: 0.723 | loss_3: 1.150 | epe: 1.127
+10/02 14:30 INFO step: [2460/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.150 | epe: 1.127
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO step: [2480/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.147 | epe: 1.126
+10/02 14:31 INFO step: [2500/2799] | loss_1: 0.551 | loss_2: 0.722 | loss_3: 1.146 | epe: 1.126
+10/02 14:31 INFO step: [2520/2799] | loss_1: 0.552 | loss_2: 0.723 | loss_3: 1.147 | epe: 1.126
+10/02 14:31 INFO step: [2540/2799] | loss_1: 0.552 | loss_2: 0.724 | loss_3: 1.147 | epe: 1.126
+10/02 14:31 INFO step: [2560/2799] | loss_1: 0.551 | loss_2: 0.723 | loss_3: 1.145 | epe: 1.125
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO No point in range!
+10/02 14:31 INFO step: [2580/2799] | loss_1: 0.551 | loss_2: 0.723 | loss_3: 1.145 | epe: 1.126
+10/02 14:31 INFO step: [2600/2799] | loss_1: 0.550 | loss_2: 0.722 | loss_3: 1.143 | epe: 1.126
+10/02 14:31 INFO step: [2620/2799] | loss_1: 0.550 | loss_2: 0.722 | loss_3: 1.142 | epe: 1.125
+10/02 14:31 INFO step: [2640/2799] | loss_1: 0.549 | loss_2: 0.721 | loss_3: 1.140 | epe: 1.124
+10/02 14:31 INFO step: [2660/2799] | loss_1: 0.548 | loss_2: 0.720 | loss_3: 1.137 | epe: 1.124
+10/02 14:32 INFO step: [2680/2799] | loss_1: 0.547 | loss_2: 0.719 | loss_3: 1.136 | epe: 1.123
+10/02 14:32 INFO step: [2700/2799] | loss_1: 0.548 | loss_2: 0.719 | loss_3: 1.135 | epe: 1.124
+10/02 14:32 INFO step: [2720/2799] | loss_1: 0.547 | loss_2: 0.719 | loss_3: 1.135 | epe: 1.123
+10/02 14:32 INFO step: [2740/2799] | loss_1: 0.547 | loss_2: 0.718 | loss_3: 1.134 | epe: 1.123
+10/02 14:32 INFO step: [2760/2799] | loss_1: 0.546 | loss_2: 0.718 | loss_3: 1.133 | epe: 1.123
+10/02 14:32 INFO step: [2780/2799] | loss_1: 0.546 | loss_2: 0.717 | loss_3: 1.133 | epe: 1.123
+10/02 14:33 INFO val_epe: 8.389
+10/02 14:33 INFO Epoches: [7/500] ============================
+10/02 14:33 INFO step: [0/2799] | loss_1: 0.242 | loss_2: 0.425 | loss_3: 0.662 | epe: 1.313
+10/02 14:33 INFO step: [20/2799] | loss_1: 0.542 | loss_2: 0.712 | loss_3: 1.201 | epe: 1.258
+10/02 14:33 INFO step: [40/2799] | loss_1: 0.616 | loss_2: 0.795 | loss_3: 1.294 | epe: 1.197
+10/02 14:33 INFO No point in range!
+10/02 14:33 INFO No point in range!
+10/02 14:33 INFO No point in range!
+10/02 14:33 INFO step: [60/2799] | loss_1: 0.599 | loss_2: 0.779 | loss_3: 1.212 | epe: 1.188
+10/02 14:34 INFO step: [80/2799] | loss_1: 0.580 | loss_2: 0.761 | loss_3: 1.160 | epe: 1.155
+10/02 14:34 INFO step: [100/2799] | loss_1: 0.592 | loss_2: 0.773 | loss_3: 1.174 | epe: 1.168
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO step: [120/2799] | loss_1: 0.604 | loss_2: 0.786 | loss_3: 1.194 | epe: 1.163
+10/02 14:34 INFO step: [140/2799] | loss_1: 0.586 | loss_2: 0.770 | loss_3: 1.163 | epe: 1.146
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO No point in range!
+10/02 14:34 INFO step: [160/2799] | loss_1: 0.581 | loss_2: 0.762 | loss_3: 1.186 | epe: 1.137
+10/02 14:34 INFO step: [180/2799] | loss_1: 0.592 | loss_2: 0.774 | loss_3: 1.198 | epe: 1.133
+10/02 14:34 INFO step: [200/2799] | loss_1: 0.591 | loss_2: 0.772 | loss_3: 1.191 | epe: 1.138
+10/02 14:34 INFO step: [220/2799] | loss_1: 0.591 | loss_2: 0.768 | loss_3: 1.219 | epe: 1.131
+10/02 14:34 INFO step: [240/2799] | loss_1: 0.579 | loss_2: 0.751 | loss_3: 1.239 | epe: 1.133
+10/02 14:34 INFO step: [260/2799] | loss_1: 0.571 | loss_2: 0.743 | loss_3: 1.229 | epe: 1.130
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [280/2799] | loss_1: 0.570 | loss_2: 0.740 | loss_3: 1.216 | epe: 1.122
+10/02 14:35 INFO step: [300/2799] | loss_1: 0.564 | loss_2: 0.733 | loss_3: 1.203 | epe: 1.118
+10/02 14:35 INFO step: [320/2799] | loss_1: 0.572 | loss_2: 0.743 | loss_3: 1.214 | epe: 1.116
+10/02 14:35 INFO step: [340/2799] | loss_1: 0.563 | loss_2: 0.734 | loss_3: 1.189 | epe: 1.111
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [360/2799] | loss_1: 0.569 | loss_2: 0.741 | loss_3: 1.189 | epe: 1.109
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [380/2799] | loss_1: 0.559 | loss_2: 0.730 | loss_3: 1.168 | epe: 1.110
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [400/2799] | loss_1: 0.561 | loss_2: 0.733 | loss_3: 1.162 | epe: 1.107
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [420/2799] | loss_1: 0.562 | loss_2: 0.735 | loss_3: 1.163 | epe: 1.106
+10/02 14:35 INFO step: [440/2799] | loss_1: 0.563 | loss_2: 0.736 | loss_3: 1.161 | epe: 1.107
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO No point in range!
+10/02 14:35 INFO step: [460/2799] | loss_1: 0.560 | loss_2: 0.732 | loss_3: 1.153 | epe: 1.104
+10/02 14:36 INFO step: [480/2799] | loss_1: 0.557 | loss_2: 0.730 | loss_3: 1.145 | epe: 1.104
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO step: [500/2799] | loss_1: 0.556 | loss_2: 0.729 | loss_3: 1.149 | epe: 1.105
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO step: [520/2799] | loss_1: 0.554 | loss_2: 0.728 | loss_3: 1.139 | epe: 1.101
+10/02 14:36 INFO step: [540/2799] | loss_1: 0.551 | loss_2: 0.725 | loss_3: 1.131 | epe: 1.101
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO No point in range!
+10/02 14:36 INFO step: [560/2799] | loss_1: 0.550 | loss_2: 0.724 | loss_3: 1.121 | epe: 1.100
+10/02 14:36 INFO step: [580/2799] | loss_1: 0.548 | loss_2: 0.723 | loss_3: 1.111 | epe: 1.096
+10/02 14:36 INFO step: [600/2799] | loss_1: 0.545 | loss_2: 0.721 | loss_3: 1.103 | epe: 1.094
+10/02 14:36 INFO step: [620/2799] | loss_1: 0.541 | loss_2: 0.716 | loss_3: 1.095 | epe: 1.093
+10/02 14:36 INFO step: [640/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.091 | epe: 1.089
+10/02 14:36 INFO step: [660/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.090 | epe: 1.086
+10/02 14:37 INFO step: [680/2799] | loss_1: 0.542 | loss_2: 0.716 | loss_3: 1.096 | epe: 1.086
+10/02 14:37 INFO step: [700/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.090 | epe: 1.085
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO step: [720/2799] | loss_1: 0.538 | loss_2: 0.713 | loss_3: 1.088 | epe: 1.084
+10/02 14:37 INFO step: [740/2799] | loss_1: 0.538 | loss_2: 0.712 | loss_3: 1.087 | epe: 1.087
+10/02 14:37 INFO step: [760/2799] | loss_1: 0.535 | loss_2: 0.709 | loss_3: 1.081 | epe: 1.086
+10/02 14:37 INFO step: [780/2799] | loss_1: 0.536 | loss_2: 0.710 | loss_3: 1.084 | epe: 1.090
+10/02 14:37 INFO step: [800/2799] | loss_1: 0.536 | loss_2: 0.710 | loss_3: 1.085 | epe: 1.090
+10/02 14:37 INFO step: [820/2799] | loss_1: 0.536 | loss_2: 0.710 | loss_3: 1.084 | epe: 1.088
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO step: [840/2799] | loss_1: 0.536 | loss_2: 0.711 | loss_3: 1.082 | epe: 1.090
+10/02 14:37 INFO step: [860/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.087 | epe: 1.092
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:37 INFO No point in range!
+10/02 14:38 INFO step: [880/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.086 | epe: 1.090
+10/02 14:38 INFO step: [900/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.086 | epe: 1.089
+10/02 14:38 INFO step: [920/2799] | loss_1: 0.537 | loss_2: 0.712 | loss_3: 1.080 | epe: 1.090
+10/02 14:38 INFO step: [940/2799] | loss_1: 0.538 | loss_2: 0.712 | loss_3: 1.085 | epe: 1.092
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO step: [960/2799] | loss_1: 0.539 | loss_2: 0.713 | loss_3: 1.085 | epe: 1.091
+10/02 14:38 INFO step: [980/2799] | loss_1: 0.542 | loss_2: 0.717 | loss_3: 1.092 | epe: 1.092
+10/02 14:38 INFO step: [1000/2799] | loss_1: 0.540 | loss_2: 0.714 | loss_3: 1.087 | epe: 1.091
+10/02 14:38 INFO step: [1020/2799] | loss_1: 0.539 | loss_2: 0.713 | loss_3: 1.084 | epe: 1.090
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO No point in range!
+10/02 14:38 INFO step: [1040/2799] | loss_1: 0.536 | loss_2: 0.711 | loss_3: 1.078 | epe: 1.088
+10/02 14:38 INFO step: [1060/2799] | loss_1: 0.536 | loss_2: 0.711 | loss_3: 1.075 | epe: 1.087
+10/02 14:38 INFO step: [1080/2799] | loss_1: 0.536 | loss_2: 0.711 | loss_3: 1.076 | epe: 1.086
+10/02 14:39 INFO step: [1100/2799] | loss_1: 0.537 | loss_2: 0.711 | loss_3: 1.077 | epe: 1.085
+10/02 14:39 INFO step: [1120/2799] | loss_1: 0.536 | loss_2: 0.711 | loss_3: 1.076 | epe: 1.083
+10/02 14:39 INFO step: [1140/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.082 | epe: 1.084
+10/02 14:39 INFO step: [1160/2799] | loss_1: 0.541 | loss_2: 0.715 | loss_3: 1.091 | epe: 1.085
+10/02 14:39 INFO step: [1180/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.088 | epe: 1.085
+10/02 14:39 INFO step: [1200/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.088 | epe: 1.083
+10/02 14:39 INFO step: [1220/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.085 | epe: 1.083
+10/02 14:39 INFO No point in range!
+10/02 14:39 INFO No point in range!
+10/02 14:39 INFO No point in range!
+10/02 14:39 INFO step: [1240/2799] | loss_1: 0.539 | loss_2: 0.713 | loss_3: 1.081 | epe: 1.081
+10/02 14:39 INFO step: [1260/2799] | loss_1: 0.538 | loss_2: 0.713 | loss_3: 1.079 | epe: 1.082
+10/02 14:39 INFO step: [1280/2799] | loss_1: 0.539 | loss_2: 0.714 | loss_3: 1.082 | epe: 1.082
+10/02 14:40 INFO step: [1300/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.084 | epe: 1.080
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO step: [1320/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.080 | epe: 1.080
+10/02 14:40 INFO step: [1340/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.082 | epe: 1.079
+10/02 14:40 INFO step: [1360/2799] | loss_1: 0.540 | loss_2: 0.715 | loss_3: 1.084 | epe: 1.077
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO step: [1380/2799] | loss_1: 0.541 | loss_2: 0.716 | loss_3: 1.084 | epe: 1.077
+10/02 14:40 INFO step: [1400/2799] | loss_1: 0.541 | loss_2: 0.716 | loss_3: 1.086 | epe: 1.078
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO No point in range!
+10/02 14:40 INFO step: [1420/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.084 | epe: 1.079
+10/02 14:40 INFO step: [1440/2799] | loss_1: 0.543 | loss_2: 0.718 | loss_3: 1.087 | epe: 1.078
+10/02 14:40 INFO step: [1460/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.085 | epe: 1.077
+10/02 14:40 INFO step: [1480/2799] | loss_1: 0.542 | loss_2: 0.717 | loss_3: 1.083 | epe: 1.075
+10/02 14:41 INFO step: [1500/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.083 | epe: 1.076
+10/02 14:41 INFO step: [1520/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.081 | epe: 1.076
+10/02 14:41 INFO step: [1540/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.080 | epe: 1.076
+10/02 14:41 INFO step: [1560/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.077 | epe: 1.075
+10/02 14:41 INFO step: [1580/2799] | loss_1: 0.541 | loss_2: 0.718 | loss_3: 1.077 | epe: 1.075
+10/02 14:41 INFO step: [1600/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.076 | epe: 1.074
+10/02 14:41 INFO No point in range!
+10/02 14:41 INFO No point in range!
+10/02 14:41 INFO No point in range!
+10/02 14:41 INFO step: [1620/2799] | loss_1: 0.543 | loss_2: 0.719 | loss_3: 1.077 | epe: 1.074
+10/02 14:41 INFO step: [1640/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.075 | epe: 1.072
+10/02 14:41 INFO step: [1660/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.075 | epe: 1.072
+10/02 14:41 INFO step: [1680/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.074 | epe: 1.073
+10/02 14:42 INFO step: [1700/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.074 | epe: 1.072
+10/02 14:42 INFO No point in range!
+10/02 14:42 INFO No point in range!
+10/02 14:42 INFO No point in range!
+10/02 14:42 INFO step: [1720/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.073 | epe: 1.073
+10/02 14:42 INFO step: [1740/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.069 | epe: 1.072
+10/02 14:42 INFO step: [1760/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.069 | epe: 1.073
+10/02 14:42 INFO step: [1780/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.070 | epe: 1.072
+10/02 14:42 INFO step: [1800/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.074 | epe: 1.073
+10/02 14:42 INFO step: [1820/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.078 | epe: 1.072
+10/02 14:42 INFO step: [1840/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.076 | epe: 1.072
+10/02 14:42 INFO step: [1860/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.074 | epe: 1.072
+10/02 14:42 INFO step: [1880/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.074 | epe: 1.073
+10/02 14:43 INFO step: [1900/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.072 | epe: 1.072
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO step: [1920/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.075 | epe: 1.072
+10/02 14:43 INFO step: [1940/2799] | loss_1: 0.541 | loss_2: 0.718 | loss_3: 1.074 | epe: 1.072
+10/02 14:43 INFO step: [1960/2799] | loss_1: 0.542 | loss_2: 0.718 | loss_3: 1.074 | epe: 1.073
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO step: [1980/2799] | loss_1: 0.541 | loss_2: 0.718 | loss_3: 1.074 | epe: 1.073
+10/02 14:43 INFO step: [2000/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.071 | epe: 1.073
+10/02 14:43 INFO step: [2020/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.071 | epe: 1.073
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO step: [2040/2799] | loss_1: 0.540 | loss_2: 0.717 | loss_3: 1.070 | epe: 1.072
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO No point in range!
+10/02 14:43 INFO step: [2060/2799] | loss_1: 0.541 | loss_2: 0.717 | loss_3: 1.069 | epe: 1.072
+10/02 14:43 INFO step: [2080/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.067 | epe: 1.071
+10/02 14:44 INFO step: [2100/2799] | loss_1: 0.539 | loss_2: 0.716 | loss_3: 1.065 | epe: 1.071
+10/02 14:44 INFO step: [2120/2799] | loss_1: 0.538 | loss_2: 0.715 | loss_3: 1.062 | epe: 1.070
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO step: [2140/2799] | loss_1: 0.538 | loss_2: 0.715 | loss_3: 1.063 | epe: 1.070
+10/02 14:44 INFO step: [2160/2799] | loss_1: 0.538 | loss_2: 0.715 | loss_3: 1.064 | epe: 1.070
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO No point in range!
+10/02 14:44 INFO step: [2180/2799] | loss_1: 0.538 | loss_2: 0.715 | loss_3: 1.068 | epe: 1.070
+10/02 14:44 INFO step: [2200/2799] | loss_1: 0.538 | loss_2: 0.714 | loss_3: 1.066 | epe: 1.070
+10/02 14:44 INFO step: [2220/2799] | loss_1: 0.538 | loss_2: 0.714 | loss_3: 1.067 | epe: 1.070
+10/02 14:44 INFO step: [2240/2799] | loss_1: 0.537 | loss_2: 0.714 | loss_3: 1.066 | epe: 1.070
+10/02 14:44 INFO step: [2260/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.073 | epe: 1.071
+10/02 14:44 INFO step: [2280/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.072 | epe: 1.070
+10/02 14:45 INFO step: [2300/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.071 | epe: 1.070
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO step: [2320/2799] | loss_1: 0.540 | loss_2: 0.716 | loss_3: 1.071 | epe: 1.070
+10/02 14:45 INFO step: [2340/2799] | loss_1: 0.539 | loss_2: 0.716 | loss_3: 1.070 | epe: 1.070
+10/02 14:45 INFO step: [2360/2799] | loss_1: 0.539 | loss_2: 0.716 | loss_3: 1.069 | epe: 1.069
+10/02 14:45 INFO step: [2380/2799] | loss_1: 0.539 | loss_2: 0.715 | loss_3: 1.067 | epe: 1.068
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO step: [2400/2799] | loss_1: 0.538 | loss_2: 0.714 | loss_3: 1.065 | epe: 1.068
+10/02 14:45 INFO step: [2420/2799] | loss_1: 0.537 | loss_2: 0.714 | loss_3: 1.065 | epe: 1.067
+10/02 14:45 INFO step: [2440/2799] | loss_1: 0.536 | loss_2: 0.713 | loss_3: 1.063 | epe: 1.067
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO No point in range!
+10/02 14:45 INFO step: [2460/2799] | loss_1: 0.536 | loss_2: 0.712 | loss_3: 1.063 | epe: 1.067
+10/02 14:45 INFO step: [2480/2799] | loss_1: 0.536 | loss_2: 0.712 | loss_3: 1.062 | epe: 1.066
+10/02 14:46 INFO step: [2500/2799] | loss_1: 0.535 | loss_2: 0.712 | loss_3: 1.062 | epe: 1.067
+10/02 14:46 INFO step: [2520/2799] | loss_1: 0.535 | loss_2: 0.712 | loss_3: 1.061 | epe: 1.067
+10/02 14:46 INFO step: [2540/2799] | loss_1: 0.536 | loss_2: 0.712 | loss_3: 1.061 | epe: 1.066
+10/02 14:46 INFO step: [2560/2799] | loss_1: 0.535 | loss_2: 0.712 | loss_3: 1.060 | epe: 1.065
+10/02 14:46 INFO step: [2580/2799] | loss_1: 0.535 | loss_2: 0.711 | loss_3: 1.059 | epe: 1.065
+10/02 14:46 INFO step: [2600/2799] | loss_1: 0.534 | loss_2: 0.711 | loss_3: 1.059 | epe: 1.064
+10/02 14:46 INFO step: [2620/2799] | loss_1: 0.535 | loss_2: 0.712 | loss_3: 1.061 | epe: 1.064
+10/02 14:46 INFO step: [2640/2799] | loss_1: 0.535 | loss_2: 0.711 | loss_3: 1.064 | epe: 1.064
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO step: [2660/2799] | loss_1: 0.535 | loss_2: 0.712 | loss_3: 1.064 | epe: 1.063
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO No point in range!
+10/02 14:46 INFO step: [2680/2799] | loss_1: 0.535 | loss_2: 0.711 | loss_3: 1.064 | epe: 1.063
+10/02 14:46 INFO step: [2700/2799] | loss_1: 0.534 | loss_2: 0.711 | loss_3: 1.062 | epe: 1.063
+10/02 14:47 INFO step: [2720/2799] | loss_1: 0.534 | loss_2: 0.711 | loss_3: 1.062 | epe: 1.063
+10/02 14:47 INFO step: [2740/2799] | loss_1: 0.534 | loss_2: 0.710 | loss_3: 1.061 | epe: 1.062
+10/02 14:47 INFO step: [2760/2799] | loss_1: 0.533 | loss_2: 0.709 | loss_3: 1.060 | epe: 1.061
+10/02 14:47 INFO step: [2780/2799] | loss_1: 0.533 | loss_2: 0.709 | loss_3: 1.061 | epe: 1.062

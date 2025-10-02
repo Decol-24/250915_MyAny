@@ -27,6 +27,12 @@ class time_counter():
     
     def avg_time_str(self,id=0,count=1):
         return "{:4f}".format(self.avg_time(id,count))
+    
+    def all_avg_time_str(self,count=1):
+        str = ""
+        for i in range(self.num):
+            str = str+"Work {} is {:4f}s.\n".format(i,self.avg_time(i,count))
+        return str
 
     def reset(self):
         self.time_temp = [0 for x in range(self.num)]
@@ -57,6 +63,7 @@ class AnyNet(nn.Module):
         self.guidance = Guidance(64) #类似Resnet
         self.up = PropgationNet_4x(64)
 
+        # self.t = time_counter(num=7)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -82,29 +89,52 @@ class AnyNet(nn.Module):
 
 
     def forward(self, left, right):
+        # self.t.start(0)
 
         feats_l = self.feature_extraction(left) #[0]：[1,32,64,128]
         feats_r = self.feature_extraction(right)
 
+        # self.t.end(0)
+        # self.t.start(1)
+
         guidance = self.guidance(left) #根据左图构建指导体
+
+        # self.t.end(1)
+        # self.t.start(2)
 
         preds = []
 
         cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[0]) #[B,64,disp,H,W]
+
+        # self.t.end(2)
+        # self.t.start(3)
+
         disp_1 = self.attention_1(cost,cost)  #[B,64,disp,H,W]
         disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W+disp]
         disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W+disp]
+
+        # self.t.end(3)
+        # self.t.start(4)
         
         preds.append(disp_1_re)
 
         cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[1])
+
+        # self.t.end(4)
+        # self.t.start(5)
+
         disp_2 = self.attention_2(cost,disp_1)
         disp_2_c = self.classif_2(disp_2).squeeze(1)
         disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1])
         preds.append(disp_1_re+disp_2_re)
 
+        # self.t.end(5)
+        # self.t.start(6)
+
         disp_up = self.up(guidance, preds[-1]) #[B,256,512]
         preds.append(disp_up) 
+
+        # self.t.end(6)
 
         return preds
     
