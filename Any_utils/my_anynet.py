@@ -5,8 +5,8 @@ import torch.utils.data
 from torch.autograd import Variable
 import torch.nn.functional as F
 import math
-from DCA_utils.Anynet_submodule import feature_extraction,cross_attention
-from DCA_utils.upsample_net import Guidance,PropgationNet_4x
+from Any_utils.Anynet_submodule import feature_extraction,cross_attention
+from Any_utils.upsample_net import Guidance,PropgationNet_4x
 
 import time
 class time_counter():

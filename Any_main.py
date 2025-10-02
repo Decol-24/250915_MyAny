@@ -1,11 +1,11 @@
-from DCA_utils.DCA_runner import my_runner
-from DCA_utils.my_anynet import AnyNet
+from Any_utils.Any_runner import my_runner
+from Any_utils.my_anynet import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 import torch
 import argparse
-import DCA_utils.creat_loader as DATA
+import Any_utils.creat_loader as DATA
 import pickle
 
 def train(args,Net,train_loader,val_loader,**kwargs):
