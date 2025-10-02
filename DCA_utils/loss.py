@@ -3,6 +3,57 @@ import torch
 def isNaN(x):
     return x != x
 
+class l1_loss(object):
+    def __init__(self,start_disp, end_disp, logger, sparse=False):
+        self.start_disp = start_disp
+        self.end_disp = end_disp
+        self.max_disp = end_disp - start_disp
+        self.logger = logger
+        if sparse:
+            # sparse disparity ==> max_pooling
+            self.scale_func = F.adaptive_max_pool2d
+        else:
+            # dense disparity ==> avg_pooling
+            self.scale_func = F.adaptive_avg_pool2d
+            #缩放函数
+
+    def __call__(self, disp_ests, disp_gt):
+
+        weights = [1.0, 1.0, 1.0]
+        all_losses = []
+        for disp_est, weight in zip(disp_ests, weights):
+            B,H,W = disp_est.shape
+            for batch in range(B):
+                loss_b = []
+                disp_est_b = disp_est[batch].unsqueeze(0)
+                disp_gt_b = disp_gt[batch].unsqueeze(0)
+                if disp_gt[batch].shape[-2] != H or disp_gt[batch].shape[-1] != W:
+                    # 当此级别的预测代价体的高宽与真实视差图的高宽不一致时，计算缩放比例并缩放真实视差图
+                    scale = disp_gt_b.shape[-1] / (W * 1.0)
+                    scaled_gtDisp = disp_gt_b / scale
+
+                    scaled_gtDisp = self.scale_func(scaled_gtDisp, (H, W))
+                    scaled_max_disp = int(self.max_disp/scale)
+                    lower_bound = self.start_disp
+                    upper_bound = lower_bound + scaled_max_disp
+                    mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
+                else:
+                    scaled_gtDisp = disp_gt_b
+                    mask = (scaled_gtDisp >= self.start_disp) & (scaled_gtDisp < self.end_disp).detach_().byte().bool()
+
+                if mask.sum() < 1.0:
+                    loss = disp_est_b.sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
+                    self.logger.info('No point in range!')
+                else:
+                    mask_scaled_gtDisp = scaled_gtDisp * mask
+                    loss = F.smooth_l1_loss(disp_est_b, mask_scaled_gtDisp, reduction='mean')
+
+                loss_b.append(loss)
+
+            all_losses.append(weight*sum(loss_b))
+
+        return all_losses
+
 def model_loss(disp_est, disp_gt, mask):
 
     return F.smooth_l1_loss(disp_est[:,mask].squeeze(), disp_gt[mask], reduction='mean')
@@ -38,31 +89,25 @@ class Disp2Prob(object):
         self.dilation = dilation
         self.eps = 1e-40
 
-    def getProb(self,gtDisp,mask,variance,max_disp):
-        # [BatchSize, 1, Height, Width]
+    def getProb(self,gtDisp,variance,max_disp):
+        # [BatchSize, Height, Width]
         self.max_disp = max_disp
-        if gtDisp.dim() == 3:
-            gtDisp = gtDisp.view(gtDisp.size(0), 1, gtDisp.size(1), gtDisp.size(2))
 
-        assert gtDisp.dim() == 4
-        b, c, h, w = gtDisp.shape
-        assert c == 1
+        B, H, W = gtDisp.shape
+        gtDisp = gtDisp.view(B, 1, H, W)
 
         # if start_disp = 0, dilation = 1, then generate disparity candidates as [0, 1, 2, ... , maxDisp-1]
         self.index = torch.arange(0, self.max_disp, dtype=gtDisp.dtype, device=gtDisp.device)
         self.index = self.index.view(1, self.max_disp, 1, 1)
 
         # [BatchSize, maxDisp, Height, Width]
-        self.index = self.index.repeat(b, 1, h, w).contiguous()
+        self.index = self.index.repeat(B, 1, H, W).contiguous()
 
-        gtDisp = gtDisp * mask
-        #这个mask处理对gtDisp做了两遍
-
-        probability = self.calProb(gtDisp,mask,variance)
+        probability = self.calProb(gtDisp,variance)
 
         # let the outliers' probability to be 0
         # in case divide or log 0, we plus a tiny constant value
-        probability = probability * mask + self.eps
+        probability = probability + self.eps
         #概率分布也同样需要mask处理
 
         # in case probability is NaN
@@ -73,7 +118,7 @@ class Disp2Prob(object):
 
         return probability
 
-    def calProb(self,gtDisp,mask,variance):
+    def calProb(self,gtDisp,variance):
         #子类必须重写此方法
         raise NotImplementedError
 
@@ -83,7 +128,7 @@ class LaplaceDisp2Prob(Disp2Prob):
     def __init__(self, dilation=1):
         super(LaplaceDisp2Prob, self).__init__(dilation)
 
-    def calProb(self,gtDisp,mask,variance):
+    def calProb(self,gtDisp,variance):
         # 1/N * exp( - (d - d{gt}) / var), N is normalization factor, [BatchSize, maxDisp, Height, Width]
         scaled_distance = ((-torch.abs(self.index - gtDisp))) #-|d - d_gt|
         probability = F.softmax(scaled_distance, dim=1)
@@ -95,7 +140,7 @@ class GaussianDisp2Prob(Disp2Prob):
     def __init__(self, dilation=1):
         super(GaussianDisp2Prob, self).__init__(dilation)
 
-    def calProb(self,gtDisp,mask,variance):
+    def calProb(self,gtDisp,variance):
         # 1/N * exp( - (d - d{gt})^2 / b), N is normalization factor, [BatchSize, maxDisp, Height, Width]
         distance = (torch.abs(self.index - gtDisp))
         scaled_distance = (- distance.pow(2.0) / variance)
@@ -108,7 +153,7 @@ class OneHotDisp2Prob(Disp2Prob):
     def __init__(self, dilation=1):
         super(OneHotDisp2Prob, self).__init__(dilation)
 
-    def getProb(self,gtDisp,mask,variance):
+    def calProb(self,gtDisp,variance):
         # |d - d{gt}| < variance, [BatchSize, maxDisp, Height, Width]
         b, c, h, w = gtDisp.shape
         assert c == 1
@@ -172,7 +217,7 @@ class StereoFocalLoss(object):
         self.LaplaceDisp2Prob = LaplaceDisp2Prob(dilation=dilation)
 
     def loss_per_level(self, estCost, gtDisp, variance=1.0, dilation=1):
-        N, C, H, W = estCost.shape
+        B, C, H, W = estCost.shape
         scaled_gtDisp = gtDisp.clone()
 
         if gtDisp.shape[-2] != H or gtDisp.shape[-1] != W:
@@ -197,7 +242,7 @@ class StereoFocalLoss(object):
         else:
             # transfer disparity map to probability map
             mask_scaled_gtDisp = scaled_gtDisp * mask
-            scaled_gtProb = self.LaplaceDisp2Prob.getProb(mask_scaled_gtDisp, variance=variance, mask=mask, max_disp=scaled_max_disp)
+            scaled_gtProb = self.LaplaceDisp2Prob.getProb(mask_scaled_gtDisp, variance=variance, max_disp=scaled_max_disp)
             #得到真实视差的概率曲线
 
         # stereo focal loss

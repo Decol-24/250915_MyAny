@@ -8,6 +8,7 @@ def convbn(in_channels, out_channels, kernel_size, stride, pad, dilation):
                                    padding=dilation if dilation > 1 else pad, dilation=dilation, bias=False),
                                     nn.BatchNorm2d(out_channels),)
 
+
 class BasicBlock(nn.Module):
     expansion = 1
 
@@ -140,18 +141,16 @@ class SelfAttentionBlock(nn.Module):
 
     #修改过的多头自注意力机制，Q和K不同源
     def forward(self, query_feats, key_feats):
-        # query_feats: [batch, disparity, channels, height ,width]
+        # query_feats: [B,64,disp,H,W+disp]
         head_dim = 8
-        batch_size, disparity, channels, height, width = query_feats.shape
-        query_feats = query_feats.permute(0, 2, 1, 3, 4).contiguous() # query_feats: [batch, channels, disparity, height, width]
-        key_feats = key_feats.permute(0, 2, 1, 3, 4).contiguous()
+        B, C, H, W = query_feats.shape[0], query_feats.shape[1], query_feats.shape[3], query_feats.shape[4]
+        hw = H*W
 
-        hw = height*width
         query = self.query_project(query_feats) #3D卷积，输入的第一维度要应该是channels
 
         if self.query_downsample is not None: query = self.query_downsample(query)
 
-        query = query.reshape(batch_size, channels//head_dim, head_dim, disparity, hw) # batch, heads, head_c, disparity, h*w
+        query = query.reshape(B, C//head_dim, head_dim, query.shape[2], hw) # batch, heads, head_c, disparity, h*w
         query = query.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
 
         key = self.key_project(key_feats)
@@ -161,9 +160,9 @@ class SelfAttentionBlock(nn.Module):
             key = self.key_downsample(key)
             value = self.key_downsample(value)
 
-        key = key.reshape(batch_size, channels//head_dim, head_dim, disparity, hw)
+        key = key.reshape(B, C//head_dim, head_dim, key.shape[2], hw)
         key = key.permute(0, 4, 1, 2, 3).contiguous()  # batch, h*w, heads, head_c, disparity
-        value = value.reshape(batch_size, channels//head_dim, head_dim, disparity, hw)
+        value = value.reshape(B, C//head_dim, head_dim, value.shape[2], hw)
         value = value.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
 
         sim_map = torch.matmul(query, key)  # batch, h*w, head, disparity, disparity
@@ -182,10 +181,9 @@ class SelfAttentionBlock(nn.Module):
         context = context.permute(0, 1, 2, 4, 3).flatten(2, 3) # batch, h*w, channels, disparity
 
         context = context.permute(0, 2, 3, 1).contiguous()  # batch, channels, disparity, h*w
-        context = context.reshape(batch_size, channels, disparity, height, width)  # batch, channels, disparity, h, w
+        context = context.reshape(B, C, -1, H, W)  # batch, channels, disparity, h, w
         if self.out_project is not None:
             context = self.out_project(context)
-        context = context.permute(0, 2, 1, 3, 4).contiguous() # batch, disparity, channels, h, w
 
         return context
     

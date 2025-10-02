@@ -153,10 +153,10 @@ class PropgationNet_4x(nn.Module):
 
     def forward(self, guidance, disp):
         # guidance为下采样之前的左图，所以可以用来指导disp上采样
-        b, c, h, w = disp.shape
-        disp = F.unfold(4 * disp, [3, 3], padding=1).view(b, 1, 9, 1, 1, h, w) #首先视差*4，然后按3*3卷积方式展开，再view为[B,1,9,1,1,h,w]
-        mask = self.conv(guidance).view(b, 1, 9, 4, 4, h, w) #reshape到可以广播的维度
+        b, h, w = disp.shape
+        disp = F.unfold(4 * disp, [3, 3], padding=1).view(b, 9, 1, 1, h, w) #首先视差*4，然后按3*3卷积方式展开，再view为[B,9,1,1,h,w]
+        mask = self.conv(guidance).view(b, 9, 4, 4, h, w) #reshape到可以广播的维度
         mask = F.softmax(mask, dim=2)
-        up_disp = torch.sum(mask * disp, dim=2) #逐元素相乘后在dim=2上求和，得到 [b,1,4,4,h,w]
-        up_disp = up_disp.permute(0, 1, 4, 2, 5, 3) #转置矩阵，得到 [b,1,h,4,w,4]
-        return up_disp.reshape(b, 1, 4 * h, 4 * w) #reshape（把h维度和4维度合并）为 [b,1,4h,4w]
+        up_disp = torch.sum(mask * disp, dim=1) #逐元素相乘后在dim=2上求和，得到 [b,4,4,h,w]
+        up_disp = up_disp.permute(0, 3, 1, 4, 2) #转置矩阵，得到 [b,h,4,w,4]
+        return up_disp.reshape(b, 4 * h, 4 * w) #reshape（把h维度和4维度合并）为 [b,1,4h,4w]

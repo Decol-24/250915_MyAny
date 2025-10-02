@@ -60,14 +60,14 @@ if __name__ == '__main__':
     parser.add_argument('-focal_coefficient', default=5.0, type=float)
     parser.add_argument('-sparse', default=False, type=bool)
 
-    parser.add_argument('-batch_size', default=1, type=int)
+    parser.add_argument('-batch_size', default=8, type=int)
 
     parser.add_argument('-mixup_alpha', default=0.5, type=float)
     parser.add_argument('-grad_clip_value', default=1., type=float)
     args = parser.parse_args()
 
     #Dataset
-    train_loader, test_loader = DATA.creat_SceneFlow(args.data_path,batch_size=args.batch_size)
+    train_loader, test_loader = DATA.creat_mid_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
     Net = AnyNet(args.start_disp,args.end_disp)

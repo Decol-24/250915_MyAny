@@ -38,13 +38,21 @@ class AnyNet(nn.Module):
         super(AnyNet,self).__init__()
 
         self.refine_spn = None
-        self.disparity_arange = self.disparity_segmentation(start_disp//4,end_disp//4)
+        self.disparity_arange = self.disparity_segmentation(start_disp//4, end_disp//4)
 
         self.feature_extraction = feature_extraction() #Unet
 
         self.attention_1 = cross_attention(64)
         self.attention_2 = cross_attention(64)
-        self.attention_3 = cross_attention(64)
+        self.classif_1 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
+                                nn.BatchNorm3d(64),
+                                nn.ReLU(inplace=True),
+                                nn.Conv3d(64, 1, kernel_size=3, padding=1, stride=1, bias=False))
+        
+        self.classif_2 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
+                                nn.BatchNorm3d(64),
+                                nn.ReLU(inplace=True),
+                                nn.Conv3d(64, 1, kernel_size=3, padding=1, stride=1, bias=False))
 
         self.guidance = Guidance(64) #类似Resnet
         self.up = PropgationNet_4x(64)
@@ -82,18 +90,21 @@ class AnyNet(nn.Module):
 
         preds = []
 
-        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[0])
-        disp_1 = self.attention_1(cost,cost)
-        disp_re_1 = disparity_regression2(disp_1, self.disparity_arange[0])
+        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[0]) #[B,64,disp,H,W]
+        disp_1 = self.attention_1(cost,cost)  #[B,64,disp,H,W]
+        disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W+disp]
+        disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W+disp]
         
-        preds.append(disp_re_1)
+        preds.append(disp_1_re)
 
         cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[1])
         disp_2 = self.attention_2(cost,disp_1)
-        disp_re_2 = disparity_regression2(disp_2, self.disparity_arange[1])
-        preds.append(disp_re_1+disp_re_2)
+        disp_2_c = self.classif_2(disp_2).squeeze(1)
+        disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1])
+        preds.append(disp_1_re+disp_2_re)
 
-        preds.append(self.up(guidance, preds[-1])) #[1,1,256,512]
+        disp_up = self.up(guidance, preds[-1]) #[B,256,512]
+        preds.append(disp_up) 
 
         return preds
     
@@ -124,19 +135,21 @@ class AnyNet(nn.Module):
         # 对每个像素都进行修正，竖方向不修改，横方向根据disp中对应的值移动
         return output
 
-
     def _build_volume_2d(self, feat_l, feat_r, disparity_arange):
 
         num_disp = disparity_arange.shape[0]
-        max_disp = disparity_arange.max()
         B,feature_size,H,W = feat_l.shape
 
-        cost = torch.zeros((feat_l.shape[0], num_disp, feature_size*2, feat_l.shape[2], feat_l.shape[3]+max_disp), device='cuda') #[B, disp, feature *2, W, H]
+        cost = torch.zeros((feat_l.shape[0], num_disp, feature_size*2, feat_l.shape[2], feat_l.shape[3]), device='cuda') #[B, disp, feature *2, W, H]
         for i,dis in enumerate(disparity_arange):
-            cost[:, i, :feature_size, :, 0:W] = feat_l[:, :, :, :]
-            cost[:, i, feature_size:, :, dis:W+dis] = feat_r[:, :, :, :]
+            if dis == 0:
+                cost[:, i, :feature_size, :, :] = feat_l[:, :, :, :]
+                cost[:, i, feature_size:, :, :] = feat_r[:, :, :, :]
+            else:
+                cost[:, i, :feature_size, :, dis:] = feat_l[:, :, :, dis:]
+                cost[:, i, feature_size:, :, dis:] = feat_r[:, :, :, :-dis]
 
-        return cost.contiguous()
+        return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
 
     def _build_volume_2d3(self, feat_l, feat_r, maxdisp, disp, stride=1):
         # disp 为上一层的视差输出
@@ -150,11 +163,11 @@ class AnyNet(nn.Module):
         cost = cost.view(size[0],-1, size[2],size[3])
         return cost.contiguous()
 
-#和GC-net一样的softmax TODO 特征维度应该降为1
-def disparity_regression2(x, disparity_arange):
-    disp = disparity_arange.view(1, -1, 1, 1, 1).float()
-    disp = disp.repeat(x.size()[0], 1, x.size()[2], x.size()[3], x.size()[4]) #扩张到(6,12,16,32)
-    x = F.softmax(x, dim=1)
-    x = x * disp
-    out = torch.sum(x, 2, keepdim=True) #乘到x上后求和
-    return out
+    #和GC-net一样的softmax
+    def disparity_regression2(self, x, disparity_arange):
+        disp = disparity_arange.view(1, -1, 1, 1).float()
+        disp = disp.repeat(x.size()[0], 1, x.size()[2], x.size()[3]) #扩张到(B,disp,H,W)
+        x = F.softmax(x, dim=1)
+        x = x * disp
+        out = torch.sum(x, 1, keepdim=False) #乘到x上后求和[B,H,W]
+        return out

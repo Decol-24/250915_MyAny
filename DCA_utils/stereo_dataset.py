@@ -25,7 +25,7 @@ def is_image_file(filename):
 ]
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
-def dataloader_SceneFlow(filepath,select=(0,1,2)):
+def dataloader_SceneFlow(filepath,select=[0,1,2]):
     all_left_img = []
     all_right_img = []
     all_left_disp = []
