@@ -1,11 +1,11 @@
-from DCA_utils.DCA_runner import my_runner
-from DCA_utils.my_anynet import AnyNet
+from Any_utils.Any_runner import my_runner
+from Any_utils.my_anynet import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 import torch
 import argparse
-import DCA_utils.creat_loader as DATA
+import Any_utils.creat_loader as DATA
 import pickle
 
 def test(args,Net,train_loader,val_loader,**kwargs):
@@ -45,14 +45,14 @@ if __name__ == '__main__':
     parser.add_argument('-focal_coefficient', default=5.0, type=float)
     parser.add_argument('-sparse', default=False, type=bool)
 
-    parser.add_argument('-batch_size', default=8, type=int)
+    parser.add_argument('-batch_size', default=6, type=int)
 
     parser.add_argument('-mixup_alpha', default=0.5, type=float)
     parser.add_argument('-grad_clip_value', default=1., type=float)
     args = parser.parse_args()
 
     #Dataset
-    train_loader, test_loader = DATA.creat_toy_SceneFlow(args.data_path,batch_size=args.batch_size)
+    train_loader, test_loader = DATA.creat_mid_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
     Net = AnyNet(args.start_disp,args.end_disp)
@@ -61,4 +61,18 @@ if __name__ == '__main__':
 
     creat_folder(args.save_path)
 
-    test(args=args,Net=Net,train_loader=train_loader,val_loader=test_loader)
+    Net.to(args.device)
+    for ep in range(200):
+        for i, (imgL, imgR, disp_true) in enumerate(train_loader):
+            imgL, imgR, disp_true = imgL.to(args.device), imgR.to(args.device), disp_true.to(args.device)
+            preds = Net(imgL, imgR)
+            if i % 100:
+                print('train_{}'.format(i))
+
+        for i, (imgL, imgR, disp_true) in enumerate(test_loader):
+            imgL, imgR, disp_true = imgL.to(args.device), imgR.to(args.device), disp_true.to(args.device)
+            preds = Net(imgL, imgR)
+            if i % 100:
+                print('val_{}'.format(i))
+
+    # test(args=args,Net=Net,train_loader=train_loader,val_loader=test_loader)

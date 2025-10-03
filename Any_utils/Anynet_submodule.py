@@ -141,7 +141,8 @@ class SelfAttentionBlock(nn.Module):
 
     #修改过的多头自注意力机制，Q和K不同源
     def forward(self, query_feats, key_feats):
-        # query_feats: [B,64,disp,H,W+disp]
+        # query_feats: [B,64,disp1,H,W+disp]
+        # key_feats: [B,64,disp2,H,W+disp]
         head_dim = 8
         B, C, H, W = query_feats.shape[0], query_feats.shape[1], query_feats.shape[3], query_feats.shape[4]
         hw = H*W
@@ -150,8 +151,8 @@ class SelfAttentionBlock(nn.Module):
 
         if self.query_downsample is not None: query = self.query_downsample(query)
 
-        query = query.reshape(B, C//head_dim, head_dim, query.shape[2], hw) # batch, heads, head_c, disparity, h*w
-        query = query.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
+        query = query.reshape(B, C//head_dim, head_dim, query.shape[2], hw) # batch, heads, head_c, disp1, h*w
+        query = query.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disp1, head_c
 
         key = self.key_project(key_feats)
         value = self.value_project(key_feats)
@@ -161,27 +162,27 @@ class SelfAttentionBlock(nn.Module):
             value = self.key_downsample(value)
 
         key = key.reshape(B, C//head_dim, head_dim, key.shape[2], hw)
-        key = key.permute(0, 4, 1, 2, 3).contiguous()  # batch, h*w, heads, head_c, disparity
+        key = key.permute(0, 4, 1, 2, 3).contiguous()  # batch, h*w, heads, head_c, disp2
         value = value.reshape(B, C//head_dim, head_dim, value.shape[2], hw)
-        value = value.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disparity, head_c
+        value = value.permute(0, 4, 1, 3, 2).contiguous()  # batch, h*w, heads, disp2, head_c
 
-        sim_map = torch.matmul(query, key)  # batch, h*w, head, disparity, disparity
+        sim_map = torch.matmul(query, key)  # batch, h*w, head, disp1, disp2
         #Q和K先结合得到关注度sim_map
-        #对所有在[h,w]上的元素，对每个head内，计算Q的[视差d，此视差下所有通道构成的特征向量] @ K的[此视差下所有通道构成的特征向量，视差d]
-        #相当于第一步是用Q的disparity_0的特征向量，点乘K的每个视差的特征向量，依次往后面计算disparity_1，disparity_2，……
-        #得到的结果为[disparity, disparity]，也就是 [Q的disparity，此disparity下对K的每个disparity的关注度] 
+        #得到query_feats的每个视差级对key_feats的每个视差级的关注度
 
         if self.matmul_norm: #True
             sim_map = (head_dim ** -0.5) * sim_map
 
-        sim_map = F.softmax(sim_map, dim=-1)    # batch, h*w, head, disparity, disparity
-        context = torch.matmul(sim_map, value)  # batch, h*w, head, disparity, head_c
-        #再把sim_map和V矩阵相乘
-        #相当于是用Q的disparity下对K的每个disparity的关注度，点乘V的对应视差下的特征向量，得到包含关注度的V值。 #TODO
-        context = context.permute(0, 1, 2, 4, 3).flatten(2, 3) # batch, h*w, channels, disparity
+        sim_map = F.softmax(sim_map, dim=-1)
+        context = torch.matmul(sim_map, value)  # batch, h*w, head, disp1, head_c
+        # sim_map是[query_feats每个视差级，query_feats每个视差级对key_feats的每个视差级的关注度]
+        # value是[key_feats的每个视差级，每个视差级下的特征向量]
+        # 第一矩阵第一行相关的点乘结果相当于 query_feats的第一视差级对key_feats所有视差级的关注度 * 对应视差级的特征向量 => query_feats的第一视差级对key_feats所有视差级的关注结果的合
 
-        context = context.permute(0, 2, 3, 1).contiguous()  # batch, channels, disparity, h*w
-        context = context.reshape(B, C, -1, H, W)  # batch, channels, disparity, h, w
+        context = context.permute(0, 1, 2, 4, 3).flatten(2, 3) # batch, h*w, channels, disp1
+
+        context = context.permute(0, 2, 3, 1).contiguous()  # batch, channels, disp1, h*w
+        context = context.reshape(B, C, -1, H, W)  # batch, channels, disp1, h, w
         if self.out_project is not None:
             context = self.out_project(context)
 

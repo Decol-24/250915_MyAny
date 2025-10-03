@@ -63,7 +63,7 @@ class AnyNet(nn.Module):
         self.guidance = Guidance(64) #类似Resnet
         self.up = PropgationNet_4x(64)
 
-        # self.t = time_counter(num=7)
+        self.t = time_counter(num=7)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -178,6 +178,20 @@ class AnyNet(nn.Module):
             else:
                 cost[:, i, :feature_size, :, dis:] = feat_l[:, :, :, dis:]
                 cost[:, i, feature_size:, :, dis:] = feat_r[:, :, :, :-dis]
+
+        return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
+    
+    def _build_volume_2d2(self, feat_l, feat_r, disparity_arange):
+
+        size = feat_l.size()
+        batch_disp = disp[:,None,:,:,:].repeat(1, maxdisp*2-1, 1, 1, 1).view(-1,1,size[-2], size[-1]) #在batch维度之后的维度复制(maxdisp*2-1)份，然后和batch维度合为一个维度 [30,1,32,64]
+        batch_shift = torch.arange(-maxdisp+1, maxdisp, device='cuda').repeat(size[0])[:,None,None,None] * stride #创建视差偏移[-2:2]，然后扩展 [30,1,1,1]
+        batch_disp = batch_disp - batch_shift.float() #减去视差偏移，表示在前级的视差结果再尝试多个偏移，如果偏移后的结果是正确，那么左右图将完全匹配
+        batch_feat_l = feat_l[:,None,:,:,:].repeat(1, maxdisp*2-1, 1, 1, 1).view(-1,size[-3],size[-2], size[-1]) #对这层的输出进行同样的复制操作 [30,4,32,64]
+        batch_feat_r = feat_r[:,None,:,:,:].repeat(1, maxdisp*2-1, 1, 1, 1).view(-1,size[-3],size[-2], size[-1])
+        cost = torch.norm(batch_feat_l - self.warp(batch_feat_r, batch_disp), 1, 1)
+        cost = cost.view(size[0],-1, size[2],size[3])
+        return cost.contiguous()
 
         return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
 
