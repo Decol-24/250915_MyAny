@@ -88,7 +88,6 @@ class AnyNet(nn.Module):
         temp.append(torch.arange(-step+1, step, device='cuda',requires_grad=False))
         return temp
 
-
     def forward(self, left, right):
         # self.t.start(0)
 
@@ -119,7 +118,7 @@ class AnyNet(nn.Module):
         
         preds.append(disp_1_re)
 
-        cost = self._build_volume_2d2(feats_l, feats_r, preds[-1], self.disparity_arange[1])
+        cost = self._build_volume_2d2(feats_l, feats_r, self.disparity_arange[1])
 
         # self.t.end(4)
         # self.t.start(5)
@@ -183,11 +182,14 @@ class AnyNet(nn.Module):
 
         return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
     
-    def _build_volume_2d2(self, feat_l, feat_r, prev_disp, disparity_arange):
-        
-        prev_disp = prev_disp.unsqueeze(1)
-        warp_feat_r = self.warp(feat_r, prev_disp)
-        cost = self._build_volume_2d(feat_l, warp_feat_r, disparity_arange)
+    def _build_volume_2d2(self, feat_l, feat_r, disparity_arange):
+
+        num_disp = disparity_arange.shape[0]
+        B,feature_size,H,W = feat_l.shape
+        cost = torch.ones((B, feature_size*2, num_disp, H, W), device='cuda')
+
+        for idx,dis in enumerate(disparity_arange):
+            cost[:,:,idx] = cost[:,:,idx] * dis
 
         return cost
 
