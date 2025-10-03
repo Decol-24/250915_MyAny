@@ -47,6 +47,7 @@ class AnyNet(nn.Module):
         self.disparity_arange = self.disparity_segmentation(start_disp//4, end_disp//4)
 
         self.feature_extraction = feature_extraction() #Unet
+        self.feature_extraction_2 = feature_extraction() #Unet
 
         self.attention_1 = cross_attention(64)
         self.attention_2 = cross_attention(64)
@@ -118,7 +119,10 @@ class AnyNet(nn.Module):
         
         preds.append(disp_1_re)
 
-        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[1])
+        feats_l_2 = self.feature_extraction(left) #[0]：[1,32,64,128]
+        feats_r_2 = self.feature_extraction(right)
+
+        cost = self._build_volume_2d(feats_l_2, feats_r_2, self.disparity_arange[1])
 
         # self.t.end(4)
         # self.t.start(5)

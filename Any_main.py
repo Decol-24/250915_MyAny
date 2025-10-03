@@ -1,5 +1,5 @@
 from Any_utils.Any_runner import my_runner
-from Any_utils.my_anynet_2 import AnyNet
+from Any_utils.my_anynet_3 import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
