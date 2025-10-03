@@ -1,5 +1,5 @@
 from Any_utils.Any_runner import my_runner
-from Any_utils.my_anynet import AnyNet
+from Any_utils.my_anynet_2 import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
@@ -54,13 +54,13 @@ if __name__ == '__main__':
     parser.add_argument('-seed', default=7777, type=int)
     parser.add_argument('-train_EPOCHS', default=500, type=int)
     parser.add_argument('-train_warm_up', default=30, type=int)
-    parser.add_argument('-train_lr', default=1e-2, type=float)
+    parser.add_argument('-train_lr', default=1e-1, type=float)
     parser.add_argument('-start_disp', default=0, type=int)
     parser.add_argument('-end_disp', default=192, type=int)
     parser.add_argument('-focal_coefficient', default=5.0, type=float)
     parser.add_argument('-sparse', default=False, type=bool)
 
-    parser.add_argument('-batch_size', default=6, type=int)
+    parser.add_argument('-batch_size', default=8, type=int)
 
     parser.add_argument('-mixup_alpha', default=0.5, type=float)
     parser.add_argument('-grad_clip_value', default=1., type=float)

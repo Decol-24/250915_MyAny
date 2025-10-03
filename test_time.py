@@ -9,7 +9,8 @@ import Any_utils.creat_loader as DATA
 import pickle
 
 def test(args,Net,train_loader,val_loader,**kwargs):
-
+    assert args.batch_size == 1
+    
     Net.to(args.device)
 
     for batch_idx, (imgL, imgR, disp_true) in enumerate(train_loader):
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     parser.add_argument('-focal_coefficient', default=5.0, type=float)
     parser.add_argument('-sparse', default=False, type=bool)
 
-    parser.add_argument('-batch_size', default=6, type=int)
+    parser.add_argument('-batch_size', default=1, type=int)
 
     parser.add_argument('-mixup_alpha', default=0.5, type=float)
     parser.add_argument('-grad_clip_value', default=1., type=float)

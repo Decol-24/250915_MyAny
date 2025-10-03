@@ -50,6 +50,7 @@ class AnyNet(nn.Module):
 
         self.attention_1 = cross_attention(64)
         self.attention_2 = cross_attention(64)
+        self.attention_3 = cross_attention(64)
         self.classif_1 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
                                 nn.BatchNorm3d(64),
                                 nn.ReLU(inplace=True),
@@ -110,22 +111,23 @@ class AnyNet(nn.Module):
         # self.t.start(3)
 
         disp_1 = self.attention_1(cost,cost)  #[B,64,disp,H,W]
-        disp_1 = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W+disp]
-        disp_1_re = self.disparity_regression2(disp_1, self.disparity_arange[0]) #[B,H,W+disp]
+        disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,1,disp,H,W]
+        disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W]
 
         # self.t.end(3)
         # self.t.start(4)
         
         preds.append(disp_1_re)
 
-        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[1])
+        cost = self._build_volume_2d2(feats_l, feats_r, preds[-1], self.disparity_arange[1])
 
         # self.t.end(4)
         # self.t.start(5)
 
         disp_2 = self.attention_2(cost,disp_1)
-        disp_2 = self.classif_2(disp_2).squeeze(1)
-        disp_2_re = self.disparity_regression2(disp_2, self.disparity_arange[1])
+        disp_2 = self.attention_3(disp_2,disp_1)
+        disp_2_c = self.classif_2(disp_2).squeeze(1)
+        disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1])
         preds.append(disp_1_re+disp_2_re)
 
         # self.t.end(5)
@@ -180,6 +182,14 @@ class AnyNet(nn.Module):
                 cost[:, i, feature_size:, :, dis:] = feat_r[:, :, :, :-dis]
 
         return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
+    
+    def _build_volume_2d2(self, feat_l, feat_r, prev_disp, disparity_arange):
+        
+        prev_disp = prev_disp.unsqueeze(1)
+        warp_feat_r = self.warp(feat_r, prev_disp)
+        cost = self._build_volume_2d(feat_l, warp_feat_r, disparity_arange)
+
+        return cost
 
     def _build_volume_2d3(self, feat_l, feat_r, maxdisp, disp, stride=1):
         # disp 为上一层的视差输出

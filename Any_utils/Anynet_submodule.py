@@ -141,8 +141,8 @@ class SelfAttentionBlock(nn.Module):
 
     #修改过的多头自注意力机制，Q和K不同源
     def forward(self, query_feats, key_feats):
-        # query_feats: [B,64,disp1,H,W+disp]
-        # key_feats: [B,64,disp2,H,W+disp]
+        # query_feats: [B,64,disp1,H,W]
+        # key_feats: [B,64,disp2,H,W]
         head_dim = 8
         B, C, H, W = query_feats.shape[0], query_feats.shape[1], query_feats.shape[3], query_feats.shape[4]
         hw = H*W
