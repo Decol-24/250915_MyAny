@@ -35,7 +35,7 @@ class my_runner(object):
             self.logger.info("Epoches: [{}/{}] ============================".format(ep, self.setting.train_EPOCHS))
             scheduler.step(ep)
 
-            self.train_one_epoch(ep,train_loader,optimizer,criterion,self.setting.device)
+            self.train_one_epoch_amp(ep,train_loader,optimizer,criterion,self.setting.device)
 
             val_epe = self.val_onece(val_loader,self.setting.device)
 
@@ -71,6 +71,40 @@ class my_runner(object):
             sum(loss).backward()
             dispatch_clip_grad(self.model.parameters(), self.setting.grad_clip_value)
             optimizer.step()
+            idx += disp_true.shape[0]
+
+            if batch_idx % 200 == 0:
+                self.logger.info("step: [{}/{}] | loss_1: {:.3f} | loss_2: {:.3f} | loss_3: {:.3f} | epe: {:.3f}"
+                                 .format(batch_idx, len(train_loader), train_loss_1 / (idx), train_loss_2 / (idx), train_loss_3 / (idx), train_epe / (idx)))
+
+    def train_one_epoch_amp(self,ep,train_loader,optimizer,criterion,device):
+        train_loss_1 = train_loss_2 = train_loss_3 = 0
+        train_epe = 0
+        self.model.train()
+        idx = 0
+        scaler = torch.amp.GradScaler()
+
+        for batch_idx, (imgL, imgR, disp_true) in enumerate(train_loader):
+            
+            imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
+            mask = ((disp_true >= self.setting.start_disp) & (disp_true < self.setting.end_disp)).byte().bool() # 让超出范围的视差不影响loss
+            mask.detach_()
+            optimizer.zero_grad()
+            with torch.autocast(device_type='cuda', dtype=torch.float16):
+                preds = self.model(imgL, imgR)
+                loss = criterion(preds, disp_true)
+            epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
+            train_loss_1 += loss[0].item()
+            train_loss_2 += loss[1].item()
+            train_loss_3 += loss[2].item()
+            train_epe += epe.item()
+            loss = sum(loss)
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            dispatch_clip_grad(self.model.parameters(), self.setting.grad_clip_value)
+            scaler.step(optimizer)
+            scaler.update()
+
             idx += disp_true.shape[0]
 
             if batch_idx % 200 == 0:
