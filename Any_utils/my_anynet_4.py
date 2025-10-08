@@ -49,8 +49,9 @@ class AnyNet(nn.Module):
         self.feature_extraction = feature_extraction() #Unet
         self.feature_extraction_2 = feature_extraction() #Unet
 
-        self.attention_1 = cross_attention(64)
-        self.attention_2 = cross_attention(64)
+        self.attention_1_1 = cross_attention(64,key_query_num_convs=2)
+        self.attention_1_2 = cross_attention(64,key_query_num_convs=2)
+        self.attention_2 = cross_attention(64,key_query_num_convs=2)
         self.classif_1 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
                                 nn.BatchNorm3d(64),
                                 nn.ReLU(inplace=True),
@@ -64,7 +65,7 @@ class AnyNet(nn.Module):
         self.guidance = Guidance(64) #类似Resnet
         self.up = PropgationNet_4x(64)
 
-        self.t = time_counter(num=7)
+        # self.t = time_counter(num=7)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -110,7 +111,8 @@ class AnyNet(nn.Module):
         # self.t.end(2)
         # self.t.start(3)
 
-        disp_1 = self.attention_1(cost,cost)  #[B,64,disp,H,W]
+        disp_1 = self.attention_1_1(cost,cost)  #[B,64,disp,H,W]
+        disp_1 = self.attention_1_2(disp_1,disp_1)  #[B,64,disp,H,W]
         disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W+disp]
         disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W+disp]
 

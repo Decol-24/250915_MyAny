@@ -130,17 +130,23 @@ class my_runner(object):
         val_epe = idx = 0
         self.model.eval()
 
-        for _, (imgL, imgR, disp_true) in enumerate(val_loader):
+        for batch_idx, (imgL, imgR, disp_true) in enumerate(val_loader):
             imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
             mask = ((disp_true >= self.setting.start_disp) & (disp_true < self.setting.end_disp)).byte().bool() # 得到一个布尔张量，标记出 0 < disp_true < 192 的像素
             mask.detach_()
-            if mask.sum() >= 1.0:
-                preds = self.model(imgL, imgR)
-                epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
-                val_epe += epe.item()
-                idx += 1
+            zero_mask = 0
+            for m in mask:
+                if m.sum() < 0:
+                    zero_mask += 1
+            valid_sample = disp_true.shape[0] - zero_mask
 
-        val_epe /= (idx)
+            preds = self.model(imgL, imgR)
+
+            H, W = disp_true[0].shape[-2], disp_true[0].shape[-1]
+            epe = torch.sum(torch.abs(preds[-1][mask] - disp_true[mask])) / (H * W * valid_sample)
+            val_epe += epe.item()
+
+        val_epe /= batch_idx
 
         return val_epe
 

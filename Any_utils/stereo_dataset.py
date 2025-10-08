@@ -139,7 +139,9 @@ def dataloader_toy_SceneFlow(filepath):
     subdir = ['A', 'B', 'C'] #飞行图像的子目录
 
     for ss in subdir:
-        flying = os.listdir(flying_dir + ss)[:1]
+        flying_list = os.listdir(flying_dir + ss)
+        flying_list.sort()
+        flying = flying_list[:100]
         for ff in flying:
             imm_l = os.listdir(flying_dir + ss + '/' + ff + '/left/')
             for im in imm_l:
@@ -156,7 +158,9 @@ def dataloader_toy_SceneFlow(filepath):
     subdir = ['A', 'B', 'C']
 
     for ss in subdir:
-        flying = os.listdir(flying_dir + ss)[:1]
+        flying_list = os.listdir(flying_dir + ss)
+        flying_list.sort()
+        flying = flying_list[:50]
         for ff in flying:
             imm_l = os.listdir(flying_dir + ss + '/' + ff + '/left/')
             for im in imm_l:

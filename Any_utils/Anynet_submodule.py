@@ -226,7 +226,7 @@ class cross_attention(nn.Module):
             share_key_query=False,
             query_downsample=None,
             key_downsample=None,
-            key_query_num_convs=1,
+            key_query_num_convs=key_query_num_convs,
             value_out_num_convs=1,
             key_query_norm=True,
             value_out_norm=True,
