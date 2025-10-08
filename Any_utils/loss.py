@@ -21,36 +21,37 @@ class l1_loss(object):
 
         weights = [1.0, 1.0, 1.0]
         all_losses = []
+
         for disp_est, weight in zip(disp_ests, weights):
             B,H,W = disp_est.shape
+
+            if disp_gt[0].shape[-2] != H or disp_gt[0].shape[-1] != W:
+                # 当此级别的预测代价体的高宽与真实视差图的高宽不一致时，计算缩放比例并缩放真实视差图
+                scale = disp_gt[0].shape[-1] / (W * 1.0)
+                scaled_gtDisp = disp_gt / scale
+
+                scaled_gtDisp = self.scale_func(scaled_gtDisp, (H, W))
+                scaled_max_disp = int(self.max_disp/scale)
+                lower_bound = self.start_disp
+                upper_bound = lower_bound + scaled_max_disp
+                mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
+            else:
+                scaled_gtDisp = disp_gt
+                mask = (scaled_gtDisp >= self.start_disp) & (scaled_gtDisp < self.end_disp).detach_().byte().bool()
+
+            loss_b = []
             for batch in range(B):
-                loss_b = []
-                disp_est_b = disp_est[batch].unsqueeze(0)
-                disp_gt_b = disp_gt[batch].unsqueeze(0)
-                if disp_gt[batch].shape[-2] != H or disp_gt[batch].shape[-1] != W:
-                    # 当此级别的预测代价体的高宽与真实视差图的高宽不一致时，计算缩放比例并缩放真实视差图
-                    scale = disp_gt_b.shape[-1] / (W * 1.0)
-                    scaled_gtDisp = disp_gt_b / scale
 
-                    scaled_gtDisp = self.scale_func(scaled_gtDisp, (H, W))
-                    scaled_max_disp = int(self.max_disp/scale)
-                    lower_bound = self.start_disp
-                    upper_bound = lower_bound + scaled_max_disp
-                    mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
+                if mask[batch].sum() < 1.0:
+                    loss = disp_est[batch].sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
+                # self.logger.info('No point in range!')
                 else:
-                    scaled_gtDisp = disp_gt_b
-                    mask = (scaled_gtDisp >= self.start_disp) & (scaled_gtDisp < self.end_disp).detach_().byte().bool()
+                    mask_scaled_gtDisp = scaled_gtDisp[batch] * mask[batch]
+                    loss = F.smooth_l1_loss(disp_est[batch], mask_scaled_gtDisp, reduction='mean')
 
-                if mask.sum() < 1.0:
-                    loss = disp_est_b.sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
-                    # self.logger.info('No point in range!')
-                else:
-                    mask_scaled_gtDisp = scaled_gtDisp * mask
-                    loss = F.smooth_l1_loss(disp_est_b, mask_scaled_gtDisp, reduction='mean')
+                loss_b.append(weight*loss)
 
-                loss_b.append(loss)
-
-            all_losses.append(weight*sum(loss_b))
+            all_losses.append(sum(loss_b))
 
         return all_losses
 

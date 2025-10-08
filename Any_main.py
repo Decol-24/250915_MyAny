@@ -35,11 +35,7 @@ def test(args,Net,train_loader,val_loader,**kwargs):
     runner.set_model(Net)
     runner.load_pth(args.pth_load)
 
-    runner.logger.info("Train start.")
-    # val_acc = runner.test(val_loader)
-    # runner.logger.info("val_acc: {}".format(val_acc))
-
-    val_epe = runner.val_onece(val_loader,runner.setting.device)
+    val_epe = runner.val_onece(train_loader,runner.setting.device)
     runner.logger.info('val_epe: {:.3f}'.format(val_epe))
     
 if __name__ == '__main__':
@@ -48,13 +44,12 @@ if __name__ == '__main__':
     parser.add_argument('-save_path', default='./pth', type=str)
     parser.add_argument('-save_epe', default=8., type=float)
     parser.add_argument('-data_path', default='/home/liqi/Code/Scene_Flow_Datasets/')
-    parser.add_argument('-pth_load', default='./sceneflow_2.pth', type=str)
+    parser.add_argument('-pth_load', default='./69_4.69.pth', type=str)
 
     parser.add_argument('-device', default='cuda:0', type=str) #cuda:0  cpu
     parser.add_argument('-seed', default=7777, type=int)
-    parser.add_argument('-train_EPOCHS', default=500, type=int)
-    parser.add_argument('-train_warm_up', default=30, type=int)
-    parser.add_argument('-train_lr', default=1e-1, type=float)
+    parser.add_argument('-train_EPOCHS', default=300, type=int)
+    parser.add_argument('-train_lr', default=1e-2, type=float)
     parser.add_argument('-start_disp', default=0, type=int)
     parser.add_argument('-end_disp', default=192, type=int)
     parser.add_argument('-focal_coefficient', default=5.0, type=float)

@@ -215,7 +215,7 @@ class SelfAttentionBlock(nn.Module):
         return convs[0]
     
 class cross_attention(nn.Module):
-    def __init__(self, feats_channels, **kwargs):
+    def __init__(self, feats_channels, key_query_num_convs=1, **kwargs):
         super(cross_attention, self).__init__()
         
         self.cross_attention = SelfAttentionBlock(

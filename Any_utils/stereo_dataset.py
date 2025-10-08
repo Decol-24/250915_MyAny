@@ -11,6 +11,7 @@ import numpy as np
 import chardet
 import torchvision.transforms as transforms
 import torch
+import time
 
 def sub_dataset(dataset,factor=100):
     #等距序列做索引下标
@@ -214,12 +215,10 @@ __imagenet_stats = {'mean': [0.485, 0.456, 0.406],
 
 
 def base_norm(normalize=__imagenet_stats):
-    t_list = [
+    return transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(**normalize),
-    ]
-
-    return transforms.Compose(t_list)
+    ])
 
 def inception_color_preproccess(normalize=__imagenet_stats):
     return transforms.Compose([
@@ -272,6 +271,7 @@ class myImageFloder_SceneFlow(data.Dataset):
             self.transforms = base_norm()
 
     def __getitem__(self, index):
+
         left = self.left[index]
         right = self.right[index]
         _disp_L = self.disp_L[index]
@@ -308,4 +308,3 @@ class myImageFloder_SceneFlow(data.Dataset):
             return Image.open(path)
         else:
             return readPFM(path)
-    
