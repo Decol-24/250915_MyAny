@@ -40,7 +40,6 @@ def test(args,Net,train_loader,val_loader,**kwargs):
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-g', '--gpu', default=0, dest='gpu', type=int, help='GPU number')
     parser.add_argument('-save_path', default='./pth', type=str)
     parser.add_argument('-save_epe', default=8., type=float)
     parser.add_argument('-data_path', default='/home/liqi/Code/Scene_Flow_Datasets/')
@@ -52,12 +51,10 @@ if __name__ == '__main__':
     parser.add_argument('-train_lr', default=1e-2, type=float)
     parser.add_argument('-start_disp', default=0, type=int)
     parser.add_argument('-end_disp', default=192, type=int)
-    parser.add_argument('-focal_coefficient', default=5.0, type=float)
     parser.add_argument('-sparse', default=False, type=bool)
 
     parser.add_argument('-batch_size', default=8, type=int)
 
-    parser.add_argument('-mixup_alpha', default=0.5, type=float)
     parser.add_argument('-grad_clip_value', default=1., type=float)
     args = parser.parse_args()
 
