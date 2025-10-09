@@ -40,7 +40,7 @@ class time_counter():
 
 
 class AnyNet(nn.Module):
-    def __init__(self, start_disp, end_disp):
+    def __init__(self, start_disp, end_disp, **kwargs):
         super(AnyNet,self).__init__()
 
         self.refine_spn = None

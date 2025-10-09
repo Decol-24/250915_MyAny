@@ -1,4 +1,4 @@
-from Any_utils.Any_runner import my_runner
+from Any_utils.Any_runner_2 import my_runner
 from Any_utils.my_anynet_4 import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     parser.add_argument('-save_path', default='./pth', type=str)
     parser.add_argument('-save_epe', default=8., type=float)
     parser.add_argument('-data_path', default='/home/liqi/Code/Scene_Flow_Datasets/')
-    parser.add_argument('-pth_load', default='./69_4.69.pth', type=str)
+    parser.add_argument('-pth_load', default='./003_6.82.pth', type=str)
 
     parser.add_argument('-device', default='cuda:0', type=str) #cuda:0  cpu
     parser.add_argument('-seed', default=7777, type=int)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     train_loader, test_loader = DATA.creat_toy_SceneFlow(args.data_path,batch_size=args.batch_size)
 
     #model
-    Net = AnyNet(args.start_disp,args.end_disp)
+    Net = AnyNet(args.start_disp,args.end_disp,device=args.device)
     if "cuda:" in args.device:
         torch.cuda.manual_seed(args.seed)
 

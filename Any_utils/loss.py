@@ -19,7 +19,8 @@ class l1_loss(object):
 
     def __call__(self, disp_ests, disp_gt):
 
-        weights = [1.0, 1.0, 1.0]
+        weights = [1.0]
+        disp_ests = [disp_ests]
         all_losses = []
 
         for disp_est, weight in zip(disp_ests, weights):
@@ -54,6 +55,135 @@ class l1_loss(object):
             all_losses.append(sum(loss_b))
 
         return all_losses
+    
+class loss_sparse(object):
+    def __init__(self,start_disp, end_disp, logger, disparity_arange, sparse=False):
+        self.start_disp = start_disp
+        self.end_disp = end_disp
+        self.max_disp = end_disp - start_disp
+        self.logger = logger
+        self.disparity_arange = disparity_arange
+        if sparse:
+            # sparse disparity ==> max_pooling
+            self.scale_func = F.adaptive_max_pool2d
+        else:
+            # dense disparity ==> avg_pooling
+            self.scale_func = F.adaptive_avg_pool2d
+            #缩放函数
+
+    def __call__(self, disp_est_sparse, disp_est_bias, disp_gt):
+
+        weight = [1.0, 1.0]
+        all_loss = []
+
+        B,H,W = disp_est_sparse.shape
+
+        if disp_gt[0].shape[-2] != H or disp_gt[0].shape[-1] != W:
+            # 当此级别的预测代价体的高宽与真实视差图的高宽不一致时，计算缩放比例并缩放真实视差图
+            scale = disp_gt[0].shape[-1] / (W * 1.0)
+            scaled_gtDisp = disp_gt / scale
+
+            scaled_gtDisp = self.scale_func(scaled_gtDisp, (H, W))
+            scaled_max_disp = int(self.max_disp/scale)
+            lower_bound = self.start_disp
+            upper_bound = lower_bound + scaled_max_disp
+            mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
+        else:
+            scaled_gtDisp = disp_gt
+            mask = (scaled_gtDisp >= self.start_disp) & (scaled_gtDisp < self.end_disp).detach_().byte().bool()
+
+        #loss_sparse
+        loss_sparse_b = []
+        prev_mask_scaled_gtDisp = [None for i in range(B)]
+        prev_disp_est_sparse = [None for i in range(B)]
+        
+        for batch in range(B):
+
+            if mask[batch].sum() < 1.0:
+                loss = disp_est_sparse[batch].sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
+            # self.logger.info('No point in range!')
+            else:
+                mask_scaled_gtDisp = scaled_gtDisp[batch] * mask[batch]
+                prev_mask_scaled_gtDisp[batch] = mask_scaled_gtDisp
+                idx = torch.argmin(torch.abs(mask_scaled_gtDisp.view(-1, 1) - self.disparity_arange), dim=1)
+                prev_disp_est_sparse[batch] = disp_est_sparse[batch].view(-1)
+                loss = F.smooth_l1_loss(prev_disp_est_sparse[batch], self.disparity_arange[idx], reduction='mean')
+
+            loss_sparse_b.append(weight[0]*loss)
+        
+        all_loss.append(sum(loss_sparse_b))
+
+        #loss_bias
+        loss_bias_b = []
+        for batch in range(B):
+
+            if mask[batch].sum() < 1.0:
+                loss = disp_est_sparse[batch].sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
+            # self.logger.info('No point in range!')
+            else:
+                loss = F.smooth_l1_loss(prev_mask_scaled_gtDisp[batch].view(-1) - prev_disp_est_sparse[batch], disp_est_bias[batch].view(-1), reduction='mean')
+
+            loss_bias_b.append(weight[1]*loss)
+        
+        all_loss.append(sum(loss_bias_b))
+
+        return all_loss
+    
+# class loss_sparse(object):
+#     def __init__(self,start_disp, end_disp, logger, disparity_arange, sparse=False):
+#         self.start_disp = start_disp
+#         self.end_disp = end_disp
+#         self.max_disp = end_disp - start_disp
+#         self.logger = logger
+#         self.disparity_arange = disparity_arange
+#         if sparse:
+#             # sparse disparity ==> max_pooling
+#             self.scale_func = F.adaptive_max_pool2d
+#         else:
+#             # dense disparity ==> avg_pooling
+#             self.scale_func = F.adaptive_avg_pool2d
+#             #缩放函数
+
+#     def __call__(self, disp_est_sparse, disp_est_bias, disp_gt):
+
+#         weight = [1.0, 1.0]
+#         all_loss = []
+
+#         B,H,W = disp_est_sparse.shape
+
+#         if disp_gt[0].shape[-2] != H or disp_gt[0].shape[-1] != W:
+#             # 当此级别的预测代价体的高宽与真实视差图的高宽不一致时，计算缩放比例并缩放真实视差图
+#             scale = disp_gt[0].shape[-1] / (W * 1.0)
+#             scaled_gtDisp = disp_gt / scale
+
+#             scaled_gtDisp = self.scale_func(scaled_gtDisp, (H, W))
+#             scaled_max_disp = int(self.max_disp/scale)
+#             lower_bound = self.start_disp
+#             upper_bound = lower_bound + scaled_max_disp
+#             mask = (scaled_gtDisp > lower_bound) & (scaled_gtDisp < upper_bound).detach_().byte().bool()
+#         else:
+#             scaled_gtDisp = disp_gt
+#             mask = (scaled_gtDisp >= self.start_disp) & (scaled_gtDisp < self.end_disp).detach_().byte().bool()
+
+#         #loss_sparse
+#         loss_sparse_b = []
+#         for batch in range(B):
+
+#             if mask[batch].sum() < 1.0:
+#                 loss = disp_est_sparse[batch].sum() * 0.0  # 为了正确检测此项，需要分batch计算mask
+#             # self.logger.info('No point in range!')
+#             else:
+#                 mask_scaled_gtDisp = scaled_gtDisp[batch] * mask[batch]
+#                 idx = torch.argmin(torch.abs(mask_scaled_gtDisp.view(-1, 1) - self.disparity_arange), dim=1)
+#                 loss = F.smooth_l1_loss(disp_est_sparse[batch].view(-1), self.disparity_arange[idx], reduction='mean')
+
+#             loss_sparse_b.append(weight*loss)
+        
+#         all_loss.append(sum(loss_sparse_b))
+
+#         #loss_bias
+
+#         return sum(loss_b)
 
 def model_loss(disp_est, disp_gt, mask):
 

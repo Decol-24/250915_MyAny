@@ -92,7 +92,7 @@ class my_runner(object):
             
             imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
 
-            # 让超出范围的视差不影响loss
+            # 用mask做索引，所以超出范围的视差被排除
             mask = ((disp_true >= self.setting.start_disp) & (disp_true < self.setting.end_disp)).byte().bool() 
             mask.detach_()
             zero_mask = 0
@@ -106,8 +106,7 @@ class my_runner(object):
                 preds = self.model(imgL, imgR)
                 loss = criterion(preds, disp_true)
 
-            H, W = disp_true[0].shape[-2], disp_true[0].shape[-1]
-            epe = torch.sum(torch.abs(preds[-1][mask] - disp_true[mask])) / (H * W * valid_sample)
+            epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
 
             train_loss_1 += (loss[0].item()) / valid_sample
             train_loss_2 += (loss[1].item()) / valid_sample
@@ -123,7 +122,6 @@ class my_runner(object):
             if batch_idx % 200 == 0:
                 self.logger.info("step: [{}/{}] | loss_1: {:.3f} | loss_2: {:.3f} | loss_3: {:.3f} | epe: {:.3f}"
                                  .format(batch_idx+1, len(train_loader), train_loss_1 / (batch_idx+1), train_loss_2 / (batch_idx+1), train_loss_3 / (batch_idx+1), train_epe / (batch_idx+1)))
-                
 
     @torch.no_grad()
     def val_onece(self,val_loader,device):
@@ -132,18 +130,12 @@ class my_runner(object):
 
         for batch_idx, (imgL, imgR, disp_true) in enumerate(val_loader):
             imgL, imgR, disp_true = imgL.to(device), imgR.to(device), disp_true.to(device)
-            mask = ((disp_true >= self.setting.start_disp) & (disp_true < self.setting.end_disp)).byte().bool() # 得到一个布尔张量，标记出 0 < disp_true < 192 的像素
+            mask = ((disp_true >= self.setting.start_disp) & (disp_true < self.setting.end_disp)).byte().bool()
             mask.detach_()
-            zero_mask = 0
-            for m in mask:
-                if m.sum() < 0:
-                    zero_mask += 1
-            valid_sample = disp_true.shape[0] - zero_mask
 
             preds = self.model(imgL, imgR)
 
-            H, W = disp_true[0].shape[-2], disp_true[0].shape[-1]
-            epe = torch.sum(torch.abs(preds[-1][mask] - disp_true[mask])) / (H * W * valid_sample)
+            epe = torch.sum(torch.abs(preds[-1][mask] - disp_true[mask]))
             val_epe += epe.item()
 
         val_epe /= batch_idx
