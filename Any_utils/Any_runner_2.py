@@ -93,6 +93,7 @@ class my_runner(object):
         train_epe = 0
         self.model.train()
         scaler = torch.amp.GradScaler()
+        weight = [1.0,0.2,0.0]
 
         for batch_idx, (imgL, imgR, disp_true) in enumerate(train_loader):
             
@@ -110,8 +111,8 @@ class my_runner(object):
             optimizer.zero_grad()
             with torch.autocast(device_type='cuda', dtype=torch.float16):
                 preds = self.model(imgL, imgR)
-                loss = criterion(preds[0], preds[1], disp_true)
-                loss = loss + criterion_2(preds[-1], disp_true)
+                loss = criterion(preds[0], disp_true)
+                loss = [loss] + criterion_2(preds[1:], disp_true)
 
             epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
 
@@ -119,7 +120,10 @@ class my_runner(object):
             train_loss_2 += (loss[1].item()) / valid_sample
             train_loss_3 += (loss[2].item()) / valid_sample
             train_epe += epe.item()
+
+            loss = [x * y for x, y in zip(loss, weight)]
             loss = sum(loss)
+
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
             dispatch_clip_grad(self.model.parameters(), self.s.grad_clip_value)
