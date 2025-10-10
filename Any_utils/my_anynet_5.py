@@ -45,28 +45,35 @@ class AnyNet(nn.Module):
         super(AnyNet,self).__init__()
 
         self.device = device
-        self.refine_spn = None
         self.disparity_arange = None
+        self.num_groups = 32
 
         self.feature_extraction = feature_extraction() #Unet
         self.feature_extraction_2 = feature_extraction() #Unet
 
-        self.attention_1 = cross_attention(64,key_query_num_convs=2)
-        self.attention_2 = cross_attention(64,key_query_num_convs=2)
-        self.classif_1 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
-                                nn.BatchNorm3d(64),
+        self.attention_1 = cross_attention(self.num_groups,key_query_num_convs=1)
+        self.attention_2 = cross_attention(self.num_groups,key_query_num_convs=1)
+        self.attention_3 = cross_attention(self.num_groups,key_query_num_convs=1)
+
+        self.classif_1 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                                nn.BatchNorm3d(self.num_groups),
                                 nn.ReLU(inplace=True),
-                                nn.Conv3d(64, 1, kernel_size=3, padding=1, stride=1, bias=False))
+                                nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
         
-        self.classif_2 = nn.Sequential(nn.Conv3d(64, 64, kernel_size=3, stride=1,padding=1, bias=False),
-                                nn.BatchNorm3d(64),
+        self.classif_2 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                                nn.BatchNorm3d(self.num_groups),
                                 nn.ReLU(inplace=True),
-                                nn.Conv3d(64, 1, kernel_size=3, padding=1, stride=1, bias=False))
+                                nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
+        
+        self.classif_3 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                                nn.BatchNorm3d(self.num_groups),
+                                nn.ReLU(inplace=True),
+                                nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
 
-        self.guidance = Guidance(64) #类似Resnet
-        self.up = PropgationNet_4x(64)
+        self.guidance = Guidance(self.num_groups) #类似Resnet
+        self.up = PropgationNet_4x(self.num_groups)
 
-        self.t = time_counter(num=7)
+        self.t = time_counter(num=8)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -88,52 +95,40 @@ class AnyNet(nn.Module):
         self.disparity_arange = disparity_arange
 
     def forward(self, left, right):
-        # self.t.start(0)
+        self.t.start(0)
 
-        feats_l = self.feature_extraction(left) #[0]：[1,32,64,128]
+        feats_l = self.feature_extraction(left) #[0]：[1,320,64,128]
         feats_r = self.feature_extraction(right)
-
-        # self.t.end(0)
-        # self.t.start(1)
 
         guidance = self.guidance(left) #根据左图构建指导体
 
-        # self.t.end(1)
-        # self.t.start(2)
-
         preds = []
 
-        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[0]) #[B,64,disp,H,W]
+        cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[0], self.num_groups) #[B,32,disp,H,W]
+        disp_1 = self.attention_1(cost,cost)  #[B,32,disp,H,W]
+        disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W]
+        disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W]
+        preds.append(disp_1_re)
+
+        cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[1], self.num_groups) #[B,32,disp,H,W]
+        disp_2 = self.attention_2(cost,cost)  #[B,32,disp,H,W]
+        disp_2_c = self.classif_2(disp_2).squeeze(1) #[B,disp,H,W]
+        disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1]) #[B,H,W]
+        preds.append(disp_2_re)
+
+        cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[2], self.num_groups) #[B,32,disp,H,W]
+        disp_3 = self.attention_3(cost,cost)  #[B,32,disp,H,W]
+        disp_3_c = self.classif_3(disp_3).squeeze(1) #[B,disp,H,W]
+        disp_3_re = self.disparity_regression2(disp_3_c, self.disparity_arange[2]) #[B,H,W]
+        preds.append(disp_3_re)
 
         # self.t.end(2)
         # self.t.start(3)
 
-        disp_1 = self.attention_1(cost,cost)  #[B,64,disp,H,W]
-        disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W+disp]
-        disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W+disp]
-
-        # self.t.end(3)
-        # self.t.start(4)
-        
-        preds.append(disp_1_re)
-
-        cost = self._build_volume_2d(feats_l, feats_r, self.disparity_arange[1])
-
-        # self.t.end(4)
-        # self.t.start(5)
-
-        disp_2 = self.attention_2(cost,disp_1)
-        disp_2_c = self.classif_2(disp_2).squeeze(1)
-        disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1])
-        preds.append(disp_2_re)
-
-        # self.t.end(5)
-        # self.t.start(6)
-
         disp_up = self.up(guidance, preds[0]+preds[1]) #[B,256,512]
         preds.append(disp_up)
 
-        # self.t.end(6)
+        # self.t.end(7)
 
         return preds
 
@@ -152,6 +147,31 @@ class AnyNet(nn.Module):
                 cost[:, i, feature_size:, :, dis:] = feat_r[:, :, :, :-dis]
 
         return cost.permute(0,2,1,3,4).contiguous() #[B, feature*2, disp, W, H]
+    
+        #构造gwc 代价体
+    def _build_gwc_volume(self, feat_l, feat_r, disparity_arange, num_groups):
+        # num_groups为组的数列
+        B, C, H, W = feat_l.shape
+        maxdisp = len(disparity_arange)
+        volume = feat_l.new_zeros([B, num_groups, maxdisp, H, W])
+        for i,dis in enumerate(disparity_arange):
+            if dis == 0:
+                volume[:, :, i, :, :] = self._groupwise_correlation(feat_l, feat_r, num_groups)
+            else:
+                volume[:, :, i, :, dis:] = self._groupwise_correlation(feat_l[:, :, :, dis:], feat_r[:, :, :, :-dis], num_groups)
+
+        volume = volume.contiguous() #[B,num_groups,disp,H,W]
+        return volume
+    
+    def _groupwise_correlation(self,fea1, fea2, num_groups):
+        #fea.shape = [B,C,H,W]
+        B, C, H, W = fea1.shape
+        assert C % num_groups == 0
+        channels_per_group = C // num_groups
+        cost = (fea1 * fea2).view([B, num_groups, channels_per_group, H, W]).mean(dim=2) 
+        # fea1 和 fea2 按元素相乘得到[B, C, H, W]，然后分成多个组，在每个组内求平均来压缩channel维度
+        assert cost.shape == (B, num_groups, H, W)
+        return cost
 
     #和GC-net一样的softmax
     def disparity_regression2(self, x, disparity_arange):

@@ -235,19 +235,6 @@ def inception_color_preproccess(normalize=__imagenet_stats):
         transforms.Normalize(**normalize)
     ])
 
-def pad_img(left_img,right_img,disp_L,th=576,tw=960):
-
-    h = left_img.shape[1]
-    w = left_img.shape[2]
-    pad_w = tw - w if tw - w > 0 else 0
-    pad_h = th - h if th - h > 0 else 0
-    pad_opr = torch.nn.ZeroPad2d((pad_w, 0, pad_h, 0))
-    img_left_pad = pad_opr(left_img)
-    img_right_pad = pad_opr(right_img)
-    disp_L_pad = pad_opr(disp_L)
-
-    return img_left_pad, img_right_pad, disp_L_pad
-
 def crop_img(left_img,right_img,disp_L,th=256,tw=512):
 
     h, w = left_img.shape[-2], left_img.shape[-1]

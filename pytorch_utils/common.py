@@ -84,7 +84,7 @@ def thop_macs(net,input=None,device=None):
         x = x.to(device)
     else:
         net.to('cpu')
-    macs, params = thop.profile(net,inputs=(x,))
+    macs, params = thop.profile(net,inputs=(x,x))
     macs, params = clever_format([macs, params], "%.2f")
     # print('macs:',macs, 'params:', params,)
     return macs, params

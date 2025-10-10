@@ -1,5 +1,5 @@
-from Any_utils.Any_runner_2 import my_runner
-from Any_utils.my_anynet_4 import AnyNet
+from Any_utils.Any_runner_3 import my_runner
+from Any_utils.my_anynet_5 import AnyNet
 from pytorch_utils.common import creat_folder
 from pytorch_utils.warmup_scheduler import GradualWarmupScheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-device', default='cuda:0', type=str) #cuda:0  cpu
     parser.add_argument('-seed', default=7777, type=int)
-    parser.add_argument('-train_EPOCHS', default=100, type=int)
+    parser.add_argument('-train_EPOCHS', default=300, type=int)
     parser.add_argument('-train_lr', default=1e-2, type=float)
     parser.add_argument('-start_disp', default=0, type=int)
     parser.add_argument('-end_disp', default=192, type=int)
