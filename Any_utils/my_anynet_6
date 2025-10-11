@@ -61,11 +61,23 @@ class AnyNet(nn.Module):
                                 nn.BatchNorm3d(self.num_groups),
                                 nn.ReLU(inplace=True),
                                 nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
+        self.classif_2 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                        nn.BatchNorm3d(self.num_groups),
+                        nn.ReLU(inplace=True),
+                        nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
+        self.classif_3 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                        nn.BatchNorm3d(self.num_groups),
+                        nn.ReLU(inplace=True),
+                        nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
+        self.classif_4 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
+                        nn.BatchNorm3d(self.num_groups),
+                        nn.ReLU(inplace=True),
+                        nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
 
         self.guidance = Guidance(self.num_groups) #类似Resnet
         self.up = PropgationNet_4x(self.num_groups)
 
-        self.t = time_counter(num=6)
+        self.t = time_counter(num=7)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -98,34 +110,36 @@ class AnyNet(nn.Module):
         self.t.start(1)
 
         disps = []
+        preds = []
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[0], self.num_groups) #[B,32,disp,H,W]
-
-        self.t.end(1)
-        self.t.start(2)
-
         disp_1 = self.attention_1(cost,cost)  #[B,32,disp,H,W]
-
-        self.t.end(2)
-        self.t.start(3)
-
         disps.append(disp_1)
+
+        disp_1 = self.classif_1(disp_1).squeeze(1)
+        pred_1 = self.disparity_regression2(disp_1, self.disparity_arange[0])
+        preds.apppen(pred_1)
+
+
+        
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[1], self.num_groups) #[B,32,disp,H,W]
         disp_2 = self.attention_2(cost,cost)  #[B,32,disp,H,W]
-
-        self.t.end(3)
-        self.t.start(4)
-
         disps.append(disp_2)
+
+        disp_2 = self.classif_2(disp_2).squeeze(1)
+        pred_2 = self.disparity_regression2(disp_2, self.disparity_arange[1])
+        preds.apppen(pred_2)
+
+        
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[2], self.num_groups) #[B,32,disp,H,W]
         disp_3 = self.attention_3(cost,cost)  #[B,32,disp,H,W]
-
-        self.t.end(4)
-        self.t.start(5)
-
         disps.append(disp_3)
+
+        disp_3 = self.classif_3(disp_3).squeeze(1)
+        pred_3 = self.disparity_regression2(disp_3, self.disparity_arange[2])
+        preds.apppen(pred_3)
 
         merged_disp = self._merge_volume(disps,self.disparity_arange)
 
@@ -141,7 +155,7 @@ class AnyNet(nn.Module):
 
         # self.t.end(7)
 
-        return disp_up
+        return preds, disp_up
 
     def _build_volume_2d(self, feat_l, feat_r, disparity_arange):
 
