@@ -9,7 +9,7 @@ import Any_utils.creat_loader as DATA
 import pickle
 from pytorch_utils.common import thop_macs
 
-def test(args,Net,train_loader,val_loader,**kwargs):
+def time(args,Net,train_loader,val_loader,**kwargs):
     assert args.batch_size == 1
 
     Net = Net.to(args.device)
@@ -27,6 +27,18 @@ def test(args,Net,train_loader,val_loader,**kwargs):
         preds = Net(imgL, imgR)
 
     print(Net.t.all_avg_time_str(30))
+
+def flops(Net,runner):
+    Net = Net.to(runner.s.device)
+    input = torch.randn(1,3,256,512).to(runner.s.device)
+
+    from fvcore.nn import FlopCountAnalysis
+    flops = FlopCountAnalysis(Net, (input, input))   # FLOPs（乘加=2）
+    total_flops = flops.total()
+
+    total_params = sum(p.numel() for p in Net.parameters())
+    print(f"\nFLOPs: {total_flops/1e9:.2f} GFLOPs")
+    print(f"parameters: {total_params / 1e6:.2f} M\n")
 
     
 if __name__ == '__main__':
@@ -70,16 +82,7 @@ if __name__ == '__main__':
     dis_arange = runner.disparity_segmentation(runner.s.start_disp//4, runner.s.end_disp//4, step=3, device=runner.s.device)
     runner.model.set_disparity_arange(dis_arange)
 
-    # test(args=args,Net=Net,train_loader=train_loader,val_loader=test_loader)
+    time(args=args,Net=Net,train_loader=train_loader,val_loader=test_loader)
+    flops(Net,runner)
 
-    Net = Net.to(runner.s.device)
-    input = torch.randn(1,3,256,512).to(runner.s.device)
-
-    from fvcore.nn import FlopCountAnalysis, parameter_count_table
-    flops = FlopCountAnalysis(Net, (input, input))   # FLOPs（乘加=2）
-    total_flops = flops.total()
-
-    total_params = sum(p.numel() for p in Net.parameters())
-    print(f"Total parameters: {total_params / 1e6:.2f} M")
-    print(f"FLOPs: {total_flops/1e9:.2f} GFLOPs \n")
-    print(parameter_count_table(Net))
+    # print(parameter_count_table(Net))

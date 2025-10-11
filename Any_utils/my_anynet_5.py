@@ -44,6 +44,8 @@ class AnyNet(nn.Module):
     def __init__(self, start_disp, end_disp, device, **kwargs):
         super(AnyNet,self).__init__()
 
+        self.start_disp = start_disp
+        self.end_disp = end_disp
         self.device = device
         self.disparity_arange = None
         self.num_groups = 32
@@ -59,21 +61,11 @@ class AnyNet(nn.Module):
                                 nn.BatchNorm3d(self.num_groups),
                                 nn.ReLU(inplace=True),
                                 nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
-        
-        self.classif_2 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
-                                nn.BatchNorm3d(self.num_groups),
-                                nn.ReLU(inplace=True),
-                                nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
-        
-        self.classif_3 = nn.Sequential(nn.Conv3d(self.num_groups, self.num_groups, kernel_size=3, stride=1,padding=1, bias=False),
-                                nn.BatchNorm3d(self.num_groups),
-                                nn.ReLU(inplace=True),
-                                nn.Conv3d(self.num_groups, 1, kernel_size=3, padding=1, stride=1, bias=False))
 
         self.guidance = Guidance(self.num_groups) #类似Resnet
         self.up = PropgationNet_4x(self.num_groups)
 
-        self.t = time_counter(num=8)
+        self.t = time_counter(num=7)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -102,35 +94,54 @@ class AnyNet(nn.Module):
 
         guidance = self.guidance(left) #根据左图构建指导体
 
-        preds = []
+        self.t.end(0)
+        self.t.start(1)
+
+        disps = []
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[0], self.num_groups) #[B,32,disp,H,W]
+
+        self.t.end(1)
+        self.t.start(2)
+
         disp_1 = self.attention_1(cost,cost)  #[B,32,disp,H,W]
-        disp_1_c = self.classif_1(disp_1).squeeze(1) #[B,disp,H,W]
-        disp_1_re = self.disparity_regression2(disp_1_c, self.disparity_arange[0]) #[B,H,W]
-        preds.append(disp_1_re)
+
+        self.t.end(2)
+        self.t.start(3)
+
+        disps.append(disp_1)
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[1], self.num_groups) #[B,32,disp,H,W]
         disp_2 = self.attention_2(cost,cost)  #[B,32,disp,H,W]
-        disp_2_c = self.classif_2(disp_2).squeeze(1) #[B,disp,H,W]
-        disp_2_re = self.disparity_regression2(disp_2_c, self.disparity_arange[1]) #[B,H,W]
-        preds.append(disp_2_re)
+
+        self.t.end(3)
+        self.t.start(4)
+
+        disps.append(disp_2)
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[2], self.num_groups) #[B,32,disp,H,W]
         disp_3 = self.attention_3(cost,cost)  #[B,32,disp,H,W]
-        disp_3_c = self.classif_3(disp_3).squeeze(1) #[B,disp,H,W]
-        disp_3_re = self.disparity_regression2(disp_3_c, self.disparity_arange[2]) #[B,H,W]
-        preds.append(disp_3_re)
 
-        # self.t.end(2)
-        # self.t.start(3)
+        self.t.end(4)
+        self.t.start(5)
 
-        disp_up = self.up(guidance, preds[0]+preds[1]) #[B,256,512]
-        preds.append(disp_up)
+        disps.append(disp_3)
+
+        merged_disp = self._merge_volume(disps,self.disparity_arange)
+
+        self.t.end(5)
+        self.t.start(6)
+
+
+        pred = self.classif_1(merged_disp).squeeze(1) #[B,1,maxdisp,H,W]
+        pred = self.disparity_regression3(pred,self.start_disp//4,self.end_disp//4)
+        self.t.end(6)
+
+        disp_up = self.up(guidance, pred) #[B,256,512]
 
         # self.t.end(7)
 
-        return preds
+        return disp_up
 
     def _build_volume_2d(self, feat_l, feat_r, disparity_arange):
 
@@ -163,6 +174,17 @@ class AnyNet(nn.Module):
         volume = volume.contiguous() #[B,num_groups,disp,H,W]
         return volume
     
+    def _merge_volume(self, est_disp_list, disparity_arange_list):
+
+        B,num_groups,disp,H,W = est_disp_list[0].shape
+        maxdisp = sum([len(l) for l in disparity_arange_list])
+
+        merged_disp = torch.zeros((B, num_groups, maxdisp, H, W), device=est_disp_list[0].device,dtype=est_disp_list[0].dtype) #[B, disp, feature *2, W, H]
+        for idx,disparity_arange in enumerate(disparity_arange_list):
+            merged_disp[:,:,disparity_arange,:,:] = est_disp_list[idx]
+
+        return merged_disp.contiguous() #[B, feature*2, disp, W, H]
+    
     def _groupwise_correlation(self,fea1, fea2, num_groups):
         #fea.shape = [B,C,H,W]
         B, C, H, W = fea1.shape
@@ -179,5 +201,14 @@ class AnyNet(nn.Module):
         disp = disp.repeat(x.size()[0], 1, x.size()[2], x.size()[3]) #扩张到(B,disp,H,W)
         x = F.softmax(x, dim=1)
         x = x * disp
+        out = torch.sum(x, 1, keepdim=False) #乘到x上后求和[B,H,W]
+        return out
+    
+    #全回归
+    def disparity_regression3(self, x, start_disp, end_disp):
+        disparity_arange = torch.arange(start_disp,end_disp,device=x.device).view(1, -1, 1, 1)
+        disparity_arange = disparity_arange.repeat(x.size()[0], 1, x.size()[2], x.size()[3]) #扩张到(B,disp,H,W)
+        x = F.softmax(x, dim=1)
+        x = x * disparity_arange
         out = torch.sum(x, 1, keepdim=False) #乘到x上后求和[B,H,W]
         return out

@@ -28,9 +28,7 @@ class my_runner(object):
         best_epe = self.s.save_epe
 
         dis_arange = self.disparity_segmentation(self.s.start_disp//4, self.s.end_disp//4, step=3, device=self.s.device)
-        criterion = loss_sparse(self.s.start_disp, self.s.end_disp, self.logger, dis_arange[0], self.s.sparse)
-        criterion_2 = loss_sparse(self.s.start_disp, self.s.end_disp, self.logger, dis_arange[1], self.s.sparse)
-        criterion_3 = loss_sparse(self.s.start_disp, self.s.end_disp, self.logger, dis_arange[2], self.s.sparse)
+        criterion = l1_loss(self.s.start_disp, self.s.end_disp, self.logger, self.s.sparse)
         self.model.set_disparity_arange(dis_arange)
 
         
@@ -43,7 +41,7 @@ class my_runner(object):
             self.logger.info("Epoches: [{}/{}] ============================".format(ep, self.s.train_EPOCHS))
             scheduler.step(ep)
 
-            self.train_one_epoch_amp(ep,train_loader,optimizer,criterion,criterion_2,criterion_3,self.s.device)
+            self.train_one_epoch_amp(ep,train_loader,optimizer,criterion,self.s.device)
 
             gc.collect()
             torch.cuda.empty_cache()
@@ -90,8 +88,8 @@ class my_runner(object):
                 self.logger.info("step: [{}/{}] | loss_1: {:.3f} | loss_2: {:.3f} | loss_3: {:.3f} | epe: {:.3f}"
                                  .format(batch_idx, len(train_loader), train_loss_1 / (idx), train_loss_2 / (idx), train_loss_3 / (idx), train_epe / (idx)))
 
-    def train_one_epoch_amp(self,ep,train_loader,optimizer,criterion,criterion_2,criterion_3,device):
-        train_loss_1 = train_loss_2 = train_loss_3 = 0
+    def train_one_epoch_amp(self,ep,train_loader,optimizer,criterion,device):
+        train_loss_1 = 0
         train_epe = 0
         self.model.train()
         scaler = torch.amp.GradScaler()
@@ -113,17 +111,12 @@ class my_runner(object):
             optimizer.zero_grad()
             with torch.autocast(device_type='cuda', dtype=torch.float16):
                 preds = self.model(imgL, imgR)
-                loss = [criterion(preds[0], disp_true),criterion_2(preds[1], disp_true),criterion_3(preds[2], disp_true)]
+                loss = criterion([preds], disp_true)[0]
 
-            # epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
+            epe = torch.mean(torch.abs(preds[mask] - disp_true[mask]))
 
-            train_loss_1 += (loss[0].item()) / valid_sample
-            train_loss_2 += (loss[1].item()) / valid_sample
-            train_loss_3 += (loss[2].item()) / valid_sample
-            train_epe += 0
-
-            loss = [x * y for x, y in zip(loss, weight)]
-            loss = sum(loss)
+            train_loss_1 += (loss.item()) / valid_sample
+            train_epe += epe.item()
 
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
@@ -132,8 +125,8 @@ class my_runner(object):
             scaler.update()
 
             if batch_idx % 200 == 0:
-                self.logger.info("step: [{}/{}] | loss_1: {:.3f} | loss_2: {:.3f} | loss_3: {:.3f} | epe: {:.3f}"
-                                 .format(batch_idx+1, len(train_loader), train_loss_1 / (batch_idx+1), train_loss_2 / (batch_idx+1), train_loss_3 / (batch_idx+1), train_epe / (batch_idx+1)))
+                self.logger.info("step: [{}/{}] | loss_1: {:.3f} | epe: {:.3f}"
+                                 .format(batch_idx+1, len(train_loader), train_loss_1 / (batch_idx+1), train_epe / (batch_idx+1)))
 
     @torch.no_grad()
     def val_onece(self,val_loader,device):
@@ -147,8 +140,8 @@ class my_runner(object):
 
             preds = self.model(imgL, imgR)
 
-            # epe = torch.mean(torch.abs(preds[-1][mask] - disp_true[mask]))
-            val_epe += 0
+            epe = torch.mean(torch.abs(preds[mask] - disp_true[mask]))
+            val_epe += epe.item()
 
         val_epe /= batch_idx
 
