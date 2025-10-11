@@ -129,6 +129,7 @@ class my_runner(object):
             train_loss += (loss.item()) / valid_sample
             train_epe += epe.item()
 
+            loss = loss + loss_1 + loss_2 + loss_3
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
             dispatch_clip_grad(self.model.parameters(), self.s.grad_clip_value)
