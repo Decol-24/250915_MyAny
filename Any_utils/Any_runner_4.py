@@ -91,11 +91,11 @@ class my_runner(object):
                                  .format(batch_idx, len(train_loader), train_loss_1 / (idx), train_loss_2 / (idx), train_loss_3 / (idx), train_epe / (idx)))
 
     def train_one_epoch_amp(self,ep,train_loader,optimizer,criterion,criterion_1,criterion_2,criterion_3,device):
-        train_loss_1 = 0
+        train_loss = train_loss_1 = train_loss_2 = train_loss_3 = 0
         train_epe = 0
         self.model.train()
         scaler = torch.amp.GradScaler()
-        weight = [1.0,1.0,1.0]
+        weight = [0.2,0.2,0.2]
 
         for batch_idx, (imgL, imgR, disp_true) in enumerate(train_loader):
             
@@ -118,7 +118,10 @@ class my_runner(object):
                 loss_2 = criterion_2(preds[1], disp_true)
                 loss_3 = criterion_3(preds[2], disp_true)
 
-            epe = torch.mean(torch.abs(preds[mask] - disp_true[mask]))
+            loss_1 = loss_1 * weight[0]
+            loss_2 = loss_2 * weight[1]
+            loss_3 = loss_3 * weight[2]
+            epe = torch.mean(torch.abs(disp_up - disp_true[mask]))
 
             train_loss_1 += (loss_1.item()) / valid_sample
             train_loss_2 += (loss_2.item()) / valid_sample
@@ -148,7 +151,7 @@ class my_runner(object):
 
             preds = self.model(imgL, imgR)
 
-            epe = torch.mean(torch.abs(preds[mask] - disp_true[mask]))
+            epe = torch.mean(torch.abs(disp_up - disp_true[mask]))
             val_epe += epe.item()
 
         val_epe /= batch_idx

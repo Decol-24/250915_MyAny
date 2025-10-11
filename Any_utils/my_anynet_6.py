@@ -118,10 +118,7 @@ class AnyNet(nn.Module):
 
         disp_1 = self.classif_1(disp_1).squeeze(1)
         pred_1 = self.disparity_regression2(disp_1, self.disparity_arange[0])
-        preds.apppen(pred_1)
-
-
-        
+        preds.append(pred_1)
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[1], self.num_groups) #[B,32,disp,H,W]
         disp_2 = self.attention_2(cost,cost)  #[B,32,disp,H,W]
@@ -129,9 +126,7 @@ class AnyNet(nn.Module):
 
         disp_2 = self.classif_2(disp_2).squeeze(1)
         pred_2 = self.disparity_regression2(disp_2, self.disparity_arange[1])
-        preds.apppen(pred_2)
-
-        
+        preds.append(pred_2)
 
         cost = self._build_gwc_volume(feats_l, feats_r, self.disparity_arange[2], self.num_groups) #[B,32,disp,H,W]
         disp_3 = self.attention_3(cost,cost)  #[B,32,disp,H,W]
@@ -139,7 +134,7 @@ class AnyNet(nn.Module):
 
         disp_3 = self.classif_3(disp_3).squeeze(1)
         pred_3 = self.disparity_regression2(disp_3, self.disparity_arange[2])
-        preds.apppen(pred_3)
+        preds.append(pred_3)
 
         merged_disp = self._merge_volume(disps,self.disparity_arange)
 
